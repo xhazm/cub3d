@@ -6,7 +6,7 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/17 21:29:04 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/03/17 22:10:33 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	key_hook(int keycode, t_vars *vars)
 		pa -= 0.1;
 		if (pa < 0)
 			pa += 2 * M_PI;
-		pdx = cos(pa) * 5;
-		pdy = sin(pa) * 5;
+		pdx = cos(pa);
+		pdy = sin(pa);
 		
 	}
 	if (keycode == KEY_D)
@@ -81,8 +81,8 @@ int	key_hook(int keycode, t_vars *vars)
 		pa += 0.1;
 		if (pa > 2*M_PI)
 			pa -= 2 * M_PI;
-		pdx = cos(pa) * 5;
-		pdy = sin(pa) * 5;
+		pdx = cos(pa);
+		pdy = sin(pa);
 		
 	}
 	if (keycode == KEY_ESC)

@@ -94,7 +94,7 @@ int draw_player(t_vars *vars)
 		for(int j = -5; j < 5; j++)
 		{
 			my_mlx_pixel_put(vars, px + vars->mv.xoff + i, py + vars->mv.yoff + j, 0x00FF0000);
-			for (int h = 0; h < 10; h++)
+			for (int h = 0; h < 80; h++)
 			{
 				my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
 			}
@@ -110,8 +110,8 @@ int	main(void)
 
 	px = 500;
 	py = 500;
-	pdx = cos(pa) * 5;
-	pdy = sin(pa) * 5;
+	pdx = cos(pa);
+	pdy = sin(pa);
 	ft_init(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
