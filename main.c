@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 int map[]=
 {
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -50,6 +49,63 @@ static int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	return (1);
 }
 
+void drawRays3D(t_vars *vars)
+{
+	t_rays	rays;
+	int my;
+
+	rays.ra = pa;
+	//Horizontal lines
+	for(rays.r = 0; rays.r < 1; rays.r++)
+	{
+		rays.dof = 0;
+		float aTan = -1/tan(rays.ra);
+		if (rays.ra > M_PI)
+		{
+			rays.ry = (((int)py>>6)<<6) - 0.0001;
+			rays.rx = (py - rays.ry) * aTan + px;
+			rays.yo = -64;
+			rays.xo = - rays.yo * aTan;
+		}
+		if (rays.ra < M_PI)
+		{
+			rays.ry = (((int)py>>6)<<6) + 64;
+			rays.rx = (py - rays.ry) * aTan + px;
+			rays.yo = 64;
+			rays.xo = - rays.yo * aTan;
+		}
+		if (rays.ra == M_PI || rays.ra == 0)
+		{
+			rays.rx = px;
+			rays.ry = py;
+			rays.dof = 8;
+		}
+		while (rays.dof < 8)
+		{
+			rays.mx = (int) (rays.rx) >> 6;
+			rays.my = (int)(rays.ry) >> 6;
+			rays.mp = rays.my * MAP_W + rays.mx;
+			if (rays.mp < MAP_W * MAP_H && map[rays.mp] == 1)
+			{
+				rays.dof = 8;
+			}
+			else
+			{
+				rays.rx += rays.xo;
+				rays.ry += rays.yo;
+				rays.dof += 1;
+			}
+			for (int h = 0; h < 80; h++)
+			{
+				//my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
+				my_mlx_pixel_put(vars, (px+rays.rx*h) + vars->mv.xoff ,(py+rays.ry * h) + vars->mv.yoff , 0x00FF0000);
+			}
+		}
+	}
+}
+
+
+
 int draw_map(t_vars *vars)
 {
 	int xo = 0;
@@ -96,8 +152,9 @@ int draw_player(t_vars *vars)
 			my_mlx_pixel_put(vars, px + vars->mv.xoff + i, py + vars->mv.yoff + j, 0x00FF0000);
 			for (int h = 0; h < 80; h++)
 			{
-				my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
+				//my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
 			}
+			drawRays3D(vars);
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);

@@ -55,6 +55,21 @@ typedef struct s_vars{
 	t_input		input;
 }				t_vars;
 
+
+typedef struct s_rays
+{
+	int			r;
+	int			mx;
+	int			my;
+	int			mp;
+	int			dof;
+	float		rx;
+	float		ry;
+	float		ra;
+	float		xo;
+	float		yo;
+}				t_rays;
+
 int	key_hook(int keycode, t_vars *vars);
 
 
