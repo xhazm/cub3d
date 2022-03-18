@@ -6,15 +6,15 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:40:19 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/17 20:25:06 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:59:14 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_DEFINE_H
 # define CUB3D_DEFINE_H
 
-# define WIN_WIDTH 1202
-# define WIN_HEIGHT 1202
+# define WIN_WIDTH 1220
+# define WIN_HEIGHT 1220
 # define IMG_W 1220
 # define IMG_H 1220
 # define MAP_W 21
@@ -37,5 +37,7 @@
 # define KEY_R 15
 # define KEY_T 17
 # define KEY_ESC 53
+# define FAIL 0
+# define SUCCESS 1
 
 #endif

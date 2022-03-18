@@ -6,7 +6,7 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/17 22:10:33 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:59:57 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 static void	ft_imgreset(t_vars *vars)
 {
-	vars->mv.yoff = 0;
-	vars->img.yoff = 0;
-	vars->mv.xoff = 0;
-	vars->img.xoff = 0;
-	vars->img.scale = vars->input.scale;
+	// vars->mv.yoff = 0;
+	// vars->img.yoff = 0;
+	// vars->mv.xoff = 0;
+	// vars->img.xoff = 0;
+	// vars->img.scale = vars->input.scale;
 }
 
 static void	scale_move_keyhook(int keycode, t_vars *vars)
@@ -59,13 +59,13 @@ int	key_hook(int keycode, t_vars *vars)
 		ft_imgreset(vars);
 	if (keycode == KEY_W)
 	{
-		px += pdx;
-		py += pdy;
+		px += pdx * 5;
+		py += pdy * 5;
 	}
 	if (keycode == KEY_S)
 	{
-		px -= pdx;
-		py -= pdy;
+		px -= pdx * 5;
+		py -= pdy * 5;
 	}
 	if (keycode == KEY_A)
 	{

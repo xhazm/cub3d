@@ -6,14 +6,14 @@
 #    By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 18:59:28 by lpfleide          #+#    #+#              #
-#    Updated: 2022/03/17 19:55:10 by lpfleide         ###   ########.fr        #
+#    Updated: 2022/03/18 14:21:08 by lpfleide         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 NAME = cub3d
 FLAGS = -O3 -g # -Wall -Wextra -Werror
-SRC = ./main.c ./user_key_input.c
+SRC = ./main.c ./user_key_input.c ./draw.c
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 %.o : %.c $(SRC)
@@ -46,3 +46,4 @@ rfast:
 	rm -f $(NAME)
 	rm -f $(OBJ)
 	make all
+	./cub3d

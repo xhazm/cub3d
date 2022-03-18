@@ -10,13 +10,21 @@
 
 float px,py,pdx,pdy,pa;
 
-typedef struct s_move {
-	float	xoff;
-	float	yoff;
-	float	x;
-	float	y;
+typedef struct s_player {
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	x;
+	double	y;
 	// t_mouse	mouse;
-}				t_move;
+}				t_player;
+
+typedef struct s_draw {
+	int		lineH;
+	int		start;
+	int		end;
+}				t_draw;
 
 typedef struct s_input
 {
@@ -39,40 +47,48 @@ typedef struct s_data {
 typedef struct s_img {
 	void	*img;
 	double	scale;
+	double	time;
+	double	old_time;
 	int		xoff;
 	int		yoff;
 	int		iso;
 	t_data	data;
 }				t_img;
 
+typedef struct s_ray
+{
+	double	dirX;
+	double	dirY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	int		hit;
+	int		side;
+	int		stepX;
+	int		stepY;
+}				t_ray;
 
 typedef struct s_vars{
 	void		*mlx;
 	void		*win;
+	double		cameraX;
+	double		perpWallDist;
+	int			mapX;
+	int			mapY;
+	t_draw		draw;
 	// t_rotate	rt;
-	t_move		mv;
+	t_player	pl;
+	t_ray		ray;
 	t_img		img;
 	t_input		input;
 }				t_vars;
 
 
-typedef struct s_rays
-{
-	int			r;
-	int			mx;
-	int			my;
-	int			mp;
-	int			dof;
-	float		rx;
-	float		old_rx;
-	float		ry;
-	float		old_ry;
-	float		ra;
-	float		xo;
-	float		yo;
-}				t_rays;
 
 int	key_hook(int keycode, t_vars *vars);
+void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
+int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 
 
 #endif
