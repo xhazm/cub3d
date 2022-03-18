@@ -64,7 +64,9 @@ typedef struct s_rays
 	int			mp;
 	int			dof;
 	float		rx;
+	float		old_rx;
 	float		ry;
+	float		old_ry;
 	float		ra;
 	float		xo;
 	float		yo;

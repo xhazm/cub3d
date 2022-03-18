@@ -1,5 +1,24 @@
 #include "cub3d.h"
 
+static int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+
+
+void bresenham(t_vars *vars, int x0, int y0, int x1, int y1)
+{
+  int dx =  abs(x1-x0), sx = x0<x1 ? 1 : -1;
+  int dy = -abs(y1-y0), sy = y0<y1 ? 1 : -1;
+  int err = dx+dy, e2; /* error value e_xy */
+
+  while (1) {
+	my_mlx_pixel_put(vars, x0 ,y0 , 0x00FF0000);
+    if (x0==x1 && y0==y1) break;
+    e2 = 2*err;
+    if (e2 > dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+    if (e2 < dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+  }
+}
+
+
 int map[]=
 {
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -9,7 +28,7 @@ int map[]=
 1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,
-1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,1,
+1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,
@@ -24,6 +43,21 @@ int map[]=
 1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
+static void	ft_init_rays(t_rays *rays)
+{
+	rays->r = 0;
+	rays->old_rx = 0;
+	rays->rx = 0;
+	rays->ry = 0;
+	rays->old_ry = 0;
+	rays->ra = 0;
+	rays->xo = 0;
+	rays->yo = 0;
+	rays->mx = 0;
+	rays->my = 0;
+	rays->mp = 0;
+	rays->dof = 0;
+}
 static void	ft_init(t_vars *vars)
 {
 	vars->mv.yoff = 0;
@@ -54,6 +88,7 @@ void drawRays3D(t_vars *vars)
 	t_rays	rays;
 	int my;
 
+	ft_init_rays(&rays);
 	rays.ra = pa;
 	//Horizontal lines
 	for(rays.r = 0; rays.r < 1; rays.r++)
@@ -74,7 +109,7 @@ void drawRays3D(t_vars *vars)
 			rays.yo = 64;
 			rays.xo = - rays.yo * aTan;
 		}
-		if (rays.ra == M_PI || rays.ra == 0)
+		if (rays.ra == M_PI || rays.ra == 0) //looking straight left/right
 		{
 			rays.rx = px;
 			rays.ry = py;
@@ -95,11 +130,11 @@ void drawRays3D(t_vars *vars)
 				rays.ry += rays.yo;
 				rays.dof += 1;
 			}
-			for (int h = 0; h < 80; h++)
-			{
-				//my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
-				my_mlx_pixel_put(vars, (px+rays.rx*h) + vars->mv.xoff ,(py+rays.ry * h) + vars->mv.yoff , 0x00FF0000);
-			}
+			my_mlx_pixel_put(vars, rays.rx ,rays.ry , 0x00FF0000);
+			if (rays.old_rx != 0 && rays.old_ry != 0)
+				bresenham(vars, rays.old_rx, rays.old_ry, rays.rx, rays.ry);
+			rays.old_rx = rays.rx;
+			rays.old_ry = rays.ry;
 		}
 	}
 }
@@ -145,16 +180,16 @@ int draw_player(t_vars *vars)
 		&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 		&vars->img.data.endian);
 	draw_map(vars);
+	drawRays3D(vars);
 	for(int i = -5; i < 5; i++)
 	{
 		for(int j = -5; j < 5; j++)
 		{
-			my_mlx_pixel_put(vars, px + vars->mv.xoff + i, py + vars->mv.yoff + j, 0x00FF0000);
+			my_mlx_pixel_put(vars, px +  i, py + j, 0x00FF0000);
 			for (int h = 0; h < 80; h++)
 			{
-				//my_mlx_pixel_put(vars, (px+pdx*h) + vars->mv.xoff ,(py+pdy*h) + vars->mv.yoff , 0x00FF0000);
+				//my_mlx_pixel_put(vars, px+pdx*h ,py+pdy*h, 0x00FF0000);
 			}
-			drawRays3D(vars);
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
@@ -167,6 +202,7 @@ int	main(void)
 
 	px = 500;
 	py = 500;
+	pa = 1;
 	pdx = cos(pa);
 	pdy = sin(pa);
 	ft_init(&vars);
