@@ -6,7 +6,7 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/18 17:59:57 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:54:40 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,36 @@ static void	scale_move_keyhook(int keycode, t_vars *vars)
 	// 	vars->img.yoff -= 75;
 }
 
+int	key_press(int keycode, t_vars *vars)
+{
+	if (keycode == KEY_W)
+		vars->pl.moveForward = true;
+	if (keycode == KEY_S)
+		vars->pl.moveBackward = true;
+	if (keycode == KEY_A)
+		vars->pl.moveLeft = true;
+	if (keycode == KEY_D)
+		vars->pl.moveRight = true;
+	if (keycode == KEY_ESC)
+	{
+		// ft_free2darr((void **)vars->mv.cords);
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
+	}
+}
+
+int	key_release(int keycode, t_vars *vars)
+{
+	if (keycode == KEY_W)
+		vars->pl.moveForward = false;
+	if (keycode == KEY_S)
+		vars->pl.moveBackward = false;
+	if (keycode == KEY_A)
+		vars->pl.moveLeft = false;
+	if (keycode == KEY_D)
+		vars->pl.moveRight = false;
+}
+
 int	key_hook(int keycode, t_vars *vars)
 {
 
@@ -57,16 +87,16 @@ int	key_hook(int keycode, t_vars *vars)
 		scale_move_keyhook(keycode, vars);
 	if (keycode == KEY_F)
 		ft_imgreset(vars);
-	if (keycode == KEY_W)
-	{
-		px += pdx * 5;
-		py += pdy * 5;
-	}
-	if (keycode == KEY_S)
-	{
-		px -= pdx * 5;
-		py -= pdy * 5;
-	}
+	// if (keycode == KEY_W)
+	// {
+	// 	px += pdx * 5;
+	// 	py += pdy * 5;
+	// }
+	// if (keycode == KEY_S)
+	// {
+	// 	px -= pdx * 5;
+	// 	py -= pdy * 5;
+	// }
 	if (keycode == KEY_A)
 	{
 		pa -= 0.1;
@@ -85,11 +115,6 @@ int	key_hook(int keycode, t_vars *vars)
 		pdy = sin(pa);
 		
 	}
-	if (keycode == KEY_ESC)
-	{
-		// ft_free2darr((void **)vars->mv.cords);
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(0);
-	}
+
 	return (0);
 }

@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <stdbool.h>
 
 float px,py,pdx,pdy,pa;
 
@@ -17,6 +18,10 @@ typedef struct s_player {
 	double	planeY;
 	double	x;
 	double	y;
+	bool	moveForward;
+	bool	moveBackward;
+	bool	moveLeft;
+	bool	moveRight;
 	// t_mouse	mouse;
 }				t_player;
 
@@ -89,6 +94,10 @@ typedef struct s_vars{
 int	key_hook(int keycode, t_vars *vars);
 void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+int	key_press(int keycode, t_vars *vars);
+int	key_release(int keycode, t_vars *vars);
+
+
 
 
 #endif
