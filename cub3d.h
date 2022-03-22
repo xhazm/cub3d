@@ -18,6 +18,8 @@ typedef struct s_player {
 	double	planeY;
 	double	x;
 	double	y;
+	double	moveSpeed;
+	double	rotSpeed;
 	bool	moveForward;
 	bool	moveBackward;
 	bool	moveLeft;
@@ -78,6 +80,7 @@ typedef struct s_vars{
 	void		*mlx;
 	void		*win;
 	double		cameraX;
+	double		frametime;
 	double		perpWallDist;
 	int			mapX;
 	int			mapY;

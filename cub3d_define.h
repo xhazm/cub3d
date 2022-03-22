@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_define.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:40:19 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/19 14:46:46 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:28:21 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@
 # define X_EVENT_EXIT 17
 # define FAIL 0
 # define SUCCESS 1
+# define FRAMETIME 0.016
 
 #endif

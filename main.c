@@ -1,5 +1,9 @@
 #include "cub3d.h"
-
+//  case 1:  color = 0x00fe217f;    break; //red
+//         case 2:  color = 0x000cc35c;  break; //green
+//         case 3:  color = 0x001c26ee;   break; //blue
+//         case 4:  color = 0x00a4d8d8;  break; //white
+//         default: color = 0x00c7c2cb; break; //yellow
 int map[24][24]=
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -40,7 +44,7 @@ static void	ft_init(t_vars *vars)
 	vars->pl.y = 12;
 	vars->pl.planeX = 0;
 	vars->pl.planeY = 0.66;
-	vars->pl.dirX = -1;
+	vars->pl.dirX = 1;
 	vars->pl.dirY = 0;
 	vars->pl.moveForward = false;
 	vars->pl.moveBackward = false;
@@ -50,6 +54,8 @@ static void	ft_init(t_vars *vars)
 	vars->img.yoff = 0;
 	vars->img.xoff = 0;
 	vars->img.scale = vars->input.scale;
+	vars->pl.rotSpeed = FRAMETIME * 3.0;
+	vars->pl.moveSpeed = FRAMETIME * 5.0;
 }
 
 static void exit_game(t_vars *vars)
@@ -77,11 +83,11 @@ int	ft_draw_rays_3d(t_vars *vars)
 		if (vars->ray.dirX == 0) //righty right?
 			vars->ray.deltaDistX = 1e30;
 		else
-			vars->ray.deltaDistX =  sqrt(1 + (vars->ray.dirY * vars->ray.dirX) / (vars->ray.dirY * vars->ray.dirX)); //fabs(1 / vars->ray.dirX);//
+			vars->ray.deltaDistX =  fabs(1 / vars->ray.dirX);//
 		if (vars->ray.dirY == 0) //righty right?
 			vars->ray.deltaDistY = 1e30;
 		else
-			vars->ray.deltaDistY =  sqrt(1 + (vars->ray.dirY * vars->ray.dirX) / (vars->ray.dirY * vars->ray.dirX)); // fabs(1 / vars->ray.dirY);//
+			vars->ray.deltaDistY = fabs(1 / vars->ray.dirY);//
 		if (vars->ray.dirX < 0)
 		{
 			vars->ray.stepX = -1;
@@ -135,11 +141,11 @@ int	ft_draw_rays_3d(t_vars *vars)
 		int color;
 		switch(map[vars->mapX][vars->mapY])
      	 {
-        case 1:  color = 0x00fe217f;    break; //red
-        case 2:  color = 0x000cc35c;  break; //green
+        case 1:  color = 0x00FF0000;    break; //red
+        case 2:  color = 0x003cf33;  break; //green
         case 3:  color = 0x001c26ee;   break; //blue
-        case 4:  color = 0x00a4d8d8;  break; //white
-        default: color = 0x00c7c2cb; break; //yellow
+        case 4:  color = 0x00FFFFFF;  break; //white
+        default: color = 0x00e9dc43; break; //yellow
       	}
 		if (vars->ray.side == 0)
 		{
@@ -160,26 +166,44 @@ int	ft_draw_rays_3d(t_vars *vars)
 
 void	ft_move(t_vars *vars)
 {
+	double oldDirX;
+	double oldPlaneX;
+
+	oldDirX = vars->pl.dirX;
+	oldPlaneX = vars->pl.planeX;
+	vars->pl.moveSpeed = FRAMETIME *  5.0;
+	vars->pl.rotSpeed = FRAMETIME *  3.0;
 	if (vars->pl.moveForward == true)
-		vars->pl.x += 0.01;
+	{
+		if (map[(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
+			vars->pl.x += vars->pl.dirX * vars->pl.moveSpeed;
+		if (map[(int)(vars->pl.x)][(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)] == 0)
+			vars->pl.y += vars->pl.dirY * vars->pl.moveSpeed;
+	}
 	if (vars->pl.moveBackward == true)
-		vars->pl.x -= 0.01;
+	{
+		if (map[(int)(vars->pl.x - vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
+			vars->pl.x -= vars->pl.dirX * vars->pl.moveSpeed;
+		if (map[(int)(vars->pl.x)][(int)(vars->pl.y - vars->pl.dirY * vars->pl.moveSpeed)] == 0)
+			vars->pl.y -= vars->pl.dirY * vars->pl.moveSpeed;
+	}
 	if (vars->pl.moveLeft == true)
 	{
-		if (pa < 0)
-			pa += 2 * M_PI;
-		vars->pl.x = cos(pa);
-		vars->pl.y = sin(pa);
-		pa += 0.1;
+		oldDirX = vars->pl.dirX;
+		vars->pl.dirX = vars->pl.dirX * cos(-vars->pl.rotSpeed) - vars->pl.dirY * sin(-vars->pl.rotSpeed);
+		vars->pl.dirY = oldDirX * sin(-vars->pl.rotSpeed) + vars->pl.dirY * cos(-vars->pl.rotSpeed);
+		oldPlaneX = vars->pl.planeX;
+		vars->pl.planeX = vars->pl.planeX * cos(-vars->pl.rotSpeed) - vars->pl.planeY * sin(-vars->pl.rotSpeed);
+		vars->pl.planeY = oldPlaneX * sin(-vars->pl.rotSpeed) + vars->pl.planeY * cos(-vars->pl.rotSpeed);
 	}
 	if (vars->pl.moveRight == true)
 	{
-		if (pa > 2*M_PI)
-			pa -= 2 * M_PI;
-		vars->pl.x = cos(pa);
-		vars->pl.y = sin(pa);
-		pa -= 0.1;
-
+		oldDirX = vars->pl.dirX;
+		vars->pl.dirX = vars->pl.dirX * cos(vars->pl.rotSpeed) - vars->pl.dirY * sin(vars->pl.rotSpeed);
+		vars->pl.dirY = oldDirX * sin(vars->pl.rotSpeed) + vars->pl.dirY * cos(vars->pl.rotSpeed);
+		oldPlaneX = vars->pl.planeX;
+		vars->pl.planeX = vars->pl.planeX * cos(vars->pl.rotSpeed) - vars->pl.planeY * sin(vars->pl.rotSpeed);
+		vars->pl.planeY = oldPlaneX * sin(vars->pl.rotSpeed) + vars->pl.planeY * cos(vars->pl.rotSpeed);
 	}
 }
 
