@@ -96,7 +96,7 @@ int	ft_draw_rays_3d(t_vars *vars)
 		else
 		{
 			vars->ray.stepX = 1;
-			vars->ray.sideDistX = (vars->mapX + 0.1 - vars->pl.x) * vars->ray.deltaDistX;
+			vars->ray.sideDistX = (vars->mapX + 1.0 - vars->pl.x) * vars->ray.deltaDistX;
 		}
 		if (vars->ray.dirY < 0)
 		{
@@ -106,7 +106,7 @@ int	ft_draw_rays_3d(t_vars *vars)
 		else
 		{
 			vars->ray.stepY = 1;
-			vars->ray.sideDistY = (vars->mapY + 0.1 - vars->pl.y) * vars->ray.deltaDistY;
+			vars->ray.sideDistY = (vars->mapY + 1.0 - vars->pl.y) * vars->ray.deltaDistY;
 		}
 		while (vars->ray.hit == 0)
 		{
