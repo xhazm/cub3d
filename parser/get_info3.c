@@ -20,7 +20,7 @@ int	get_map(t_map *map_info, char **map_read)
 {
 	int		x;
 
-	map_info->map = malloc(map_info->height * sizeof(char*));
+	map_info->map = calloc(map_info->height, sizeof(char*));
 	if (map_info->map == NULL)
 		return(ft_error("malloc Error"));
 	x = 0;

@@ -1,11 +1,11 @@
 #include "parser.h"
 
-void print_map(char **map)
+void print_map(char **map, int height)
 {
 	int x;
 
 	x = 0;
-	while(map[x])
+	while(x < height)
 	{
 		printf("%s",map[x]);
 		x++;

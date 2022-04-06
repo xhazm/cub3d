@@ -48,7 +48,7 @@ int			check_map(t_map *map_info);
 int			check_first_row(t_map *map_info);
 int			check_middle_rows(t_map *map_info);
 int			check_last_row(t_map *map_info);
-void 		print_map(char **map);
+void 		print_map(char **map, int height);
 void 		print_info(t_map *m);
 int			ft_error(char *msg);
 #endif

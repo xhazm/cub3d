@@ -11,7 +11,8 @@ SRC =	./main.c \
 		./get_info2.c \
 		./get_info3.c \
 		./helpers.c \
-		./read_info.c 
+		./read_info.c
+
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 %.o : %.c $(SRC)
@@ -20,14 +21,15 @@ OBJ = $(patsubst %.c, %.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) ../libft/libft.a
+	make -C ../libft
+	$(CC) $(FLAGS) $(OBJ) ../libft/libft.a -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
-	make clean -C ./libft
+	make clean -C ../libft
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C ./libft
+	make fclean -C ../libft
 
 re: fclean all

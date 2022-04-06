@@ -42,13 +42,13 @@ static int check_sign(t_map *map_info, char *row, int y)
 		{
 			if (check_zero(map_info->map, x, y) < 0)
 			{
-				(printf("%i %i\n", x,y));
+				(printf("FEHLER %i %i\n", x,y));
 				return (-1);
 			}
+		}
 		if (ft_strchr("NSWE", row[x]) != 0)
 			if (check_pl(map_info, map_info->map, x, y) < 0)
 				return (-1);
-		}
 		x++;
 	}
 	return (0);
