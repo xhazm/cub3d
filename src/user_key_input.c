@@ -6,11 +6,12 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/03/19 14:54:40 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:51:59 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../defines/cub3d.h"
+
 
 	// if (keycode == KEY_W)
 	// 	vars->mv.yoff -= 5;

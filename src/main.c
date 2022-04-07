@@ -1,4 +1,5 @@
-#include "cub3d.h"
+#include "../defines/cub3d.h"
+
 //  case 1:  color = 0x00fe217f;    break; //red
 //         case 2:  color = 0x000cc35c;  break; //green
 //         case 3:  color = 0x001c26ee;   break; //blue

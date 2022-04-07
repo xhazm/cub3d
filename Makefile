@@ -6,21 +6,27 @@
 #    By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 18:59:28 by lpfleide          #+#    #+#              #
-#    Updated: 2022/03/18 14:21:08 by lpfleide         ###   ########.fr        #
+#    Updated: 2022/04/07 13:53:23 by lpfleide         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 NAME = cub3d
 FLAGS = -O3 -g # -Wall -Wextra -Werror
-SRC = ./main.c ./user_key_input.c ./draw.c
-OBJ = $(patsubst %.c, %.o, $(SRC))
+SRC = main.c user_key_input.c draw.c
+OBJ_FILES = $(patsubst %.c, %.o, $(SRC))
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
 
-%.o : %.c $(SRC)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-all: $(NAME)
+all: obj $(NAME)
 
+obj: 
+	mkdir -p $(OBJ_DIR)
+	
 $(NAME): libmake $(OBJ)
 	$(CC) $(FLAGS) -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ) -L. libft/libft.a
 
@@ -31,7 +37,7 @@ mlxmake:
 	make all -C ./mlx
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 	make clean -C ./libft
 	make clean -C ./mlx
 
