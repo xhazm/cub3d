@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../defines/cub3d.h"
 
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {

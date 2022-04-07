@@ -2,7 +2,7 @@
 # define CUB3D_H
 
 # include "cub3d_define.h"
-# include "./mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
