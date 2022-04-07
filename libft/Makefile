@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+         #
+#    By: elenz <elenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 12:08:41 by lpfleide          #+#    #+#              #
-#    Updated: 2022/01/12 15:02:57 by lpfleide         ###   ########.fr        #
+#    Updated: 2022/04/05 19:40:58 by elenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Werror -Wextra -c
+CFLAGS = -Wall -Werror -Wextra -c -g
 NAME = libft.a
 SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_isdigit.c ft_isprint.c ft_itoa.c ft_memccpy.c ft_memchr.c \
@@ -19,8 +19,9 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c \
 	ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c \
 	ft_substr.c ft_tolower.c ft_toupper.c ft_atoi_len.c ft_remalloc.c \
-	ft_free2darr.c ft_btoi.c ft_striteri.c ft_str_isnum.c ft_str_is_int.c
-SRC_GNL = ./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
+	ft_free2darr.c ft_btoi.c ft_striteri.c ft_str_isnum.c ft_str_is_int.c \
+	ft_get_next_line.c ft_get_next_line_utils.c
+#SRC_GNL = ./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 			./gnl/get_next_line_utils_bonus.c ./gnl/get_next_line_bonus.c
 SRC_PRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_hex_conversions.c \
 			./ft_printf/ft_helper_general.c ./ft_printf/ft_helper_width_flags.c \
@@ -31,8 +32,8 @@ BONUS = ft_lstclear.c ft_lstdelone.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) $(SRC) $(SRC_GNL) $(SRC_PRINTF)
-	ar -crs $(NAME) ft_*.o get_next_*.o
+	gcc $(CFLAGS) $(SRC) $(SRC_PRINTF)
+	ar -crs $(NAME) ft_*.o 
 	ar -t $(NAME)
 
 

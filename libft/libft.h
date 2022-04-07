@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:20:19 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/01/17 12:55:00 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/05 19:20:09 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./gnl/get_next_line.h"
 # include "./ft_printf/ft_printf.h"
 
 typedef struct s_list
@@ -80,7 +79,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-char	*get_next_line(int fd);
-char	*get_next_line_bonus(int fd);
 
+char	*get_next_line(int fd, int buffersize);
+size_t	ft_gstrlen(char	*s);
+int	ft_gstrchr(char	*s, int c);
+void	*ft_gfree_function(char *c, char **rest);
+char	*ft_gsubstr(char *s, unsigned int start, size_t len);
+char	*ft_gstrjoin(char *rest, char *c);
 #endif
