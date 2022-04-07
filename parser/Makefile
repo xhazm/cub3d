@@ -1,6 +1,6 @@
 CC = gcc
 NAME = parser
-FLAGS = -g  -Wall -Wextra -Werror
+FLAGS = -g  -Wall -Wextra -Werror -fsanitize=address
 SRC =	./main.c \
 		./parser.c \
 		./check_firstrow.c \
@@ -11,7 +11,8 @@ SRC =	./main.c \
 		./get_info2.c \
 		./get_info3.c \
 		./helpers.c \
-		./read_info.c
+		./read_info.c \
+		./gnl_tim.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

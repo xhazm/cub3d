@@ -12,6 +12,7 @@ static void	init_map_info(t_map *map_info)
 	map_info->width = 0;
 	map_info->height = 0;
 	map_info->pl_dir = 'x';
+	map_info->fd = -1;
 }
 
 int	open_map(char **argv, t_map *map_info)

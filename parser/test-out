@@ -1,0 +1,51 @@
+=================================================================
+==99488==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60f0000000f0 at pc 0x0001016d9b7e bp 0x7ffeee52c6a0 sp 0x7ffeee52c698
+WRITE of size 8 at 0x60f0000000f0 thread T0
+    #0 0x1016d9b7d in fill_raw_read read_info.c:24
+    #1 0x1016d98a1 in read_info read_info.c:65
+    #2 0x1016d4996 in parser parser.c:41
+    #3 0x1016d46b1 in main main.c:5
+    #4 0x7fff73494cc8 in start (libdyld.dylib:x86_64+0x1acc8)
+
+0x60f0000000f0 is located 0 bytes to the right of 176-byte region [0x60f000000040,0x60f0000000f0)
+allocated by thread T0 here:
+    #0 0x101740597 in wrap_calloc (libclang_rt.asan_osx_dynamic.dylib:x86_64h+0x5c597)
+    #1 0x1016d9814 in read_info read_info.c:62
+    #2 0x1016d4996 in parser parser.c:41
+    #3 0x1016d46b1 in main main.c:5
+    #4 0x7fff73494cc8 in start (libdyld.dylib:x86_64+0x1acc8)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow read_info.c:24 in fill_raw_read
+Shadow bytes around the buggy address:
+  0x1c1dffffffc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1c1dffffffd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1c1dffffffe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1c1dfffffff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1c1e00000000: fa fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
+=>0x1c1e00000010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00[fa]fa
+  0x1c1e00000020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x1c1e00000030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x1c1e00000040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x1c1e00000050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x1c1e00000060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==99488==ABORTING

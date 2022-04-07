@@ -17,7 +17,7 @@ static int	get_meta_info(t_map *map_info, char **raw_read)
 			i++;
 		if (str[i] != '\n' && ft_strlen(str) != 0)
 		{
-			printf("2ROUND %i STRING %s\n", x, str);
+			printf("INNER ROUND %i STRING %s\n", x, str);
 			type = get_type(map_info, ft_split(&str[i],' '));
 		}
 		else
@@ -36,7 +36,7 @@ static int	get_meta_info(t_map *map_info, char **raw_read)
 }
 
 int get_informations(t_map *map_info, char **raw_read)
-{
+{	
 	if (get_meta_info(map_info, raw_read) < 0)
 	{
 		//ft_free_2d((void ***)&raw_read);

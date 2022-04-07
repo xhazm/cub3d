@@ -51,4 +51,5 @@ int			check_last_row(t_map *map_info);
 void 		print_map(char **map, int height);
 void 		print_info(t_map *m);
 int			ft_error(char *msg);
+char		*minishell_get_next_line(int fd);
 #endif
