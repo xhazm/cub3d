@@ -11,23 +11,10 @@ static char **fill_raw_read(int fd, char **raw_read, int rows)
 	{
 		line = get_next_line(fd, 5);
 		if (line != NULL)
-		{
-			printf(" GET LINE %s\n", line);
-			// raw_read[x] = ft_strdup(line);
 			raw_read[x] = line;
-			// write(2, raw_read[x], ft_strlen(raw_read[x]));
-			// free(line);
-			// line = NULL;
-		}
 		x++;
 	}
 	raw_read[x] = NULL;
-	int i = 0;
-	while (raw_read[i])
-	{
-		write(2, raw_read[i], ft_strlen(raw_read[i]));
-		i++;
-	}
 	return (raw_read);
 }
 

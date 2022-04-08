@@ -33,7 +33,31 @@ int map[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-static void	ft_init(t_vars *vars)
+void	get_dir(t_map *map_info, t_vars *vars)
+{
+	if (map_info->pl_dir == 'S')
+	{
+		vars->pl.dirX = -1;
+		vars->pl.dirY = 0;
+	}
+	if (map_info->pl_dir == 'N')
+	{
+		vars->pl.dirX = 1;
+		vars->pl.dirY = 0;
+	}
+	if (map_info->pl_dir == 'E')
+	{
+		vars->pl.dirX = 0;
+		vars->pl.dirY = 1;
+	}
+	if (map_info->pl_dir == 'W')
+	{
+		vars->pl.dirX = 0;
+		vars->pl.dirY = -1;
+	}
+}
+
+static void	ft_init(t_vars *vars, t_map *map_info)
 {
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
@@ -41,12 +65,11 @@ static void	ft_init(t_vars *vars)
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 			&vars->img.data.endian);
-	vars->pl.x = 12;
-	vars->pl.y = 12;
+	vars->pl.x = map_info->pl_x;
+	vars->pl.y = map_info->pl_y;
 	vars->pl.planeX = 0;
 	vars->pl.planeY = 0.66;
-	vars->pl.dirX = 1;
-	vars->pl.dirY = 0;
+	get_dir(map_info, vars);
 	vars->pl.moveForward = false;
 	vars->pl.moveBackward = false;
 	vars->pl.moveLeft = false;
@@ -220,11 +243,13 @@ int draw_player(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->img.img);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_vars vars;
+	t_vars	vars;
+	t_map	map_info;
 
-	ft_init(&vars);
+	parser(argc, argv, &map_info);
+	ft_init(&vars, &map_info);
 
 	mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);
 	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 0, &key_release, &vars);

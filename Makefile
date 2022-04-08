@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+         #
+#    By: elenz <elenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 18:59:28 by lpfleide          #+#    #+#              #
-#    Updated: 2022/04/07 13:53:23 by lpfleide         ###   ########.fr        #
+#    Updated: 2022/04/08 21:58:31 by elenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ obj:
 	mkdir -p $(OBJ_DIR)
 	
 $(NAME): libmake $(OBJ)
-	$(CC) $(FLAGS) -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ) -L. libft/libft.a
+	$(CC) $(FLAGS) -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ) -L. libft/libft.a libparser/parser.a
 
 libmake: mlxmake
 	make all -C ./libft
+	make all -C ./libparser
 
 mlxmake:
 	make all -C ./mlx

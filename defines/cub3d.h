@@ -3,6 +3,7 @@
 
 # include "cub3d_define.h"
 # include "../mlx/mlx.h"
+# include "../libparser/parser.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>

@@ -12,10 +12,7 @@ static int	check_sign(t_map *map_info, char sign, int i)
 		{
 			if ((ft_strchr(" 1\0", map_info->map[j][i]) == 0)
 			&& (ft_strchr(" 1\0", map_info->map[j][i]) == 0 && map_info->map[j][i] != '\n'))
-			{
-				printf("%s %d\n", map_info->map[j], j);
 				return (-1);
-			}
 			if (map_info->map[j][i] == '1')
 				return (0);
 			j++;

@@ -24,6 +24,8 @@ typedef struct s_map
 	int		fd;
 	int		first_row_map;
 	char	pl_dir;
+	double	pl_x;
+	double	pl_y;
 	char	**map;
 	int		height;
 	int		width;
@@ -35,7 +37,7 @@ typedef struct s_map
 	char	*ea_path;
 }			t_map;
 
-int			parser(int argc, char **argv);
+int			parser(int argc, char **argv, t_map *map_info);
 int			read_info(char **argv, t_map *map_info);
 int 		open_map(char **argv, t_map *map_info);
 int 		check_spaces(char c);
@@ -48,8 +50,9 @@ int			check_map(t_map *map_info);
 int			check_first_row(t_map *map_info);
 int			check_middle_rows(t_map *map_info);
 int			check_last_row(t_map *map_info);
+int			check_T(char **map, int x, int y);
 void 		print_map(char **map, int height);
 void 		print_info(t_map *m);
 int			ft_error(char *msg);
-char		*minishell_get_next_line(int fd);
+void 		ft_free_map_info(t_map *map_info);
 #endif

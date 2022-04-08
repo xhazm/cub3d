@@ -11,12 +11,12 @@ static int	check_rgb(char *str)
 	{
 		if (ft_atoi(colors[i]) > 255 || i > 2)
 		{
-			//free colors
+			ft_free2darr((void **) colors);
 			return (-1);
 		}
 		i++;
 	}
-	//free colors
+	ft_free2darr((void **) colors);
 	return (0);
 }
 

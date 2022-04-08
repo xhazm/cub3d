@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:20:19 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/05 19:20:09 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:21:12 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_strcmp(const char *str1, const char *str2);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -82,7 +83,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd, int buffersize);
 size_t	ft_gstrlen(char	*s);
-int	ft_gstrchr(char	*s, int c);
+int		ft_gstrchr(char	*s, int c);
 void	*ft_gfree_function(char *c, char **rest);
 char	*ft_gsubstr(char *s, unsigned int start, size_t len);
 char	*ft_gstrjoin(char *rest, char *c);

@@ -5,7 +5,6 @@ static int assign_str(t_map *map_info, int type, char **sp_line)
 	if (sp_line[2] != NULL)
 	{
 		ft_free2darr((void **) sp_line);
-		//ft_free_2d((void ***) &sp_line);
 		return(ft_error("To many args in map"));
 	}
 	if (type == NO)
@@ -20,7 +19,6 @@ static int assign_str(t_map *map_info, int type, char **sp_line)
 		map_info->floor_color = ft_strdup(sp_line[1]);
 	if (type == C)
 		map_info->ceilling_color = ft_strdup(sp_line[1]);
-	//ft_free_2d((void ***) &sp_line);
 	ft_free2darr((void **) sp_line);
 	return (type);
 }
@@ -53,18 +51,17 @@ int get_map_size(t_map *map_info, int *x, char **raw_read)
 
 int get_type(t_map *map_info, char **sp_line)
 {
-	printf("SPLINE %s\n", sp_line[0]);
-	if (ft_strncmp(sp_line[0], "NO", 2) == 0 && map_info->no_path == NULL)
+	if (ft_strcmp(sp_line[0], "NO") == 0 && map_info->no_path == NULL)
 		return (assign_str(map_info, NO, sp_line));
-	else if (ft_strncmp(sp_line[0], "SO", 2) == 0 && map_info->so_path == NULL)
+	else if (ft_strcmp(sp_line[0], "SO") == 0 && map_info->so_path == NULL)
 		return (assign_str(map_info, SO, sp_line));
-	else if (ft_strncmp(sp_line[0], "WE", 2) == 0 && map_info->we_path == NULL)
+	else if (ft_strcmp(sp_line[0], "WE") == 0 && map_info->we_path == NULL)
 		return (assign_str(map_info, WE, sp_line));
-	else if (ft_strncmp(sp_line[0], "EA", 2) == 0 && map_info->ea_path == NULL)
+	else if (ft_strcmp(sp_line[0], "EA") == 0 && map_info->ea_path == NULL)
 		return (assign_str(map_info, EA, sp_line));
-	else if (ft_strncmp(sp_line[0], "C", 2) == 0 && map_info->ceilling_color == NULL)
+	else if (ft_strcmp(sp_line[0], "C") == 0 && map_info->ceilling_color == NULL)
 		return (assign_str(map_info, C, sp_line));
-	else if (ft_strncmp(sp_line[0], "F", 1) == 0 && map_info->floor_color == NULL)
+	else if (ft_strcmp(sp_line[0], "F") == 0 && map_info->floor_color == NULL)
 		return (assign_str(map_info, F, sp_line));
 	else if (sp_line[0][0] == '1')
 	{

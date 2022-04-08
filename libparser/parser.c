@@ -26,19 +26,19 @@ int	open_map(char **argv, t_map *map_info)
 	return (0);
 }
 
-int	parser(int argc, char **argv)
+int	parser(int argc, char **argv, t_map *map_info)
 {
-	t_map map_info;
-
 	if (argc != 2)
 	{
 		printf("Wrong number of args\n");
 		return (-1);
 	}
-	init_map_info(&map_info);
-	if (open_map(argv, &map_info) < 0)
+	init_map_info(map_info);
+	if (open_map(argv, map_info) < 0)
 		return (-1);
-	if (read_info(argv, &map_info) < 0)
+	if (read_info(argv, map_info) < 0)
 		return (-1);
+	printf("Valid map\n");
+	print_info(map_info);
 	return (0);
 }
