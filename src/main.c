@@ -61,7 +61,7 @@ static void	ft_init(t_vars *vars, t_map *map_info)
 {
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	vars->img.img = mlx_new_image(vars->mlx, IMG_W, IMG_H);
+	vars->img.img = mlx_new_image(vars->mlx, map_info->width, map_info->height);
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 			&vars->img.data.endian);
@@ -89,17 +89,17 @@ static void exit_game(t_vars *vars)
 	exit(0);
 }
 
-int	ft_draw_rays_3d(t_vars *vars)
+int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 {
 	int	x;
 	t_ray ray;
 
 	x = 0;
-	while(x < IMG_W)
+	while(x < map_info->width)
 	{
 		vars->ray.hit = 0;
 		vars->ray.side = 0;
-		vars->cameraX = 2 * x / (double)IMG_W - 1; //IMG_W right?
+		vars->cameraX = 2 * x / (double)map_info->width - 1; //map_info->width right?
 		vars->ray.dirX = vars->pl.dirX + vars->pl.planeX * vars->cameraX;
 		vars->ray.dirY = vars->pl.dirY + vars->pl.planeY * vars->cameraX;
 		vars->mapX = (int)vars->pl.x;
@@ -146,7 +146,7 @@ int	ft_draw_rays_3d(t_vars *vars)
 				vars->mapY += vars->ray.stepY;
 				vars->ray.side = 1;
 			}
-			if (map[vars->mapX][vars->mapY] > 0)
+			if (map_info->map[vars->mapX][vars->mapY] > 0) // SEG FAULT 
 				vars->ray.hit = 1;
 		}
 		// printf("lineh %f %f\n", vars->ray.deltaDistX, vars->ray.sideDistX);
@@ -154,16 +154,16 @@ int	ft_draw_rays_3d(t_vars *vars)
 			vars->perpWallDist = (vars->ray.sideDistX - vars->ray.deltaDistX);
 		else
 			vars->perpWallDist = (vars->ray.sideDistY - vars->ray.deltaDistY);
-		vars->draw.lineH = (int)(IMG_H / vars->perpWallDist);
+		vars->draw.lineH = (int)(map_info->height / vars->perpWallDist);
 		// printf("lineh %d %d\n", vars->draw.lineH,(int) vars->perpWallDist);
-		vars->draw.start = -vars->draw.lineH / 2 + IMG_H / 2;
+		vars->draw.start = -vars->draw.lineH / 2 + map_info->height / 2;
 		if (vars->draw.start < 0)
 			vars->draw.start = 0;
-		vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
-		if (vars->draw.end >= IMG_H)
-			vars->draw.end = IMG_H -1;
+		vars->draw.end = vars->draw.lineH / 2 + map_info->height / 2;
+		if (vars->draw.end >= map_info->height)
+			vars->draw.end = map_info->height -1;
 		int color;
-		switch(map[vars->mapX][vars->mapY])
+		switch(map_info->map[vars->mapX][vars->mapY])
      	 {
         case 1:  color = 0x00FF0000;    break; //red
         case 2:  color = 0x003cf33;  break; //green
@@ -188,7 +188,7 @@ int	ft_draw_rays_3d(t_vars *vars)
 	}
 }
 
-void	ft_move(t_vars *vars)
+void	ft_move(t_vars *vars, t_map *map_info)
 {
 	double oldDirX;
 	double oldPlaneX;
@@ -199,16 +199,16 @@ void	ft_move(t_vars *vars)
 	vars->pl.rotSpeed = FRAMETIME *  3.0;
 	if (vars->pl.moveForward == true)
 	{
-		if (map[(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
+		if (map_info->map[(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
 			vars->pl.x += vars->pl.dirX * vars->pl.moveSpeed;
-		if (map[(int)(vars->pl.x)][(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)] == 0)
+		if (map_info->map[(int)(vars->pl.x)][(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)] == 0)
 			vars->pl.y += vars->pl.dirY * vars->pl.moveSpeed;
 	}
 	if (vars->pl.moveBackward == true)
 	{
-		if (map[(int)(vars->pl.x - vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
+		if (map_info->map[(int)(vars->pl.x - vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.y)] == 0)
 			vars->pl.x -= vars->pl.dirX * vars->pl.moveSpeed;
-		if (map[(int)(vars->pl.x)][(int)(vars->pl.y - vars->pl.dirY * vars->pl.moveSpeed)] == 0)
+		if (map_info->map[(int)(vars->pl.x)][(int)(vars->pl.y - vars->pl.dirY * vars->pl.moveSpeed)] == 0)
 			vars->pl.y -= vars->pl.dirY * vars->pl.moveSpeed;
 	}
 	if (vars->pl.moveLeft == true)
@@ -231,14 +231,14 @@ void	ft_move(t_vars *vars)
 	}
 }
 
-int draw_player(t_vars *vars)
+int draw_player(t_vars *vars, t_map *map_info)
 {
-	vars->img.img = mlx_new_image(vars->mlx, IMG_W, IMG_H);
+	vars->img.img = mlx_new_image(vars->mlx, map_info->width, map_info->height);
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 		&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 		&vars->img.data.endian);
-	ft_draw_rays_3d(vars);
-	ft_move(vars);
+	ft_draw_rays_3d(vars, map_info);
+	ft_move(vars, map_info);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	mlx_destroy_image(vars->mlx, vars->img.img);
 }
@@ -250,7 +250,8 @@ int	main(int argc, char **argv)
 
 	parser(argc, argv, &map_info);
 	ft_init(&vars, &map_info);
-
+	print_map(map_info.map, map_info.height);
+	printf("STELLE %c\n", map_info.map[1][1]);
 	mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);
 	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 0, &key_release, &vars);
 	mlx_hook(vars.win, X_EVENT_EXIT, 0, &exit_game, &vars);
