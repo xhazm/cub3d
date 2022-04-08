@@ -1,15 +1,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "cub3d_define.h"
-# include "../mlx/mlx.h"
+# include "cub3d_define_linux.h"
+# include "../mlx_linux/mlx.h"
+// # include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
 # include <stdbool.h>
-
-float px,py,pdx,pdy,pa;
 
 typedef struct s_player {
 	double	dirX;

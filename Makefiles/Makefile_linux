@@ -28,23 +28,23 @@ obj:
 	mkdir -p $(OBJ_DIR)
 	
 $(NAME): libmake $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -Imlx_linux -L./mlx_linux -lmlx_Linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME) -L. libft/libft.a
+	$(CC) $(FLAGS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(OBJ) -L. libft/libft.a
 
 libmake: mlxmake
 	make all -C ./libft
 
 mlxmake:
-	make all -C ./mlx_linux
+	make all -C ./mlx
 
 clean:
 	rm -rf $(OBJ_DIR)
 	make clean -C ./libft
-	make clean -C ./mlx_linux
+	make clean -C ./mlx
 
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C ./libft
-	make clean -C ./mlx_linux
+	make clean -C ./mlx
 
 re: fclean all
 

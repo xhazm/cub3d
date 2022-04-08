@@ -59,7 +59,7 @@ static void	ft_init(t_vars *vars)
 	vars->pl.moveSpeed = FRAMETIME * 5.0;
 }
 
-static void exit_game(t_vars *vars)
+static int exit_game(t_vars *vars)
 {
 	// ft_free2darr((void **)vars->mv.cords);
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -226,9 +226,9 @@ int	main(void)
 
 	ft_init(&vars);
 
-	mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);
-	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 0, &key_release, &vars);
-	mlx_hook(vars.win, X_EVENT_EXIT, 0, &exit_game, &vars);
+	mlx_hook(vars.win, 02, 1L << 0, key_press, &vars);
+	mlx_hook(vars.win, 03, 1L << 1, key_release, &vars);
+	mlx_hook(vars.win, 33, 1L << 17, &exit_game, &vars);
 	// mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop_hook(vars.mlx, draw_player, &vars);
 	mlx_loop(vars.mlx);

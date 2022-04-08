@@ -13,15 +13,6 @@
 #include "../defines/cub3d.h"
 
 
-	// if (keycode == KEY_W)
-	// 	vars->mv.yoff -= 5;
-	// if (keycode == KEY_S)
-	// 	vars->mv.yoff += 5;
-	// if (keycode == KEY_A)
-	// 	vars->mv.xoff -= 5;
-	// if (keycode == KEY_D)
-	// 	vars->mv.xoff += 5;
-
 static void	ft_imgreset(t_vars *vars)
 {
 	// vars->mv.yoff = 0;
@@ -53,6 +44,7 @@ static void	scale_move_keyhook(int keycode, t_vars *vars)
 
 int	key_press(int keycode, t_vars *vars)
 {
+	printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		vars->pl.moveForward = true;
 	if (keycode == KEY_S)
@@ -71,6 +63,7 @@ int	key_press(int keycode, t_vars *vars)
 
 int	key_release(int keycode, t_vars *vars)
 {
+	printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		vars->pl.moveForward = false;
 	if (keycode == KEY_S)
@@ -81,41 +74,3 @@ int	key_release(int keycode, t_vars *vars)
 		vars->pl.moveRight = false;
 }
 
-int	key_hook(int keycode, t_vars *vars)
-{
-
-	if (keycode >= 34 && keycode != 53)
-		scale_move_keyhook(keycode, vars);
-	if (keycode == KEY_F)
-		ft_imgreset(vars);
-	// if (keycode == KEY_W)
-	// {
-	// 	px += pdx * 5;
-	// 	py += pdy * 5;
-	// }
-	// if (keycode == KEY_S)
-	// {
-	// 	px -= pdx * 5;
-	// 	py -= pdy * 5;
-	// }
-	if (keycode == KEY_A)
-	{
-		pa -= 0.1;
-		if (pa < 0)
-			pa += 2 * M_PI;
-		pdx = cos(pa);
-		pdy = sin(pa);
-		
-	}
-	if (keycode == KEY_D)
-	{
-		pa += 0.1;
-		if (pa > 2*M_PI)
-			pa -= 2 * M_PI;
-		pdx = cos(pa);
-		pdy = sin(pa);
-		
-	}
-
-	return (0);
-}
