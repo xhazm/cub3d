@@ -97,6 +97,7 @@ typedef struct	s_img
 	XShmSegmentInfo	shm;
 }				t_img;
 
+
 typedef struct	s_xvar
 {
 	Display		*display;

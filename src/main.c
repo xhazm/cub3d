@@ -139,28 +139,32 @@ int	ft_draw_rays_3d(t_vars *vars)
 		vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
 		if (vars->draw.end >= IMG_H)
 			vars->draw.end = IMG_H -1;
-		int color;
-		switch(map[vars->mapX][vars->mapY])
-     	 {
-        case 1:  color = 0x00FF0000;    break; //red
-        case 2:  color = 0x003cf33;  break; //green
-        case 3:  color = 0x001c26ee;   break; //blue
-        case 4:  color = 0x00FFFFFF;  break; //white
-        default: color = 0x00e9dc43; break; //yellow
-      	}
+		int texNum = 1;
+		double wallX;
 		if (vars->ray.side == 0)
-		{
-			bresenham(vars,x, vars->draw.start, x, vars->draw.end, color);
-			// my_mlx_pixel_put(vars, x ,vars->draw.start , 0x0088ffe1);
-			// printf("NS\tX:%d\tstart:%d\tend:%d\n", x, vars->draw.start, vars->draw.end);
-		}
+			wallX = vars->pl.y + vars->perpWallDist * vars->ray.dirY;
 		else
+			wallX = vars->pl.x  + vars->perpWallDist * vars->ray.dirX;
+		wallX -= floor(wallX);
+		int texX = (int)(wallX * (double)TEX_W);
+		if (vars->ray.side == 0 && vars->ray.dirX > 0)
+			texX = TEX_W - texX - 1;
+		if (vars->ray.side == 1 && vars->ray.dirY < 0)
+			texX = TEX_W - texX - 1;
+		double	step = 1.0 * TEX_H / vars->draw.lineH;
+		double	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
+		int y = vars->draw.start;
+		int color = 0;
+		while (y < vars->draw.end)
 		{
-			// printf("EW\tX:%d\tstart:%d\tend:%d\n", x, vars->draw.start, vars->draw.end);
-			// my_mlx_pixel_put(vars, x ,vars->draw.start , 0x00FF0000);
-			bresenham(vars, x, vars->draw.start, x, vars->draw.end, color /2);
+			int texY = (int)texPos & (TEX_H - 1);
+			texPos += step;
+			color = vars->texture[0].data[texY * vars->texture[0].line_length + texX
+			* (vars->texture[0].bpp / 8)];
+			// printf("%d \n", color);
+			my_mlx_pixel_put(vars, x, y, color);
+			y++;
 		}
-		// my_mlx_pixel_put(vars, x ,100 , 0x00FF0000);
 		x++;
 	}
 }
@@ -225,6 +229,7 @@ int	main(void)
 	t_vars vars;
 
 	ft_init(&vars);
+	ft_init_textures(&vars);
 
 	mlx_hook(vars.win, 02, 1L << 0, key_press, &vars);
 	mlx_hook(vars.win, 03, 1L << 1, key_release, &vars);

@@ -10,6 +10,16 @@
 # include <math.h>
 # include <stdbool.h>
 
+typedef struct s_texture {
+	int		width;
+	int		height;
+	char	*data;
+	void	*img_ptr;
+	int		bpp;
+	int		endian;
+	int		line_length;
+}			t_texture;
+
 typedef struct s_player {
 	double	dirX;
 	double	dirY;
@@ -83,6 +93,7 @@ typedef struct s_vars{
 	double		perpWallDist;
 	int			mapX;
 	int			mapY;
+	t_texture	texture[4];
 	t_draw		draw;
 	// t_rotate	rt;
 	t_player	pl;
@@ -98,6 +109,7 @@ void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int	key_press(int keycode, t_vars *vars);
 int	key_release(int keycode, t_vars *vars);
+int	ft_init_textures(t_vars *vars);
 
 
 
