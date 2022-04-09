@@ -126,13 +126,11 @@ int	ft_draw_rays_3d(t_vars *vars)
 			if (map[vars->mapX][vars->mapY] > 0)
 				vars->ray.hit = 1;
 		}
-		// printf("lineh %f %f\n", vars->ray.deltaDistX, vars->ray.sideDistX);
 		if (vars->ray.side == 0)
 			vars->perpWallDist = (vars->ray.sideDistX - vars->ray.deltaDistX);
 		else
 			vars->perpWallDist = (vars->ray.sideDistY - vars->ray.deltaDistY);
 		vars->draw.lineH = (int)(IMG_H / vars->perpWallDist);
-		// printf("lineh %d %d\n", vars->draw.lineH,(int) vars->perpWallDist);
 		vars->draw.start = -vars->draw.lineH / 2 + IMG_H / 2;
 		if (vars->draw.start < 0)
 			vars->draw.start = 0;
@@ -154,15 +152,14 @@ int	ft_draw_rays_3d(t_vars *vars)
 		double	step = 1.0 * TEX_H / vars->draw.lineH;
 		double	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
 		int y = vars->draw.start;
-		int color = 0;
+		unsigned int *color;
 		while (y < vars->draw.end)
 		{
 			int texY = (int)texPos & (TEX_H - 1);
 			texPos += step;
-			color = vars->texture[0].data[texY * vars->texture[0].line_length + texX
-			* (vars->texture[0].bpp / 8)];
-			// printf("%d \n", color);
-			my_mlx_pixel_put(vars, x, y, color);
+			color = (unsigned int*)vars->texture[0].data + ((texY * vars->texture[0].line_length + texX
+				 * (vars->texture[0].bpp / 8)) / 4);
+			my_mlx_pixel_put(vars, x, y, *color);
 			y++;
 		}
 		x++;

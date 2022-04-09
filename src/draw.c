@@ -6,8 +6,6 @@ int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 
 	if (x > WIN_WIDTH || y > WIN_HEIGHT || y < 0 || x < 0 || x > IMG_W || y > IMG_H)
 		return (1);
-	if (!color)
-		color = 0x00AAAAAA;
 	dst = vars->img.data.addr + (y * vars->img.data.line_length + x
 			* (vars->img.data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

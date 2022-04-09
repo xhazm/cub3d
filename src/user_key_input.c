@@ -44,7 +44,6 @@ static void	scale_move_keyhook(int keycode, t_vars *vars)
 
 int	key_press(int keycode, t_vars *vars)
 {
-	printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		vars->pl.moveForward = true;
 	if (keycode == KEY_S)
@@ -63,7 +62,6 @@ int	key_press(int keycode, t_vars *vars)
 
 int	key_release(int keycode, t_vars *vars)
 {
-	printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		vars->pl.moveForward = false;
 	if (keycode == KEY_S)
