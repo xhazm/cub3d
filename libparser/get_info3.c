@@ -8,7 +8,7 @@ static int	assign_map(t_map *map_info, char *str, int row)
 	map_info->map[row] = ft_calloc(map_info->width, sizeof(char*));
 	if (map_info->map[row] == NULL)
 		return(-1);
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
 		map_info->map[row][i] = str[i];
 		i++;

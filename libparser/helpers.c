@@ -1,13 +1,24 @@
 #include "parser.h"
 
-void print_map(char **map, int height)
+void print_map(char **map, int height, t_map *map_info)
 {
+	int y;
 	int x;
 
+	y = 0;
 	x = 0;
-	while(x < height)
+	while(x < map_info->height)
 	{
-		printf("%s",map[x]);
+		y = 0;
+		while(y < map_info->width)
+		{
+			if (map[x][y] <= 9 && map[x][y] >= 0)
+				printf("%d",map[x][y]);
+			else
+				printf("%c",map[x][y]);
+			y++;
+		}
+		printf("\n");
 		x++;
 	}
 }

@@ -26,19 +26,39 @@ int	open_map(char **argv, t_map *map_info)
 	return (0);
 }
 
+void char_to_nbr(t_map *map_info)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map_info->height)
+	{
+		x = 0;
+		while (x < map_info->width)
+		{
+			if (ft_isdigit(map_info->map[y][x]))
+				map_info->map[y][x] -= 48;
+			x++;
+		}
+		y++;
+	}
+}
+
 int	parser(int argc, char **argv, t_map *map_info)
 {
 	if (argc != 2)
 	{
 		printf("Wrong number of args\n");
-		return (-1);
+		return (FAIL);
 	}
 	init_map_info(map_info);
 	if (open_map(argv, map_info) < 0)
-		return (-1);
+		return (FAIL);
 	if (read_info(argv, map_info) < 0)
-		return (-1);
+		return (FAIL);
+	char_to_nbr(map_info);
 	printf("Valid map\n");
 	print_info(map_info);
-	return (0);
+	return (SUCCESS);
 }

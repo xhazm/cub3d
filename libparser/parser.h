@@ -7,6 +7,9 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+# define FAIL 0
+# define SUCCESS 1
+
 typedef enum e_line_type
 {
 	MAP,
@@ -51,7 +54,7 @@ int			check_first_row(t_map *map_info);
 int			check_middle_rows(t_map *map_info);
 int			check_last_row(t_map *map_info);
 int			check_T(char **map, int x, int y);
-void 		print_map(char **map, int height);
+void		print_map(char **map, int height, t_map *map_info);
 void 		print_info(t_map *m);
 int			ft_error(char *msg);
 void 		ft_free_map_info(t_map *map_info);
