@@ -4,6 +4,7 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX)
 {
 	int				y;
 	int				texY;
+	int				texNum;
 	double			step;
 	double			texPos;
 	unsigned int	*color;
@@ -11,12 +12,15 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX)
 	y = vars->draw.start;
 	step = 1.0 * TEX_H / vars->draw.lineH;
 	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
+	texNum = 0;
+	if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
+		texNum = E_DOOR;
 	while (y < vars->draw.end)
 	{
 		texY = (int)texPos & (TEX_H - 1);
 		texPos += step;
-		color = (unsigned int*)vars->texture[0].data + ((texY *
-			vars->texture[0].line_length + texX * (vars->texture[0].bpp / 8)) / 4);
+		color = (unsigned int*)vars->texture[texNum].data + ((texY *
+			vars->texture[texNum].line_length + texX * (vars->texture[texNum].bpp / 8)) / 4);
 		my_mlx_pixel_put(vars, x, y, *color);
 		y++;
 	}

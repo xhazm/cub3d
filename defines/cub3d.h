@@ -11,6 +11,15 @@
 # include <math.h>
 # include <stdbool.h>
 
+enum	e_textures{
+	E_WALL_N,
+	E_WALL_S,
+	E_WALL_W,
+	E_WALL_E,
+	E_PLACEOLDER,
+	E_DOOR,
+};
+
 typedef struct s_texture {
 	int		width;
 	int		height;
@@ -99,7 +108,7 @@ typedef struct s_vars{
 	int			mapX;
 	int			mapY;
 	t_draw		draw;
-	t_texture	texture[4];
+	t_texture	texture[6];
 	t_map 		*map_info;
 	// t_rotate	rt;
 	t_player	pl;

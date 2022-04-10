@@ -13,12 +13,10 @@
 #ifndef CUB3D_DEFINE_H
 # define CUB3D_DEFINE_H
 
-# define WIN_WIDTH 1220
-# define WIN_HEIGHT 1220
-# define IMG_W 1220
-# define IMG_H 1220
-# define MAP_W 24
-# define MAP_H 24
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
+# define IMG_W 1000
+# define IMG_H 1000
 # define TEX_W 64
 # define TEX_H 64
 # define MAP_S 50

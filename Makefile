@@ -56,4 +56,3 @@ rfast:
 	rm -f $(NAME)
 	rm -f $(OBJ)
 	make all
-	./cub3d
