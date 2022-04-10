@@ -39,13 +39,12 @@ static int	ft_init_textures(t_vars *vars)
 	int	i;
 
 	i = 0;
-	vars->texture[0].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bricks.xpm", &vars->texture[0].width, &vars->texture[0].width);
-	vars->texture[1].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/magma.xpm", &vars->texture[1].width, &vars->texture[1].width);
-	vars->texture[2].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/mossy_cobblestone.xpm", &vars->texture[2].width, &vars->texture[2].width);
-	vars->texture[3].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/obsidian.xpm", &vars->texture[3].width, &vars->texture[3].width);
-	vars->texture[4].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/stone_bricks.xpm", &vars->texture[4].width, &vars->texture[4].width);
-	vars->texture[5].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bookshelf.xpm", &vars->texture[5].width, &vars->texture[5].width);
-	while (i < 6)
+	vars->texture[0].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->no_path, &vars->texture[0].width, &vars->texture[0].width);
+	vars->texture[1].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->so_path, &vars->texture[1].width, &vars->texture[1].width);
+	vars->texture[2].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->ea_path, &vars->texture[2].width, &vars->texture[2].width);
+	vars->texture[3].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->we_path, &vars->texture[3].width, &vars->texture[3].width);
+	vars->texture[4].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bookshelf.xpm", &vars->texture[4].width, &vars->texture[4].width);
+	while (i < 5)
 	{
 		if (vars->texture[i].img_ptr == NULL)
 			return (FAIL);

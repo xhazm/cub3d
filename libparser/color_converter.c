@@ -10,11 +10,9 @@ unsigned int	ft_color_converter(char *cStr)
 	rgb = ft_split(cStr, ',');
 	color = 0;
 	temp_color = 0;
-	printf("rgb %s %s %s\n", rgb[0], rgb[1], rgb[2]);
 	while (i < 3)
 	{
 		temp_color = ft_atoi(rgb[i]);
-		printf("tempcolor%u\n", temp_color);
 		if (temp_color > 255 || temp_color < 0)
 			return (-1);
 		color |= temp_color;
@@ -23,6 +21,5 @@ unsigned int	ft_color_converter(char *cStr)
 		i++;
 	}
 	ft_free2darr((void **)rgb);
-	printf("BIT RGB %x\n", color);
 	return (color);
 }

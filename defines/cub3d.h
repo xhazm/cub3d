@@ -16,7 +16,6 @@ typedef enum	e_textures{
 	E_WALL_S,
 	E_WALL_W,
 	E_WALL_E,
-	E_PLACEOLDER,
 	E_DOOR,
 } 				t_textures;
 
@@ -104,7 +103,7 @@ typedef struct s_vars{
 	int			mapX;
 	int			mapY;
 	t_draw		draw;
-	t_texture	texture[6];
+	t_texture	texture[5];
 	t_map 		*map_info;
 	// t_rotate	rt;
 	t_player	pl;

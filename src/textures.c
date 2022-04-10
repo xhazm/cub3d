@@ -17,19 +17,6 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX)
 		texNum = E_DOOR;
 	while (y < IMG_H - 1)
 	{
-		// if (y == y)
-		// {
-		// 	while (y < vars->draw.end)
-		// 	{
-		// 		texY = (int)texPos & (TEX_H - 1);
-		// 		texPos += step;
-		// 		color = (unsigned int*)vars->texture[texNum].data + ((texY *
-		// 			vars->texture[texNum].line_length + texX * (vars->texture[texNum].bpp / 8)) / 4);
-		// 		my_mlx_pixel_put(vars, x, y, *color);
-		// 		y++;
-		// 		y++;
-		// 	}
-		// }
 		if (y > vars->draw.start && y < vars->draw.end)
 		{
 			texY = (int)texPos & (TEX_H - 1);

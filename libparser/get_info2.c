@@ -8,13 +8,13 @@ static int assign_str(t_map *map_info, int type, char **sp_line)
 		return(ft_error("To many args in map"));
 	}
 	if (type == NO)
-		map_info->no_path = ft_strdup(sp_line[1]);
+		map_info->no_path = ft_strtrim(sp_line[1], "\n");
 	if (type == SO)
-		map_info->so_path = ft_strdup(sp_line[1]);
+		map_info->so_path = ft_strtrim(sp_line[1], "\n");;
 	if (type == WE)
-		map_info->we_path = ft_strdup(sp_line[1]);
+		map_info->we_path = ft_strtrim(sp_line[1], "\n");;
 	if (type == EA)
-		map_info->ea_path = ft_strdup(sp_line[1]);
+		map_info->ea_path = ft_strtrim(sp_line[1], "\n");;
 	if (type == F)
 		map_info->floor_color = ft_color_converter(sp_line[1]);
 	if (type == C)
