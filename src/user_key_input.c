@@ -31,28 +31,9 @@ static void	ft_imgreset(t_vars *vars)
 	// vars->img.scale = vars->input.scale;
 }
 
-static void	scale_move_keyhook(int keycode, t_vars *vars)
-{
-	// if (keycode == KEY_PLUS)
-	// 	vars->input.zscale -= 1;
-	// if (keycode == KEY_MINUS)
-	// 	vars->input.zscale += 1;
-	// if (keycode == KEY_MULT)
-	// 	vars->input.zscale -= 10;
-	// if (keycode == KEY_DIV)
-	// 	vars->input.zscale += 10;
-	// if (keycode == KEY_L)
-	// 	vars->img.xoff += 75;
-	// if (keycode == KEY_J)
-	// 	vars->img.xoff -= 75;
-	// if (keycode == KEY_I)
-	// 	vars->img.yoff += 75;
-	// if (keycode == KEY_K)
-	// 	vars->img.yoff -= 75;
-}
-
 int	key_press(int keycode, t_vars *vars)
 {
+	// printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
 		vars->pl.moveForward = true;
 	if (keycode == KEY_S)
@@ -61,6 +42,13 @@ int	key_press(int keycode, t_vars *vars)
 		vars->pl.moveLeft = true;
 	if (keycode == KEY_D)
 		vars->pl.moveRight = true;
+	if (keycode == KEY_F)
+	{
+		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
+			vars->map_info->map[vars->mapY][vars->mapX] = -'T';
+		else if (vars->map_info->map[(int)vars->pl.y + (int)round(vars->pl.dirY)][(int)vars->pl.x + (int)round(vars->pl.dirX)] == -'T')
+			vars->map_info->map[(int)vars->pl.y  + (int)round(vars->pl.dirY)][(int)vars->pl.x +(int)round(vars->pl.dirX)] = 'T';
+	}
 	if (keycode == KEY_ESC)
 	{
 		// ft_free2darr((void **)vars->mv.cords);
