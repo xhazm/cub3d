@@ -211,17 +211,17 @@ void	ft_move(t_vars *vars, t_map *map_info)
 	vars->pl.rotSpeed = FRAMETIME *  3.0;
 	if (vars->pl.moveForward == true)
 	{
-		if (map_info->map[(int)(vars->pl.y + vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.x)] == 0)
-			vars->pl.y += vars->pl.dirX * vars->pl.moveSpeed;
-		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x + vars->pl.dirY * vars->pl.moveSpeed)] == 0)
-			vars->pl.x += vars->pl.dirY * vars->pl.moveSpeed;
+		if (map_info->map[(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)][(int)(vars->pl.x)] == 0)
+			vars->pl.x += vars->pl.dirX * vars->pl.moveSpeed;
+		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)] == 0)
+			vars->pl.y += vars->pl.dirY * vars->pl.moveSpeed;
 	}
 	if (vars->pl.moveBackward == true)
 	{
 		if (map_info->map[(int)(vars->pl.y - vars->pl.dirX * vars->pl.moveSpeed)][(int)(vars->pl.x)] == 0)
-			vars->pl.y -= vars->pl.dirX * vars->pl.moveSpeed;
+			vars->pl.x -= vars->pl.dirX * vars->pl.moveSpeed;
 		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x - vars->pl.dirY * vars->pl.moveSpeed)] == 0)
-			vars->pl.x -= vars->pl.dirY * vars->pl.moveSpeed;
+			vars->pl.y -= vars->pl.dirY * vars->pl.moveSpeed;
 	}
 	if (vars->pl.moveLeft == true)
 	{
