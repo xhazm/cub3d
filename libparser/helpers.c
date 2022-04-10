@@ -29,14 +29,14 @@ void print_info(t_map *m)
 		pl_dir: %c\n \
 		pl_x: %f \n\
 		pl_y: %f \n\
-		ceilingcolor: %s\n \
-		floorcolor: %s\n \
+		ceilingcolor: %u\n \
+		floorcolor: %u\n \
 		no: %s\n \
 		so: %s \n \
 		we: %s\n \
 		ea: %s\n \
 		heightmap: %d\n \
-		widthmap: %d\n", m->pl_dir, m->pl_x, m->pl_y, m->ceilling_color, m->floor_color, m->no_path,
+		widthmap: %d\n", m->pl_dir, m->pl_x, m->pl_y, m->ceiling_color, m->floor_color, m->no_path,
 		m->so_path, m->we_path, m->ea_path, m->height, m->width);
 }
 
@@ -80,16 +80,6 @@ static void free_paths(t_map *map_info)
 void ft_free_map_info(t_map *map_info)
 {
 	free_paths(map_info);
-	if (map_info->ceilling_color)
-	{
-		free(map_info->ceilling_color);
-		map_info->ceilling_color = NULL;
-	}
-	if (map_info->floor_color)
-	{
-		free(map_info->floor_color);
-		map_info->floor_color = NULL;
-	}
 	if (map_info->map)
 		ft_free2darr((void **) map_info->map);
 }

@@ -7,7 +7,6 @@ static int exit_game(t_vars *vars)
 	exit(0);
 }
 
-
 int draw_player(t_vars *vars)
 {
 	vars->img.img = mlx_new_image(vars->mlx, IMG_W, IMG_W);

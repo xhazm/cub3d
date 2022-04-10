@@ -11,14 +11,14 @@
 # include <math.h>
 # include <stdbool.h>
 
-enum	e_textures{
+typedef enum	e_textures{
 	E_WALL_N,
 	E_WALL_S,
 	E_WALL_W,
 	E_WALL_E,
 	E_PLACEOLDER,
 	E_DOOR,
-};
+} 				t_textures;
 
 typedef struct s_texture {
 	int		width;
@@ -110,6 +110,7 @@ typedef struct s_vars{
 	t_player	pl;
 	t_ray		ray;
 	t_img		img;
+	t_img		b_img;
 	t_input		input;
 }				t_vars;
 
@@ -124,6 +125,8 @@ int	key_release(int keycode, t_vars *vars);
 void	ft_draw_textures(t_vars *vars, int x);
 void	ft_move(t_vars *vars, t_map *map_info);
 int		ft_draw_rays_3d(t_vars *vars, t_map *map_info);
+void	ft_minimap(t_vars *vars, t_map *map_info);
+
 
 
 #endif

@@ -10,7 +10,8 @@ SRC =	./parser.c \
 		./get_info3.c \
 		./helpers.c \
 		./read_info.c \
-		./get_doors.c
+		./get_doors.c \
+		./color_converter.c
 
 all: $(NAME)
 

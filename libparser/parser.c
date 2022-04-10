@@ -7,8 +7,8 @@ static void	init_map_info(t_map *map_info)
 	map_info->so_path = NULL;
 	map_info->we_path = NULL;
 	map_info->ea_path = NULL;
-	map_info->floor_color = NULL;
-	map_info->ceilling_color = NULL;
+	map_info->floor_color = -1;
+	map_info->ceiling_color = -1;
 	map_info->width = 0;
 	map_info->height = 0;
 	map_info->pl_dir = 'x';

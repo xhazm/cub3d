@@ -73,8 +73,8 @@ static void	ft_init_player(t_vars *vars, t_map *map_info)
 }
 int	ft_init(t_vars *vars, t_map *map_info)
 {
-	vars->map_info = map_info;
 	ft_init_mlx_win_img(vars);
+	vars->map_info = map_info;
 	if (ft_init_textures(vars) == FAIL)
 		return (FAIL);
 	ft_init_player(vars, map_info);

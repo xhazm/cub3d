@@ -16,9 +16,9 @@ static int assign_str(t_map *map_info, int type, char **sp_line)
 	if (type == EA)
 		map_info->ea_path = ft_strdup(sp_line[1]);
 	if (type == F)
-		map_info->floor_color = ft_strdup(sp_line[1]);
+		map_info->floor_color = ft_color_converter(sp_line[1]);
 	if (type == C)
-		map_info->ceilling_color = ft_strdup(sp_line[1]);
+		map_info->ceiling_color = ft_color_converter(sp_line[1]);
 	ft_free2darr((void **) sp_line);
 	return (type);
 }
@@ -59,9 +59,9 @@ int get_type(t_map *map_info, char **sp_line)
 		return (assign_str(map_info, WE, sp_line));
 	else if (ft_strcmp(sp_line[0], "EA") == 0 && map_info->ea_path == NULL)
 		return (assign_str(map_info, EA, sp_line));
-	else if (ft_strcmp(sp_line[0], "C") == 0 && map_info->ceilling_color == NULL)
+	else if (ft_strcmp(sp_line[0], "C") == 0 && map_info->ceiling_color == -1)
 		return (assign_str(map_info, C, sp_line));
-	else if (ft_strcmp(sp_line[0], "F") == 0 && map_info->floor_color == NULL)
+	else if (ft_strcmp(sp_line[0], "F") == 0 && map_info->floor_color == -1)
 		return (assign_str(map_info, F, sp_line));
 	else if (sp_line[0][0] == '1')
 	{
