@@ -65,6 +65,7 @@ static int	ft_init(t_vars *vars, t_map *map_info)
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 			&vars->img.data.endian);
+	ft_init_textures(vars);
 	vars->pl.planeX = 0;
 	vars->pl.planeY = 0.66;
 	get_dir(map_info, vars);
@@ -100,15 +101,13 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 
 	while(x < IMG_W)
 	{
-		//printf("here22\n");
 		vars->ray.hit = 0;
 		vars->ray.side = 0;
-		vars->cameraX = 2 * x / (double)IMG_W - 1; //map_info->width right?
+		vars->cameraX = 2 * x / (double)IMG_W - 1;
 		vars->ray.dirX = vars->pl.dirX + vars->pl.planeX * vars->cameraX;
 		vars->ray.dirY = vars->pl.dirY + vars->pl.planeY * vars->cameraX;
 		vars->mapX = (int)vars->pl.x;
 		vars->mapY = (int)vars->pl.y;
-		//printf("pl x:%d y:%d\n", vars->mapX, vars->mapY);
 		if (vars->ray.dirX == 0)
 			vars->ray.deltaDistX = 1e30;
 		else
@@ -151,13 +150,9 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 				vars->mapY += vars->ray.stepY;
 				vars->ray.side = 1;
 			}
-			// //printf("%d %d '%c' %d %d\n", vars->mapX, vars->mapY, map_info->map[vars->mapX][vars->mapY], map_info->height, map_info->width);
-			if (map_info->map[vars->mapY][vars->mapX] > 0) // SEG FAULT 
+			if (map_info->map[vars->mapY][vars->mapX] > 0)
 				vars->ray.hit = 1;
 		}
-		//printf("lineh %f %f\n", vars->ray.deltaDistX, vars->ray.sideDistX);
-		//printf("lineh %f %f\n", vars->ray.deltaDistY, vars->ray.sideDistY);
-		//printf("perpwall %d %f %f %f\n",(int) vars->perpWallDist, vars->ray.sideDistY, vars->ray.deltaDistY, vars->ray.side);
 		if (vars->ray.side == 0)
 			vars->perpWallDist = (vars->ray.sideDistX - vars->ray.deltaDistX);
 		else
@@ -168,34 +163,10 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 		vars->draw.start = -vars->draw.lineH / 2 + IMG_H / 2;
 		if (vars->draw.start < 0)
 			vars->draw.start = 0;
-
-		//printf("lineh:%d\tX:%d\tstart:%d\tend:%d\n",vars->draw.lineH, x, vars->draw.start, vars->draw.end, vars->draw.lineH );
 		vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
 		if (vars->draw.end >= IMG_H )
 			vars->draw.end = IMG_H -1;
-		int color;
-		switch(map_info->map[vars->mapY][vars->mapX])
-     	 {
-        case 1:  color = 0x00FF0000;    break; //red
-        case 2:  color = 0x003cf33;  break; //green
-        case 3:  color = 0x001c26ee;   break; //blue
-        case 4:  color = 0x00FFFFFF;  break; //white
-        default: color = 0x00e9dc43; break; //yellow
-      	}
-		if (vars->ray.side == 0)
-		{
-			bresenham(vars,x, vars->draw.start, x, vars->draw.end, color);
-			// my_mlx_pixel_put(vars, x ,vars->draw.start , 0x0088ffe1);
-			//printf("NS\tX:%d\tstart:%d\tend:%d\n", x, vars->draw.start, vars->draw.end);
-		}
-		else
-		{
-			//printf("EW\tX:%d\tstart:%d\tend:%d\n", x, vars->draw.start, vars->draw.end);
-			// my_mlx_pixel_put(vars, x ,vars->draw.start , 0x00FF0000);
-			bresenham(vars, x, vars->draw.start, x, vars->draw.end, color /2);
-		}
-		// my_mlx_pixel_put(vars, x ,100 , 0x00FF0000);
-		//printf("here\n");
+		ft_draw_textures(vars, x);
 		x++;
 	}
 }

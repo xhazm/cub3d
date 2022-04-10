@@ -112,6 +112,8 @@ int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int	key_press(int keycode, t_vars *vars);
 int	key_release(int keycode, t_vars *vars);
 int	ft_init_textures(t_vars *vars);
+void	ft_draw_textures(t_vars *vars, int x);
+
 
 
 
