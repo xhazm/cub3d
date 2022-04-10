@@ -2,25 +2,35 @@
 
 static void	get_dir(t_map *map_info, t_vars *vars)
 {
+	double oldDirX;
+	double oldPlaneX;
+	vars->pl.dirX = 1;
+	vars->pl.dirY = 0;
 	if (map_info->pl_dir == 'S')
 	{
-		vars->pl.dirX = -1;
-		vars->pl.dirY = 0;
+		vars->pl.planeX = -0.66;	
+		vars->pl.planeY = 0;
+		vars->pl.dirX = 0;
+		vars->pl.dirY = 1;
 	}
 	if (map_info->pl_dir == 'N')
+	{
+		vars->pl.planeX = 0.66;	
+		vars->pl.planeY = 0;
+		vars->pl.dirX = 0;
+		vars->pl.dirY = -1;
+	}
+	if (map_info->pl_dir == 'E')
 	{
 		vars->pl.dirX = 1;
 		vars->pl.dirY = 0;
 	}
-	if (map_info->pl_dir == 'E')
-	{
-		vars->pl.dirX = 0;
-		vars->pl.dirY = 1;
-	}
 	if (map_info->pl_dir == 'W')
 	{
-		vars->pl.dirX = 0;
-		vars->pl.dirY = -1;
+		vars->pl.dirX = -1;
+		vars->pl.dirY = 0;
+		vars->pl.planeX = 0;	
+		vars->pl.planeY = -0.66;
 	}
 }
 
@@ -39,11 +49,11 @@ static int	ft_init_textures(t_vars *vars)
 	int	i;
 
 	i = 0;
-	vars->texture[0].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->no_path, &vars->texture[0].width, &vars->texture[0].width);
-	vars->texture[1].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->so_path, &vars->texture[1].width, &vars->texture[1].width);
-	vars->texture[2].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->ea_path, &vars->texture[2].width, &vars->texture[2].width);
-	vars->texture[3].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->we_path, &vars->texture[3].width, &vars->texture[3].width);
-	vars->texture[4].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bookshelf.xpm", &vars->texture[4].width, &vars->texture[4].width);
+	vars->texture[E_WALL_N].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->no_path, &vars->texture[0].width, &vars->texture[0].width);
+	vars->texture[E_WALL_S].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->so_path, &vars->texture[1].width, &vars->texture[1].width);
+	vars->texture[E_WALL_W].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->we_path, &vars->texture[2].width, &vars->texture[2].width);
+	vars->texture[E_WALL_E].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->ea_path, &vars->texture[3].width, &vars->texture[3].width);
+	vars->texture[E_DOOR].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bookshelf.xpm", &vars->texture[4].width, &vars->texture[4].width);
 	while (i < 5)
 	{
 		if (vars->texture[i].img_ptr == NULL)
@@ -58,9 +68,9 @@ static int	ft_init_textures(t_vars *vars)
 
 static void	ft_init_player(t_vars *vars, t_map *map_info)
 {
-	get_dir(map_info, vars);
 	vars->pl.planeX = 0;	
 	vars->pl.planeY = 0.66;
+	get_dir(map_info, vars);
 	vars->pl.x = map_info->pl_x;
 	vars->pl.y = map_info->pl_y;
 	vars->pl.moveForward = false;

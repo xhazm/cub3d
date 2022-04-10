@@ -12,7 +12,14 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX)
 	y = 1;
 	step = 1.0 * TEX_H / vars->draw.lineH;
 	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
-	texNum = 0;
+	if (vars->ray.side == 1 && vars->ray.dirY < 0)
+		texNum = E_WALL_N;
+	else if (vars->ray.side == 1 && vars->ray.dirY > 0)
+		texNum = E_WALL_S;
+	else if (vars->ray.side == 0 && vars->ray.dirX < 0)
+		texNum = E_WALL_W; 
+	else if (vars->ray.side == 0 && vars->ray.dirX > 0)
+		texNum = E_WALL_E; 
 	if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
 		texNum = E_DOOR;
 	while (y < IMG_H - 1)
