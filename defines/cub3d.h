@@ -50,10 +50,6 @@ typedef struct s_draw {
 	int		lineH;
 	int		start;
 	int		end;
-	int		texX;
-	double	wallX;
-	double	texPos;
-	double	step;
 }				t_draw;
 
 typedef struct s_input
@@ -127,10 +123,7 @@ int	key_press(int keycode, t_vars *vars);
 int	key_release(int keycode, t_vars *vars);
 void	ft_draw_textures(t_vars *vars, int x);
 void	ft_move(t_vars *vars, t_map *map_info);
-
-
-
-
+int		ft_draw_rays_3d(t_vars *vars, t_map *map_info);
 
 
 #endif

@@ -39,6 +39,8 @@ void char_to_nbr(t_map *map_info)
 		{
 			if (ft_isdigit(map_info->map[y][x]))
 				map_info->map[y][x] -= 48;
+			else if (map_info->map[y][x] == 'N')
+				map_info->map[y][x] = 0;
 			x++;
 		}
 		y++;
