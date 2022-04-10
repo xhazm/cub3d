@@ -33,58 +33,6 @@ int map[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	get_dir(t_map *map_info, t_vars *vars)
-{
-	if (map_info->pl_dir == 'S')
-	{
-		vars->pl.dirX = -1;
-		vars->pl.dirY = 0;
-	}
-	if (map_info->pl_dir == 'N')
-	{
-		vars->pl.dirX = 1;
-		vars->pl.dirY = 0;
-	}
-	if (map_info->pl_dir == 'E')
-	{
-		vars->pl.dirX = 0;
-		vars->pl.dirY = 1;
-	}
-	if (map_info->pl_dir == 'W')
-	{
-		vars->pl.dirX = 0;
-		vars->pl.dirY = -1;
-	}
-}
-
-static int	ft_init(t_vars *vars, t_map *map_info)
-{
-	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	vars->img.img = mlx_new_image(vars->mlx, IMG_W, IMG_H);
-	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
-			&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
-			&vars->img.data.endian);
-	ft_init_textures(vars);
-	vars->pl.planeX = 0;
-	vars->pl.planeY = 0.66;
-	get_dir(map_info, vars);
-	//printf("dir x:%f, y:%f\n", vars->pl.dirX, vars->pl.dirY);
-	vars->pl.x = map_info->pl_x;
-	vars->pl.y = map_info->pl_y;
-	vars->pl.moveForward = false;
-	vars->pl.moveBackward = false;
-	vars->pl.moveLeft = false;
-	vars->pl.moveRight = false;
-	vars->ray.hit = 0;
-	vars->img.yoff = 0;
-	vars->img.xoff = 0;
-	vars->img.scale = vars->input.scale;
-	vars->pl.rotSpeed = FRAMETIME * 3.0;
-	vars->pl.moveSpeed = FRAMETIME * 5.0;
-	return (SUCCESS);
-}
-
 static int exit_game(t_vars *vars)
 {
 	// ft_free2darr((void **)vars->mv.cords);
@@ -159,58 +107,8 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 			vars->perpWallDist = (vars->ray.sideDistY - vars->ray.deltaDistY);
 		if (vars->perpWallDist == 0)
 			vars->perpWallDist = 0;
-		vars->draw.lineH = (int)(IMG_H / vars->perpWallDist);
-		vars->draw.start = -vars->draw.lineH / 2 + IMG_H / 2;
-		if (vars->draw.start < 0)
-			vars->draw.start = 0;
-		vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
-		if (vars->draw.end >= IMG_H )
-			vars->draw.end = IMG_H -1;
 		ft_draw_textures(vars, x);
 		x++;
-	}
-}
-
-void	ft_move(t_vars *vars, t_map *map_info)
-{
-	double oldDirX;
-	double oldPlaneX;
-
-	oldDirX = vars->pl.dirX;
-	oldPlaneX = vars->pl.planeX;
-	vars->pl.moveSpeed = FRAMETIME *  5.0;
-	vars->pl.rotSpeed = FRAMETIME *  3.0;
-	if (vars->pl.moveForward == true)
-	{
-		if (map_info->map[(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)][(int)(vars->pl.x)] == 0)
-			vars->pl.y += vars->pl.dirY * vars->pl.moveSpeed;
-		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)] == 0)
-			vars->pl.x += vars->pl.dirX * vars->pl.moveSpeed;
-	}
-	if (vars->pl.moveBackward == true)
-	{
-		if (map_info->map[(int)(vars->pl.y - vars->pl.dirY * vars->pl.moveSpeed)][(int)(vars->pl.x)] == 0)
-			vars->pl.y -= vars->pl.dirY * vars->pl.moveSpeed;
-		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x - vars->pl.dirX * vars->pl.moveSpeed)] == 0)
-			vars->pl.x -= vars->pl.dirX * vars->pl.moveSpeed;
-	}
-	if (vars->pl.moveLeft == true)
-	{
-		oldDirX = vars->pl.dirX;
-		vars->pl.dirX = vars->pl.dirX * cos(-vars->pl.rotSpeed) - vars->pl.dirY * sin(-vars->pl.rotSpeed);
-		vars->pl.dirY = oldDirX * sin(-vars->pl.rotSpeed) + vars->pl.dirY * cos(-vars->pl.rotSpeed);
-		oldPlaneX = vars->pl.planeX;
-		vars->pl.planeX = vars->pl.planeX * cos(-vars->pl.rotSpeed) - vars->pl.planeY * sin(-vars->pl.rotSpeed);
-		vars->pl.planeY = oldPlaneX * sin(-vars->pl.rotSpeed) + vars->pl.planeY * cos(-vars->pl.rotSpeed);
-	}
-	if (vars->pl.moveRight == true)
-	{
-		oldDirX = vars->pl.dirX;
-		vars->pl.dirX = vars->pl.dirX * cos(vars->pl.rotSpeed) - vars->pl.dirY * sin(vars->pl.rotSpeed);
-		vars->pl.dirY = oldDirX * sin(vars->pl.rotSpeed) + vars->pl.dirY * cos(vars->pl.rotSpeed);
-		oldPlaneX = vars->pl.planeX;
-		vars->pl.planeX = vars->pl.planeX * cos(vars->pl.rotSpeed) - vars->pl.planeY * sin(vars->pl.rotSpeed);
-		vars->pl.planeY = oldPlaneX * sin(vars->pl.rotSpeed) + vars->pl.planeY * cos(vars->pl.rotSpeed);
 	}
 }
 

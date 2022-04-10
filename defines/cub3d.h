@@ -41,6 +41,10 @@ typedef struct s_draw {
 	int		lineH;
 	int		start;
 	int		end;
+	int		texX;
+	double	wallX;
+	double	texPos;
+	double	step;
 }				t_draw;
 
 typedef struct s_input
@@ -105,14 +109,16 @@ typedef struct s_vars{
 }				t_vars;
 
 
+int	ft_init(t_vars *vars, t_map *map_info);
 
 int	key_hook(int keycode, t_vars *vars);
 void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int	key_press(int keycode, t_vars *vars);
 int	key_release(int keycode, t_vars *vars);
-int	ft_init_textures(t_vars *vars);
 void	ft_draw_textures(t_vars *vars, int x);
+void	ft_move(t_vars *vars, t_map *map_info);
+
 
 
 
