@@ -49,7 +49,6 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 {
 	int				y;
 	int				texY;
-	int				texNum;
 	double			step;
 	double			texPos;
 	unsigned int	color;
@@ -57,14 +56,13 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 	y = 1;
 	step = 1.0 * TEX_H / vars->draw.lineH;
 	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
-	texNum = ft_pick_texture(vars);
 	while (y < IMG_H - 1)
 	{
 		if (y > vars->draw.start && y < vars->draw.end)
 		{
 			texY = (int)texPos & (TEX_H - 1);
 			texPos += step;
-			color = ft_pick_tex_color(tex[texNum], texX, texY);
+			color = ft_pick_tex_color(tex[ft_pick_texture(vars)], texX, texY);
 			if (vars->isSprite == 0 || vars->isSprite == 1 && color != 0xff000000)
 				my_mlx_pixel_put(vars, x, y, color);
 		}

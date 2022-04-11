@@ -2,8 +2,6 @@
 
 int	mouse_press(int keycode, int x, int y, t_vars *vars)
 {
-	int	scalemult;
-
 	vars->mouse.xStart = x;
 	if (keycode == 1)
 		vars->mouse.drag = 1;

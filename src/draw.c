@@ -39,11 +39,11 @@ static void	ft_calc_grid_dist(t_vars *vars)
 static void	ft_calc_raylen(t_vars *vars)
 {
 	if (vars->ray.dirX == 0)
-		vars->ray.deltaDistX = INFINITY;
+		vars->ray.deltaDistX = 1e30;
 	else
 		vars->ray.deltaDistX =  fabs(1 / vars->ray.dirX);
 	if (vars->ray.dirY == 0)
-		vars->ray.deltaDistY = INFINITY;
+		vars->ray.deltaDistY = 1e30;
 	else
 		vars->ray.deltaDistY = fabs(1 / vars->ray.dirY);
 }
