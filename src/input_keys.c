@@ -12,25 +12,6 @@
 
 #include "../defines/cub3d.h"
 
-
-	// if (keycode == KEY_W)
-	// 	vars->mv.yoff -= 5;
-	// if (keycode == KEY_S)
-	// 	vars->mv.yoff += 5;
-	// if (keycode == KEY_A)
-	// 	vars->mv.xoff -= 5;
-	// if (keycode == KEY_D)
-	// 	vars->mv.xoff += 5;
-
-static void	ft_imgreset(t_vars *vars)
-{
-	// vars->mv.yoff = 0;
-	// vars->img.yoff = 0;
-	// vars->mv.xoff = 0;
-	// vars->img.xoff = 0;
-	// vars->img.scale = vars->input.scale;
-}
-
 int	key_press(int keycode, t_vars *vars)
 {
 	// printf("keycode %d\n", keycode);
@@ -53,7 +34,7 @@ int	key_press(int keycode, t_vars *vars)
 		vars->spriteDead ^= 1;
 	if (keycode == KEY_ESC)
 	{
-		// ft_free2darr((void **)vars->mv.cords);
+		ft_free_map_info(vars->map_info);
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}

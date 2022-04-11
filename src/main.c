@@ -2,7 +2,7 @@
 
 static int exit_game(t_vars *vars)
 {
-	// ft_free2darr((void **)vars->mv.cords);
+	ft_free_map_info(vars->map_info);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 }
@@ -38,4 +38,5 @@ int	main(int argc, char **argv)
 	mlx_hook(vars.win, 5, 1L<<3, &mouse_release, &vars);
 	mlx_loop_hook(vars.mlx, draw_player, &vars);
 	mlx_loop(vars.mlx);
+	return (0);
 }
