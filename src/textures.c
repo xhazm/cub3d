@@ -18,7 +18,9 @@ static int	ft_pick_texture(t_vars *vars)
 	}
 	else if (vars->isSprite == 1)
 	{
-		if (vars->spriteC < 100)
+		if (vars->spriteDead == 1)
+			texNum = 3;
+		else if (vars->spriteC < 100)
 			texNum = 0;
 		else if (vars->spriteC < 200)
 			texNum = 1;
@@ -75,8 +77,6 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 		}
 		y++;
 	}
-	// if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
-		// ft_draw_sprite(vars, x, texX);
 }
 
 static void	ft_scale_drawing_line(t_vars *vars)

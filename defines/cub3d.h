@@ -104,9 +104,10 @@ typedef struct s_vars{
 	int			mapY;
 	int			isSprite;
 	long		spriteC;
+	int			spriteDead;
 	t_draw		draw;
 	t_texture	texture[5];
-	t_texture	sprite[3];
+	t_texture	sprite[4];
 	t_map 		*map_info;
 	// t_rotate	rt;
 	t_player	pl;

@@ -111,8 +111,6 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 		if (ft_dda_algorithm(vars, *map_info) == FAIL)
 		{
 			x++;
-			if (x >= IMG_W)
-				break ;
 			continue ;
 		}
 		if (vars->isSprite == 0)
@@ -120,7 +118,7 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 		else if (vars->isSprite == 1 && vars->ray.side == 0)
 			ft_draw_textures(vars, x, vars->sprite);
 		x++;
-		if (x >= IMG_W && vars->isSprite == 0)
+		if (x == IMG_W && vars->isSprite == 0)
 		{
 			x = 0;
 			vars->isSprite = 1;

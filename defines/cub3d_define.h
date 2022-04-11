@@ -25,6 +25,7 @@
 # define KEY_MULT 67
 # define KEY_DIV 75
 # define KEY_F 102
+# define KEY_G 103
 # define KEY_A 97
 # define KEY_D 100
 # define KEY_W 119

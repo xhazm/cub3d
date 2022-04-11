@@ -49,6 +49,8 @@ int	key_press(int keycode, t_vars *vars)
 		else if (vars->map_info->map[(int)vars->pl.y + (int)round(vars->pl.dirY)][(int)vars->pl.x + (int)round(vars->pl.dirX)] == -'T')
 			vars->map_info->map[(int)vars->pl.y  + (int)round(vars->pl.dirY)][(int)vars->pl.x +(int)round(vars->pl.dirX)] = 'T';
 	}
+	if (keycode == KEY_G)
+		vars->spriteDead ^= 1;
 	if (keycode == KEY_ESC)
 	{
 		// ft_free2darr((void **)vars->mv.cords);
