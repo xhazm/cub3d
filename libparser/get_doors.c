@@ -14,14 +14,14 @@
 
 int	check_T(char **map, int x, int y)
 {
-	if ((ft_strchr("10T", map[y - 1][x]) == 0)
-	|| (ft_strchr("10T", map[y + 1][x]) == 0)
-	|| (ft_strchr("10T", map[y][x + 1]) == 0)
-	|| (ft_strchr("10T", map[y][x - 1]) == 0)
-	|| (ft_strchr("10T", map[y - 1][x - 1]) == 0)
-	|| (ft_strchr("10T", map[y - 1][x + 1]) == 0)
-	|| (ft_strchr("10T", map[y + 1][x -1]) == 0)
-	|| (ft_strchr("10T", map[y + 1][x + 1]) == 0))
+	if ((ft_strchr("10TR", map[y - 1][x]) == 0)
+	|| (ft_strchr("10TR", map[y + 1][x]) == 0)
+	|| (ft_strchr("10TR", map[y][x + 1]) == 0)
+	|| (ft_strchr("10TR", map[y][x - 1]) == 0)
+	|| (ft_strchr("10TR", map[y - 1][x - 1]) == 0)
+	|| (ft_strchr("10TR", map[y - 1][x + 1]) == 0)
+	|| (ft_strchr("10TR", map[y + 1][x -1]) == 0)
+	|| (ft_strchr("10TR", map[y + 1][x + 1]) == 0))
 		return (-1);
 	return (0);
 }
