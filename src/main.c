@@ -13,7 +13,7 @@ int draw_player(t_vars *vars)
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 		&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 		&vars->img.data.endian);
-
+	vars->spriteC++;
 	ft_draw_rays_3d(vars, vars->map_info);
 	ft_move(vars, vars->map_info);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);

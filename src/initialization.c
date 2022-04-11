@@ -98,6 +98,7 @@ int	ft_init(t_vars *vars, t_map *map_info)
 	ft_init_mlx_win_img(vars);
 	vars->map_info = map_info;
 	vars->isSprite = 0;
+	vars->spriteC = 0;
 	if (ft_init_textures(vars, map_info) == FAIL)
 		return (FAIL);
 	ft_init_player(vars, map_info);

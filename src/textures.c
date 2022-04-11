@@ -3,17 +3,34 @@
 static int	ft_pick_texture(t_vars *vars)
 {
 	int	texNum;
-
-	if (vars->ray.side == 1 && vars->ray.dirY < 0)
-		texNum = E_WALL_N;
-	else if (vars->ray.side == 1 && vars->ray.dirY > 0)
-		texNum = E_WALL_S;
-	else if (vars->ray.side == 0 && vars->ray.dirX < 0)
-		texNum = E_WALL_W; 
-	else if (vars->ray.side == 0 && vars->ray.dirX > 0)
-		texNum = E_WALL_E; 
+	if (vars->isSprite == 0)
+	{
+		if (vars->ray.side == 1 && vars->ray.dirY < 0)
+			texNum = E_WALL_N;
+		else if (vars->ray.side == 1 && vars->ray.dirY > 0)
+			texNum = E_WALL_S;
+		else if (vars->ray.side == 0 && vars->ray.dirX < 0)
+			texNum = E_WALL_W; 
+		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
+			texNum = E_WALL_E;
 	// if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
 	// 	texNum = E_DOOR;
+	}
+	else if (vars->isSprite == 1)
+	{
+		if (vars->spriteC < 100)
+			texNum = 0;
+		else if (vars->spriteC < 200)
+			texNum = 1;
+		else if (vars->spriteC < 300)
+			texNum = 2;
+		else if (vars->spriteC > 300)
+		{
+			texNum = 0;
+			vars->spriteC = 0;
+		}
+	}
+
 	return (texNum);
 }
 
@@ -38,10 +55,7 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 	y = 1;
 	step = 1.0 * TEX_H / vars->draw.lineH;
 	texPos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
-	if (vars->isSprite == 0)
-		texNum = ft_pick_texture(vars);
-	else if (vars->isSprite == 1)
-		texNum = 1;
+	texNum = ft_pick_texture(vars);
 	while (y < IMG_H - 1)
 	{
 		if (y > vars->draw.start && y < vars->draw.end)
@@ -51,6 +65,13 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 			color = ft_pick_tex_color(tex[texNum], texX, texY);
 			if (vars->isSprite == 0 || vars->isSprite == 1 && color != 0xff000000)
 				my_mlx_pixel_put(vars, x, y, color);
+		}
+		else if (vars->isSprite == 0)
+		{
+			if (y > vars->draw.start)
+			my_mlx_pixel_put(vars, x, y, vars->map_info->floor_color);
+			else if (y < vars->draw.end)
+			my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
 		}
 		y++;
 	}

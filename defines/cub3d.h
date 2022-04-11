@@ -103,6 +103,7 @@ typedef struct s_vars{
 	int			mapX;
 	int			mapY;
 	int			isSprite;
+	long		spriteC;
 	t_draw		draw;
 	t_texture	texture[5];
 	t_texture	sprite[3];

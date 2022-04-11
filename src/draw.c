@@ -39,11 +39,11 @@ static void	ft_calc_grid_dist(t_vars *vars)
 static void	ft_calc_raylen(t_vars *vars)
 {
 	if (vars->ray.dirX == 0)
-		vars->ray.deltaDistX = 1e30;
+		vars->ray.deltaDistX = INFINITY;
 	else
 		vars->ray.deltaDistX =  fabs(1 / vars->ray.dirX);
 	if (vars->ray.dirY == 0)
-		vars->ray.deltaDistY = 1e30;
+		vars->ray.deltaDistY = INFINITY;
 	else
 		vars->ray.deltaDistY = fabs(1 / vars->ray.dirY);
 }
@@ -66,15 +66,17 @@ static int	ft_dda_algorithm(t_vars *vars, t_map map_info)
 		}
 		if (vars->isSprite == 0)
 		{
-			// printf("%d %d\n",  vars->mapX, vars->mapY);
 			if (map_info.map[vars->mapY][vars->mapX] > 0 && map_info.map[vars->mapY][vars->mapX] != 'T')
 				vars->ray.hit = 1;
 		}
 		else if (vars->isSprite == 1)
 		{
-			// printf("%p %d %d\n", map_info.map[0][0], vars->mapX, vars->mapY);
 			if (map_info.map[vars->mapY][vars->mapX] == 'T')
+			{
+				// vars->ray.sideDistY -= vars->ray.deltaDistX;
+				// vars->ray.sideDistX -= vars->ray.deltaDistY;
 				vars->ray.hit = 1;
+			}
 			else if (map_info.map[vars->mapY][vars->mapX] > 0)
 				return (FAIL);
 		}
@@ -113,10 +115,9 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 				break ;
 			continue ;
 		}
-			printf("%d\n",vars->isSprite);
 		if (vars->isSprite == 0)
 			ft_draw_textures(vars, x, vars->texture);
-		else if (vars->isSprite == 1)
+		else if (vars->isSprite == 1 && vars->ray.side == 0)
 			ft_draw_textures(vars, x, vars->sprite);
 		x++;
 		if (x >= IMG_W && vars->isSprite == 0)
