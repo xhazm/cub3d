@@ -26,7 +26,7 @@ int	mousexy_hook(int x, int y, t_vars *vars)
 			vars->pl.moveRight = true;
 		if (vars->mouse.xStart > x)
 			vars->pl.moveLeft = true;
-		vars->pl.rotSpeed = fabs(ldexp(vars->mouse.xStart - x, -11));
+		vars->pl.rotSpeed = fabs(ldexp(vars->mouse.xStart - x, -12));
 	}
 	return (0);
 }

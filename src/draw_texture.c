@@ -1,50 +1,5 @@
 #include "../defines/cub3d.h"
 
-static int	ft_pick_texture(t_vars *vars)
-{
-	int	texNum;
-	if (vars->isSprite == 0)
-	{
-		if (vars->ray.side == 1 && vars->ray.dirY < 0)
-			texNum = E_WALL_N;
-		else if (vars->ray.side == 1 && vars->ray.dirY > 0)
-			texNum = E_WALL_S;
-		else if (vars->ray.side == 0 && vars->ray.dirX < 0)
-			texNum = E_WALL_W; 
-		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
-			texNum = E_WALL_E;
-	// if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
-	// 	texNum = E_DOOR;
-	}
-	else if (vars->isSprite == 1)
-	{
-		if (vars->spriteDead == 1)
-			texNum = 3;
-		else if (vars->spriteC < 100)
-			texNum = 0;
-		else if (vars->spriteC < 200)
-			texNum = 1;
-		else if (vars->spriteC < 300)
-			texNum = 2;
-		else if (vars->spriteC > 300)
-		{
-			texNum = 0;
-			vars->spriteC = 0;
-		}
-	}
-
-	return (texNum);
-}
-
-static unsigned int	ft_pick_tex_color(t_texture tex, int x, int y)
-{
-	unsigned int	*color;
-
-	color = (unsigned int*)tex.data + ((y
-				* tex.line_length + x * (tex.bpp / 8)) / 4);
-	return (*color);
-}
-
 static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 {
 	int				y;
@@ -69,9 +24,9 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 		else if (vars->isSprite == 0)
 		{
 			if (y > vars->draw.start)
-			my_mlx_pixel_put(vars, x, y, vars->map_info->floor_color);
+				my_mlx_pixel_put(vars, x, y, vars->map_info->floor_color);
 			else if (y < vars->draw.end)
-			my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
+				my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
 		}
 		y++;
 	}

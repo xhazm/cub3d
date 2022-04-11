@@ -50,7 +50,6 @@ typedef struct s_player {
 	bool	moveBackward;
 	bool	moveLeft;
 	bool	moveRight;
-	// t_mouse	mouse;
 }				t_player;
 
 typedef struct s_draw {
@@ -117,7 +116,6 @@ typedef struct s_vars{
 	t_texture	texture[5];
 	t_texture	sprite[4];
 	t_map 		*map_info;
-	// t_rotate	rt;
 	t_mouse		mouse;
 	t_player	pl;
 	t_ray		ray;
@@ -127,24 +125,23 @@ typedef struct s_vars{
 }				t_vars;
 
 
-int	ft_init(t_vars *vars, t_map *map_info);
-
-int	key_hook(int keycode, t_vars *vars);
-void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
-int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
-int	key_press(int keycode, t_vars *vars);
-int	key_release(int keycode, t_vars *vars);
-void	ft_draw_textures(t_vars *vars, int x, t_texture *texture);
-void	ft_move(t_vars *vars, t_map *map_info);
-int		ft_draw_rays_3d(t_vars *vars, t_map *map_info);
-void	ft_minimap(t_vars *vars, t_map *map_info);
-int	mousexy_hook(int x, int y, t_vars *vars);
-int	mouse_press(int keycode, int x, int y, t_vars *vars);
-int	mouse_release(int keycode, int x, int y, t_vars *vars);
-
-
-
-
+int				ft_init(t_vars *vars, t_map *map_info);
+unsigned int	ft_pick_tex_color(t_texture tex, int x, int y);
+int				ft_pick_texture(t_vars *vars);
+int				key_hook(int keycode, t_vars *vars);
+void 			bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
+int				my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+int				key_press(int keycode, t_vars *vars);
+int				key_release(int keycode, t_vars *vars);
+void			ft_draw_textures(t_vars *vars, int x, t_texture *texture);
+int				ft_dda_algorithm(t_vars *vars, t_map map_info);
+void			ft_move(t_vars *vars, t_map *map_info);
+int				ft_draw_rays_3d(t_vars *vars, t_map *map_info);
+void			ft_minimap(t_vars *vars, t_map *map_info);
+int				mousexy_hook(int x, int y, t_vars *vars);
+int				mouse_press(int keycode, int x, int y, t_vars *vars);
+int				mouse_release(int keycode, int x, int y, t_vars *vars);
+int				ft_init_textures(t_vars *vars, t_map *map_info);
 
 
 #endif

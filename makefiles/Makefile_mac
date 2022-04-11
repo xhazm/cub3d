@@ -13,7 +13,7 @@
 CC = gcc
 NAME = cub3d
 FLAGS = -O3 -g # -Wall -Wextra -Werror
-SRC = main.c user_key_input.c draw.c textures.c initialization.c
+SRC =main.c input_keys.c input_mouse.c move.c draw_calculate.c draw_calculate_dda.c draw_texture.c draw_texture_helper.c init.c init_textures.c minimap.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 SRC_DIR = ./src/
