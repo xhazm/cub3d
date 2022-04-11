@@ -44,7 +44,7 @@ static void	ft_init_mlx_win_img(t_vars *vars)
 	vars->img.scale = vars->input.scale;
 }
 
-static int	ft_init_textures(t_vars *vars)
+static int	ft_init_textures(t_vars *vars, t_map *map_info)
 {
 	int	i;
 
@@ -52,10 +52,10 @@ static int	ft_init_textures(t_vars *vars)
 	vars->sprite[0].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bunny0.xpm", &vars->sprite[0].width, &vars->sprite[0].width);
 	vars->sprite[1].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bunny1.xpm", &vars->sprite[1].width, &vars->sprite[1].width);
 	vars->sprite[2].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bunny2.xpm", &vars->sprite[2].width, &vars->sprite[2].width);
-	vars->texture[E_WALL_N].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->no_path, &vars->texture[0].width, &vars->texture[0].width);
-	vars->texture[E_WALL_S].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->so_path, &vars->texture[1].width, &vars->texture[1].width);
-	vars->texture[E_WALL_W].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->we_path, &vars->texture[2].width, &vars->texture[2].width);
-	vars->texture[E_WALL_E].img_ptr = mlx_xpm_file_to_image(vars->mlx, vars->map_info->ea_path, &vars->texture[3].width, &vars->texture[3].width);
+	vars->texture[E_WALL_N].img_ptr = mlx_xpm_file_to_image(vars->mlx, map_info->no_path, &vars->texture[0].width, &vars->texture[0].width);
+	vars->texture[E_WALL_S].img_ptr = mlx_xpm_file_to_image(vars->mlx, map_info->so_path, &vars->texture[1].width, &vars->texture[1].width);
+	vars->texture[E_WALL_W].img_ptr = mlx_xpm_file_to_image(vars->mlx, map_info->we_path, &vars->texture[2].width, &vars->texture[2].width);
+	vars->texture[E_WALL_E].img_ptr = mlx_xpm_file_to_image(vars->mlx, map_info->ea_path, &vars->texture[3].width, &vars->texture[3].width);
 	vars->texture[E_DOOR].img_ptr = mlx_xpm_file_to_image(vars->mlx, "./textures/bookshelf.xpm", &vars->texture[4].width, &vars->texture[4].width);
 	while (i < 3)
 	{
@@ -97,7 +97,8 @@ int	ft_init(t_vars *vars, t_map *map_info)
 {
 	ft_init_mlx_win_img(vars);
 	vars->map_info = map_info;
-	if (ft_init_textures(vars) == FAIL)
+	vars->isSprite = 0;
+	if (ft_init_textures(vars, map_info) == FAIL)
 		return (FAIL);
 	ft_init_player(vars, map_info);
 	return (SUCCESS);

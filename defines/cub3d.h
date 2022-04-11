@@ -102,6 +102,7 @@ typedef struct s_vars{
 	double		perpWallDist;
 	int			mapX;
 	int			mapY;
+	int			isSprite;
 	t_draw		draw;
 	t_texture	texture[5];
 	t_texture	sprite[3];
@@ -122,7 +123,7 @@ void bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int	key_press(int keycode, t_vars *vars);
 int	key_release(int keycode, t_vars *vars);
-void	ft_draw_textures(t_vars *vars, int x);
+void	ft_draw_textures(t_vars *vars, int x, t_texture *texture);
 void	ft_move(t_vars *vars, t_map *map_info);
 int		ft_draw_rays_3d(t_vars *vars, t_map *map_info);
 void	ft_minimap(t_vars *vars, t_map *map_info);

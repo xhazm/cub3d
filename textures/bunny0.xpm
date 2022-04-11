@@ -1,17 +1,12 @@
 /* XPM */
-static char *cc9f3d8f806942abd6464fb0b9efc13acvKjMJMO4YFmCFXM[] = {
+static char *_e2c321a54144cadac44841426542ae5xgjJX88PyuejJwkh[] = {
 /* columns rows colors chars-per-pixel */
-"55 80 4 1 ",
+"55 75 4 1 ",
 "  c None",
 ". c black",
 "X c #B9BACA",
 "o c #CECFE0",
 /* pixels */
-"               oooooooooooo                            ",
-"                oooooooooo                             ",
-"                  oooooo                               ",
-"                                                       ",
-"                                                       ",
 "                                                       ",
 "                                                       ",
 "                                                       ",

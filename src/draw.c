@@ -48,7 +48,7 @@ static void	ft_calc_raylen(t_vars *vars)
 		vars->ray.deltaDistY = fabs(1 / vars->ray.dirY);
 }
 
-static void	ft_dda_algorithm(t_vars *vars, t_map *map_info)
+static int	ft_dda_algorithm(t_vars *vars, t_map map_info)
 {
 	while (vars->ray.hit == 0)
 	{
@@ -64,8 +64,20 @@ static void	ft_dda_algorithm(t_vars *vars, t_map *map_info)
 			vars->mapY += vars->ray.stepY;
 			vars->ray.side = 1;
 		}
-		if (map_info->map[vars->mapY][vars->mapX] > 0)
-			vars->ray.hit = 1;
+		if (vars->isSprite == 0)
+		{
+			// printf("%d %d\n",  vars->mapX, vars->mapY);
+			if (map_info.map[vars->mapY][vars->mapX] > 0 && map_info.map[vars->mapY][vars->mapX] != 'T')
+				vars->ray.hit = 1;
+		}
+		else if (vars->isSprite == 1)
+		{
+			// printf("%p %d %d\n", map_info.map[0][0], vars->mapX, vars->mapY);
+			if (map_info.map[vars->mapY][vars->mapX] == 'T')
+				vars->ray.hit = 1;
+			else if (map_info.map[vars->mapY][vars->mapX] > 0)
+				return (FAIL);
+		}
 	}
 	if (vars->ray.side == 0)
 		vars->perpWallDist = (vars->ray.sideDistX - vars->ray.deltaDistX);
@@ -73,6 +85,7 @@ static void	ft_dda_algorithm(t_vars *vars, t_map *map_info)
 		vars->perpWallDist = (vars->ray.sideDistY - vars->ray.deltaDistY);
 	if (vars->perpWallDist == 0)
 		vars->perpWallDist = 0;
+	return (SUCCESS);
 }
 
 int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
@@ -81,6 +94,7 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 	t_ray	ray;
 
 	x = 0;
+	vars->isSprite = 0;
 	while(x < IMG_W)
 	{
 		vars->ray.hit = 0;
@@ -92,8 +106,23 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 		vars->mapY = (int)vars->pl.y;
 		ft_calc_grid_dist(vars);
 		ft_calc_raylen(vars);
-		ft_dda_algorithm(vars, map_info);
-		ft_draw_textures(vars, x);
+		if (ft_dda_algorithm(vars, *map_info) == FAIL)
+		{
+			x++;
+			if (x >= IMG_W)
+				break ;
+			continue ;
+		}
+			printf("%d\n",vars->isSprite);
+		if (vars->isSprite == 0)
+			ft_draw_textures(vars, x, vars->texture);
+		else if (vars->isSprite == 1)
+			ft_draw_textures(vars, x, vars->sprite);
 		x++;
+		if (x >= IMG_W && vars->isSprite == 0)
+		{
+			x = 0;
+			vars->isSprite = 1;
+		}
 	}
 }
