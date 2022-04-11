@@ -1,5 +1,5 @@
-NO     ./textures/bricks.xpm
-SO    ./textures/obsidian.xpm
+NO     ./textures/cobblestone.xpm
+SO    ./textures/mossy_stone_bricks.xpm
 WE     ./textures/mossy_cobblestone.xpm
 EA    ./textures/stone_bricks.xpm
 F   0,102,0
