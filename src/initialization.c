@@ -91,7 +91,8 @@ static void	ft_init_player(t_vars *vars, t_map *map_info)
 	vars->pl.moveBackward = false;
 	vars->pl.moveLeft = false;
 	vars->pl.moveRight = false;
-	vars->pl.rotSpeed = FRAMETIME * 3.0;
+	vars->pl.origRotSpeed = FRAMETIME * 3.0;
+	vars->pl.rotSpeed = vars->pl.origRotSpeed;
 	vars->pl.moveSpeed = FRAMETIME * 5.0;
 }
 int	ft_init(t_vars *vars, t_map *map_info)
@@ -101,6 +102,7 @@ int	ft_init(t_vars *vars, t_map *map_info)
 	vars->isSprite = 0;
 	vars->spriteC = 0;
 	vars->spriteDead = 0;
+	vars->mouse.drag = 0;
 	if (ft_init_textures(vars, map_info) == FAIL)
 		return (FAIL);
 	ft_init_player(vars, map_info);

@@ -13,7 +13,7 @@
 CC = gcc
 NAME = cub3d
 FLAGS = -O3 -g # -Wall -Wextra -Werror
-SRC = main.c user_key_input.c move.c draw.c textures.c initialization.c minimap.c\
+SRC = main.c user_key_input.c user_mouse_input.c move.c draw.c textures.c initialization.c minimap.c\
 	../libparser/check_firstrow.c ../libparser/check_lastrow.c ../libparser/check_middlerow.c ../libparser/color_converter.c \
 	../libparser/check_parse.c ../libparser/get_doors.c ../libparser/get_info.c ../libparser/get_info2.c \
 	../libparser/get_info3.c ../libparser/helpers.c ../libparser/parser.c ../libparser/read_info.c

@@ -33,6 +33,9 @@ int	main(int argc, char **argv)
 	mlx_hook(vars.win, X_EVENT_KEY_PRESS, 1L << 0, &key_press, &vars);
 	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 1L << 1, &key_release, &vars);
 	mlx_hook(vars.win, X_EVENT_EXIT, 1L << 17, &exit_game, &vars);
+	mlx_hook(vars.win, 6, 1L<<6, mousexy_hook, &vars);
+	mlx_hook(vars.win, 4, 1L<<2, &mouse_press, &vars);
+	mlx_hook(vars.win, 5, 1L<<3, &mouse_release, &vars);
 	mlx_loop_hook(vars.mlx, draw_player, &vars);
 	mlx_loop(vars.mlx);
 }

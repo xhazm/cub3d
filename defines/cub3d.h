@@ -29,6 +29,13 @@ typedef struct s_texture {
 	int		line_length;
 }			t_texture;
 
+typedef struct s_mouse {
+	int		drag;
+	int		xStart;
+	int		yStart;
+	int		div;
+}				t_mouse;
+
 typedef struct s_player {
 	double	dirX;
 	double	dirY;
@@ -38,6 +45,7 @@ typedef struct s_player {
 	double	y;
 	double	moveSpeed;
 	double	rotSpeed;
+	double	origRotSpeed;
 	bool	moveForward;
 	bool	moveBackward;
 	bool	moveLeft;
@@ -110,6 +118,7 @@ typedef struct s_vars{
 	t_texture	sprite[4];
 	t_map 		*map_info;
 	// t_rotate	rt;
+	t_mouse		mouse;
 	t_player	pl;
 	t_ray		ray;
 	t_img		img;
@@ -129,6 +138,12 @@ void	ft_draw_textures(t_vars *vars, int x, t_texture *texture);
 void	ft_move(t_vars *vars, t_map *map_info);
 int		ft_draw_rays_3d(t_vars *vars, t_map *map_info);
 void	ft_minimap(t_vars *vars, t_map *map_info);
+int	mousexy_hook(int x, int y, t_vars *vars);
+int	mouse_press(int keycode, int x, int y, t_vars *vars);
+int	mouse_release(int keycode, int x, int y, t_vars *vars);
+
+
+
 
 
 
