@@ -53,13 +53,13 @@ static void	ft_init_player(t_vars *vars, t_map *map_info)
 	get_dir(vars, map_info);
 	vars->pl.x = map_info->pl_x;
 	vars->pl.y = map_info->pl_y;
-	vars->pl.moveForward = false;
-	vars->pl.moveBackward = false;
-	vars->pl.moveLeft = false;
-	vars->pl.moveRight = false;
-	vars->pl.origRotSpeed = FRAMETIME * 3.0;
-	vars->pl.rotSpeed = vars->pl.origRotSpeed;
-	vars->pl.moveSpeed = FRAMETIME * 5.0;
+	vars->pl.mvForward = false;
+	vars->pl.mvBackward = false;
+	vars->pl.mvLeft = false;
+	vars->pl.mvRight = false;
+	vars->pl.origrotSp = FRAMETIME * 3.0;
+	vars->pl.rotSp = vars->pl.origrotSp;
+	vars->pl.mvSp = FRAMETIME * 5.0;
 }
 int	ft_init(t_vars *vars, t_map *map_info)
 {

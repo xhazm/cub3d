@@ -43,13 +43,13 @@ typedef struct s_player {
 	double	planeY;
 	double	x;
 	double	y;
-	double	moveSpeed;
-	double	rotSpeed;
-	double	origRotSpeed;
-	bool	moveForward;
-	bool	moveBackward;
-	bool	moveLeft;
-	bool	moveRight;
+	double	mvSp;
+	double	rotSp;
+	double	origrotSp;
+	bool	mvForward;
+	bool	mvBackward;
+	bool	mvLeft;
+	bool	mvRight;
 }				t_player;
 
 typedef struct s_draw {
@@ -135,7 +135,7 @@ int				key_press(int keycode, t_vars *vars);
 int				key_release(int keycode, t_vars *vars);
 void			ft_draw_textures(t_vars *vars, int x, t_texture *texture);
 int				ft_dda_algorithm(t_vars *vars, t_map map_info);
-void			ft_move(t_vars *vars, t_map *map_info);
+void			ft_move(t_vars *vars, t_map *map_info, t_player *pl);
 int				ft_draw_rays_3d(t_vars *vars, t_map *map_info);
 void			ft_minimap(t_vars *vars, t_map *map_info);
 int				mousexy_hook(int x, int y, t_vars *vars);

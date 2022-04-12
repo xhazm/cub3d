@@ -12,48 +12,48 @@
 
 #include "../defines/cub3d.h"
 
-static void	ft_rotate(t_vars *vars, t_map *map_info)
+static void	ft_rotate(t_vars *vars, t_player *pl)
 {
-	double oldDirX;
-	double oldPlaneX;
+	double oDirX;
+	double oPlaneX;
 
-	oldDirX = vars->pl.dirX;
-	oldPlaneX = vars->pl.planeX;
-	if (vars->pl.moveLeft == true)
+	oDirX = pl->dirX;
+	oPlaneX = pl->planeX;
+	if (pl->mvLeft == true)
 	{
-		oldDirX = vars->pl.dirX;
-		vars->pl.dirX = vars->pl.dirX * cos(-vars->pl.rotSpeed) - vars->pl.dirY * sin(-vars->pl.rotSpeed);
-		vars->pl.dirY = oldDirX * sin(-vars->pl.rotSpeed) + vars->pl.dirY * cos(-vars->pl.rotSpeed);
-		oldPlaneX = vars->pl.planeX;
-		vars->pl.planeX = vars->pl.planeX * cos(-vars->pl.rotSpeed) - vars->pl.planeY * sin(-vars->pl.rotSpeed);
-		vars->pl.planeY = oldPlaneX * sin(-vars->pl.rotSpeed) + vars->pl.planeY * cos(-vars->pl.rotSpeed);
+		oDirX = pl->dirX;
+		pl->dirX = pl->dirX * cos(-pl->rotSp) - pl->dirY * sin(-pl->rotSp);
+		pl->dirY = oDirX * sin(-pl->rotSp) + pl->dirY * cos(-pl->rotSp);
+		oPlaneX = pl->planeX;
+		pl->planeX = pl->planeX * cos(-pl->rotSp) - pl->planeY * sin(-pl->rotSp);
+		pl->planeY = oPlaneX * sin(-pl->rotSp) + pl->planeY * cos(-pl->rotSp);
 	}
-	if (vars->pl.moveRight == true)
+	if (pl->mvRight == true)
 	{
-		oldDirX = vars->pl.dirX;
-		vars->pl.dirX = vars->pl.dirX * cos(vars->pl.rotSpeed) - vars->pl.dirY * sin(vars->pl.rotSpeed);
-		vars->pl.dirY = oldDirX * sin(vars->pl.rotSpeed) + vars->pl.dirY * cos(vars->pl.rotSpeed);
-		oldPlaneX = vars->pl.planeX;
-		vars->pl.planeX = vars->pl.planeX * cos(vars->pl.rotSpeed) - vars->pl.planeY * sin(vars->pl.rotSpeed);
-		vars->pl.planeY = oldPlaneX * sin(vars->pl.rotSpeed) + vars->pl.planeY * cos(vars->pl.rotSpeed);
+		oDirX = pl->dirX;
+		pl->dirX = pl->dirX * cos(pl->rotSp) - pl->dirY * sin(pl->rotSp);
+		pl->dirY = oDirX * sin(pl->rotSp) + pl->dirY * cos(pl->rotSp);
+		oPlaneX = pl->planeX;
+		pl->planeX = pl->planeX * cos(pl->rotSp) - pl->planeY * sin(pl->rotSp);
+		pl->planeY = oPlaneX * sin(pl->rotSp) + pl->planeY * cos(pl->rotSp);
 	}
 }
 
-void	ft_move(t_vars *vars, t_map *map_info)
+void	ft_move(t_vars *vars, t_map *map_info, t_player *pl)
 {
-	if (vars->pl.moveForward == true)
+	if (pl->mvForward == true)
 	{
-		if (map_info->map[(int)(vars->pl.y + vars->pl.dirY * vars->pl.moveSpeed)][(int)(vars->pl.x)] <= 0)
-			vars->pl.y += vars->pl.dirY * vars->pl.moveSpeed;
-		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x + vars->pl.dirX * vars->pl.moveSpeed)] <= 0)
-			vars->pl.x += vars->pl.dirX * vars->pl.moveSpeed;
+		if (map_info->map[(int)(pl->y + pl->dirY * pl->mvSp)][(int)(pl->x)] <= 0)
+			pl->y += pl->dirY * pl->mvSp;
+		if (map_info->map[(int)(pl->y)][(int)(pl->x + pl->dirX * pl->mvSp)] <= 0)
+			pl->x += pl->dirX * pl->mvSp;
 	}
-	if (vars->pl.moveBackward == true)
+	if (pl->mvBackward == true)
 	{
-		if (map_info->map[(int)(vars->pl.y - vars->pl.dirY * vars->pl.moveSpeed)][(int)(vars->pl.x)] <= 0)
-			vars->pl.y -= vars->pl.dirY * vars->pl.moveSpeed;
-		if (map_info->map[(int)(vars->pl.y)][(int)(vars->pl.x - vars->pl.dirX * vars->pl.moveSpeed)] <= 0)
-			vars->pl.x -= vars->pl.dirX * vars->pl.moveSpeed;
+		if (map_info->map[(int)(pl->y - pl->dirY * pl->mvSp)][(int)(pl->x)] <= 0)
+			pl->y -= pl->dirY * pl->mvSp;
+		if (map_info->map[(int)(pl->y)][(int)(pl->x - pl->dirX * pl->mvSp)] <= 0)
+			pl->x -= pl->dirX * pl->mvSp;
 	}
-	ft_rotate(vars, map_info);
+	ft_rotate(vars, pl);
 }

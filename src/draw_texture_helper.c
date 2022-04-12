@@ -12,9 +12,32 @@ int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	return (1);
 }
 
+static int	ft_pick_sprite_tex(t_vars *vars)
+{
+	int	texNum;
+
+	texNum = 0;
+	if (vars->spriteDead == 1)
+		texNum = 3;
+	else if (vars->spriteC < 100)
+		texNum = 0;
+	else if (vars->spriteC < 200)
+		texNum = 1;
+	else if (vars->spriteC < 300)
+		texNum = 2;
+	else if (vars->spriteC > 300)
+	{
+		texNum = 0;
+		vars->spriteC = 0;
+	}
+	return (texNum);
+}
+
 int	ft_pick_texture(t_vars *vars)
 {
 	int	texNum;
+
+	texNum = 0;
 	if (vars->isSprite == 0)
 	{
 		if (vars->ray.side == 1 && vars->ray.dirY < 0)
@@ -29,22 +52,7 @@ int	ft_pick_texture(t_vars *vars)
 			texNum = E_DOOR;
 	}
 	else if (vars->isSprite == 1)
-	{
-		if (vars->spriteDead == 1)
-			texNum = 3;
-		else if (vars->spriteC < 100)
-			texNum = 0;
-		else if (vars->spriteC < 200)
-			texNum = 1;
-		else if (vars->spriteC < 300)
-			texNum = 2;
-		else if (vars->spriteC > 300)
-		{
-			texNum = 0;
-			vars->spriteC = 0;
-		}
-	}
-
+		texNum = ft_pick_sprite_tex(vars);
 	return (texNum);
 }
 

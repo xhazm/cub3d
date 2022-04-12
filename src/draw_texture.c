@@ -1,5 +1,13 @@
 #include "../defines/cub3d.h"
 
+static void	ft_draw_floor_ceiling(t_vars *vars, int x, int y)
+{
+	if (y > vars->draw.start)
+		my_mlx_pixel_put(vars, x, y, vars->map_info->floor_color);
+	else if (y < vars->draw.end)
+		my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
+}
+
 static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 {
 	int				y;
@@ -18,16 +26,11 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 			texY = (int)texPos & (TEX_H - 1);
 			texPos += step;
 			color = ft_pick_tex_color(tex[ft_pick_texture(vars)], texX, texY);
-			if (vars->isSprite == 0 || vars->isSprite == 1 && color != 0xff000000)
+			if (color != 0xff000000)
 				my_mlx_pixel_put(vars, x, y, color);
 		}
 		else if (vars->isSprite == 0)
-		{
-			if (y > vars->draw.start)
-				my_mlx_pixel_put(vars, x, y, vars->map_info->floor_color);
-			else if (y < vars->draw.end)
-				my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
-		}
+			ft_draw_floor_ceiling(vars, x, y);
 		y++;
 	}
 }

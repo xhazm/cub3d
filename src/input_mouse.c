@@ -12,9 +12,9 @@ int	mouse_release(int keycode, int x, int y, t_vars *vars)
 {
 	if (keycode == 1)
 		vars->mouse.drag = 0;
-	vars->pl.moveLeft = false;
-	vars->pl.moveRight = false;
-	vars->pl.rotSpeed = vars->pl.origRotSpeed;
+	vars->pl.mvLeft = false;
+	vars->pl.mvRight = false;
+	vars->pl.rotSp = vars->pl.origrotSp;
 	return (0);
 }
 
@@ -23,10 +23,10 @@ int	mousexy_hook(int x, int y, t_vars *vars)
 	if (vars->mouse.drag == 1)
 	{
 		if (vars->mouse.xStart < x)
-			vars->pl.moveRight = true;
+			vars->pl.mvRight = true;
 		if (vars->mouse.xStart > x)
-			vars->pl.moveLeft = true;
-		vars->pl.rotSpeed = fabs(ldexp(vars->mouse.xStart - x, -12));
+			vars->pl.mvLeft = true;
+		vars->pl.rotSp = fabs(ldexp(vars->mouse.xStart - x, -12));
 	}
 	return (0);
 }

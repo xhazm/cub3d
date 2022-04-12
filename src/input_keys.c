@@ -12,24 +12,32 @@
 
 #include "../defines/cub3d.h"
 
+static void	ft_doorkey(t_vars *vars, t_player pl, t_map *map)
+{
+	int	plX;
+	int plY;
+
+	plX = (int)pl.x + (int)round(pl.dirX);
+	plY = (int)pl.y + (int)round(pl.dirY);
+	if (map->map[vars->mapY][vars->mapX] == 'T')
+		map->map[vars->mapY][vars->mapX] = -'T';
+	else if (map->map[plY][plX] == -'T')
+		map->map[plY][plX] = 'T';
+}
+
 int	key_press(int keycode, t_vars *vars)
 {
 	// printf("keycode %d\n", keycode);
 	if (keycode == KEY_W)
-		vars->pl.moveForward = true;
+		vars->pl.mvForward = true;
 	if (keycode == KEY_S)
-		vars->pl.moveBackward = true;
+		vars->pl.mvBackward = true;
 	if (keycode == KEY_A)
-		vars->pl.moveLeft = true;
+		vars->pl.mvLeft = true;
 	if (keycode == KEY_D)
-		vars->pl.moveRight = true;
+		vars->pl.mvRight = true;
 	if (keycode == KEY_F)
-	{
-		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
-			vars->map_info->map[vars->mapY][vars->mapX] = -'T';
-		else if (vars->map_info->map[(int)vars->pl.y + (int)round(vars->pl.dirY)][(int)vars->pl.x + (int)round(vars->pl.dirX)] == -'T')
-			vars->map_info->map[(int)vars->pl.y  + (int)round(vars->pl.dirY)][(int)vars->pl.x +(int)round(vars->pl.dirX)] = 'T';
-	}
+		ft_doorkey(vars, vars->pl, vars->map_info);
 	if (keycode == KEY_G)
 		vars->spriteDead ^= 1;
 	if (keycode == KEY_ESC)
@@ -43,11 +51,11 @@ int	key_press(int keycode, t_vars *vars)
 int	key_release(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_W)
-		vars->pl.moveForward = false;
+		vars->pl.mvForward = false;
 	if (keycode == KEY_S)
-		vars->pl.moveBackward = false;
+		vars->pl.mvBackward = false;
 	if (keycode == KEY_A)
-		vars->pl.moveLeft = false;
+		vars->pl.mvLeft = false;
 	if (keycode == KEY_D)
-		vars->pl.moveRight = false;
+		vars->pl.mvRight = false;
 }
