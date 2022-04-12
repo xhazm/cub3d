@@ -25,8 +25,8 @@ int	ft_pick_texture(t_vars *vars)
 			texNum = E_WALL_W; 
 		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
 			texNum = E_WALL_E;
-	// if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
-	// 	texNum = E_DOOR;
+		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
+			texNum = E_DOOR;
 	}
 	else if (vars->isSprite == 1)
 	{

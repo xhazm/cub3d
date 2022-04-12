@@ -42,6 +42,8 @@ void char_to_nbr(t_map *map_info)
 			else if (map_info->map[y][x] == 'N' || map_info->map[y][x] == 'E' ||
 				map_info->map[y][x] == 'S' || map_info->map[y][x] == 'W')
 				map_info->map[y][x] = 0;
+			else if (map_info->map[y][x] == 'R')
+				map_info->map[y][x] = -'R';
 			x++;
 		}
 		y++;

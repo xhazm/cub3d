@@ -4,12 +4,12 @@ static int	ft_get_maphit(t_vars *vars, t_map map_info)
 {
 	if (vars->isSprite == 0)
 	{
-		if (map_info.map[vars->mapY][vars->mapX] > 0 && map_info.map[vars->mapY][vars->mapX] != 'T')
+		if (map_info.map[vars->mapY][vars->mapX] > 0)
 			return (1);
 	}
 	else if (vars->isSprite == 1)
 	{
-		if (map_info.map[vars->mapY][vars->mapX] == 'T')
+		if (map_info.map[vars->mapY][vars->mapX] == -'R')
 			return (1);
 		else if (map_info.map[vars->mapY][vars->mapX] > 0)
 			return (-1);
