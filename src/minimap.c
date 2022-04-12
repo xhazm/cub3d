@@ -33,9 +33,7 @@ void	ft_minimap(t_vars *vars, t_map *map_info)
 		{
 			if (map_info->map[y / MINIMAP_S][x / MINIMAP_S] != 0
 				&& map_info->map[y / MINIMAP_S][x / MINIMAP_S] != ' ')
-				my_mlx_pixel_put(vars, x, y, 0x00ffffff);
-			// if (x / MINIMAP_S == (int)vars->pl.x && y / MINIMAP_S == (int)vars->pl.y)
-			// 	my_mlx_pixel_put(vars, x, y, 0x00ff0000);
+				my_mlx_pixel_put(vars, x, y, 0x00fff7cc);
 			x++;
 		}
 		y++;
