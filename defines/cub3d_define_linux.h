@@ -20,6 +20,7 @@
 # define TEX_W 64
 # define TEX_H 64
 # define MAP_S 50
+# define MINIMAP_S 8
 # define KEY_PLUS 69
 # define KEY_MINUS 78
 # define KEY_MULT 67

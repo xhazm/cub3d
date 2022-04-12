@@ -16,6 +16,7 @@ int draw_player(t_vars *vars)
 	vars->spriteC++;
 	ft_draw_rays_3d(vars, vars->map_info);
 	ft_move(vars, vars->map_info);
+	ft_minimap(vars, vars->map_info);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	mlx_destroy_image(vars->mlx, vars->img.img);
 }

@@ -142,6 +142,8 @@ int				mousexy_hook(int x, int y, t_vars *vars);
 int				mouse_press(int keycode, int x, int y, t_vars *vars);
 int				mouse_release(int keycode, int x, int y, t_vars *vars);
 int				ft_init_textures(t_vars *vars, t_map *map_info);
+void			ft_minimap(t_vars *vars, t_map *map_info);
+
 
 
 #endif
