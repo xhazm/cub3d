@@ -7,14 +7,14 @@ static int	check_pl(t_map *map_info, char **map, int x, int y)
 	map_info->pl_dir = map[y][x];
 	map_info->pl_x = x;
 	map_info->pl_y = y;
-	if ((ft_strchr("10TR", map[y - 1][x]) == 0)
-	|| (ft_strchr("10TR", map[y + 1][x]) == 0)
-	|| (ft_strchr("10TR", map[y][x + 1]) == 0)
-	|| (ft_strchr("10TR", map[y][x - 1]) == 0)
-	|| (ft_strchr("10TR", map[y - 1][x - 1]) == 0)
-	|| (ft_strchr("10TR", map[y - 1][x + 1]) == 0)
-	|| (ft_strchr("10TR", map[y + 1][x -1]) == 0)
-	|| (ft_strchr("10TR", map[y + 1][x + 1]) == 0))
+	if ((ft_strchr("10TR", map[y - 1][x]) == 0 || map[y - 1][x] == '\0')
+	|| (ft_strchr("10TR", map[y + 1][x]) == 0 || map[y + 1][x] == '\0')
+	|| (ft_strchr("10TR", map[y][x + 1]) == 0 || map[y][x + 1] == '\0')
+	|| (ft_strchr("10TR", map[y][x - 1]) == 0 || map[y][x - 1] == '\0')
+	|| (ft_strchr("10TR", map[y - 1][x - 1]) == 0 || map[y - 1][x - 1] == '\0')
+	|| (ft_strchr("10TR", map[y - 1][x + 1]) == 0 || map[y - 1][x + 1] == '\0')
+	|| (ft_strchr("10TR", map[y + 1][x -1]) == 0 || map[y + 1][x -1] == '\0')
+	|| (ft_strchr("10TR", map[y + 1][x + 1]) == 0 || map[y + 1][x + 1] == '\0'))
 		return (-1);
 	return (0);
 }

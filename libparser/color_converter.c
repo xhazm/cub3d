@@ -5,7 +5,7 @@ unsigned int	ft_color_converter(char *cStr)
 	int				i;
 	char			**rgb;
 	unsigned int	color;
-	unsigned int	temp_color;
+	long int		temp_color;
 
 	rgb = ft_split(cStr, ',');
 	color = 0;
