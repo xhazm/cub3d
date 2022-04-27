@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_texture_helper.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:33 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:52:05 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
-	// if (x > WIN_WIDTH || y > WIN_HEIGHT || y < 0 || x < 0 || x > IMG_W || y > IMG_H)
-	// 	return (1);
 	dst = vars->img.data.addr + (y * vars->img.data.line_length + x
 			* (vars->img.data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -45,7 +55,7 @@ int	ft_pick_texture(t_vars *vars)
 		else if (vars->ray.side == 1 && vars->ray.dirY > 0)
 			texNum = E_WALL_S;
 		else if (vars->ray.side == 0 && vars->ray.dirX < 0)
-			texNum = E_WALL_W; 
+			texNum = E_WALL_W;
 		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
 			texNum = E_WALL_E;
 		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
@@ -60,7 +70,7 @@ unsigned int	ft_pick_tex_color(t_texture tex, int x, int y)
 {
 	unsigned int	*color;
 
-	color = (unsigned int*)tex.data + ((y
+	color = (unsigned int *)tex.data + ((y
 				* tex.line_length + x * (tex.bpp / 8)) / 4);
 	return (*color);
 }

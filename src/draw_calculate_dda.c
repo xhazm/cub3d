@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_calculate_dda.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:15 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:50:04 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
 static int	ft_get_maphit(t_vars *vars, t_map map_info)
@@ -9,7 +21,7 @@ static int	ft_get_maphit(t_vars *vars, t_map map_info)
 	}
 	else if (vars->isSprite == 1)
 	{
-		if (map_info.map[vars->mapY][vars->mapX] == -'R')
+		if (map_info.map[vars->mapY][vars->mapX] == - 'R')
 			return (1);
 		else if (map_info.map[vars->mapY][vars->mapX] > 0)
 			return (-1);

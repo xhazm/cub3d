@@ -6,7 +6,7 @@
 /*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:09:01 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/07 13:52:02 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:45:42 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_rotate(t_vars *vars, t_player *pl)
 {
-	double oDirX;
-	double oPlaneX;
+	double	oDirX;
+	double	oPlaneX;
 
 	oDirX = pl->dirX;
 	oPlaneX = pl->planeX;
