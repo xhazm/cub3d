@@ -23,21 +23,20 @@ void print_map(char **map, t_map *map_info)
 	}
 }
 
-void print_info(t_map *m)
+static int	ft_free2dmap(char **arr, int height)
 {
-	printf( "PARSED INFO: \n\
-		pl_dir: %c\n \
-		pl_x: %f \n\
-		pl_y: %f \n\
-		ceilingcolor: %u\n \
-		floorcolor: %u\n \
-		no: %s\n \
-		so: %s \n \
-		we: %s\n \
-		ea: %s\n \
-		heightmap: %d\n \
-		widthmap: %d\n", m->pl_dir, m->pl_x, m->pl_y, m->ceiling_color, m->floor_color, m->no_path,
-		m->so_path, m->we_path, m->ea_path, m->height, m->width);
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(arr[i]);
+		arr[i] = NULL;
+		i++;
+	}
+	free(arr);
+	arr = NULL;
+	return (0);
 }
 
 int	ft_error(char *msg)
@@ -55,22 +54,22 @@ int check_spaces(char c)
 
 static void free_paths(t_map *map_info)
 {
-	if (map_info->no_path)
+	if (map_info->no_path != NULL)
 	{
 		free(map_info->no_path);
 		map_info->no_path = NULL;
 	}
-	if (map_info->so_path)
+	if (map_info->so_path != NULL)
 	{
 		free(map_info->so_path);
 		map_info->so_path = NULL;
 	}
-	if (map_info->we_path)
+	if (map_info->we_path != NULL)
 	{
 		free(map_info->we_path);
 		map_info->we_path = NULL;
 	}
-	if (map_info->ea_path)
+	if (map_info->ea_path != NULL)
 	{
 		free(map_info->ea_path);
 		map_info->ea_path = NULL;
@@ -81,5 +80,5 @@ void ft_free_map_info(t_map *map_info)
 {
 	free_paths(map_info);
 	if (map_info->map)
-		ft_free2darr((void **) map_info->map);
+		ft_free2dmap(map_info->map, map_info->height);
 }

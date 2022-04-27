@@ -64,6 +64,5 @@ int	parser(int argc, char **argv, t_map *map_info)
 		return (FAIL);
 	char_to_nbr(map_info);
 	printf("Valid map\n");
-	print_info(map_info);
 	return (SUCCESS);
 }

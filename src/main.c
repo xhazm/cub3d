@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:52 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:47:37 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/27 19:59:56 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_init(&vars, &map_info) == FAIL)
 		return (1);
-	print_map(map_info.map, map_info.height, &map_info);
 	mlx_hook(vars.win, X_EVENT_KEY_PRESS, 1L << 0, &key_press, &vars);
 	mlx_hook(vars.win, X_EVENT_KEY_RELEASE, 1L << 1, &key_release, &vars);
 	mlx_hook(vars.win, X_EVENT_EXIT, 1L << 17, &exit_game, &vars);

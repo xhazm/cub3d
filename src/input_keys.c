@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_keys.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:53:50 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/27 19:56:29 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	key_press(int keycode, t_vars *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
+	return (SUCCESS);
 }
 
 int	key_release(int keycode, t_vars *vars)
@@ -57,4 +58,5 @@ int	key_release(int keycode, t_vars *vars)
 		vars->pl.mvLeft = false;
 	if (keycode == KEY_D)
 		vars->pl.mvRight = false;
+	return (SUCCESS);
 }
