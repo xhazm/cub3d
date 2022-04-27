@@ -59,9 +59,9 @@ int get_type(t_map *map_info, char **sp_line)
 		return (assign_str(map_info, WE, sp_line));
 	else if (ft_strcmp(sp_line[0], "EA") == 0 && map_info->ea_path == NULL)
 		return (assign_str(map_info, EA, sp_line));
-	else if (ft_strcmp(sp_line[0], "C") == 0 && map_info->ceiling_color == -1)
+	else if (ft_strcmp(sp_line[0], "C") == 0 && map_info->ceiling_color == INT32_MAX)
 		return (assign_str(map_info, C, sp_line));
-	else if (ft_strcmp(sp_line[0], "F") == 0 && map_info->floor_color == -1)
+	else if (ft_strcmp(sp_line[0], "F") == 0 && map_info->floor_color == INT32_MAX)
 		return (assign_str(map_info, F, sp_line));
 	else if (sp_line[0][0] == '1')
 	{

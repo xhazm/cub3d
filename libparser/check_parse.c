@@ -2,9 +2,9 @@
 
 int	check_meta_info(t_map *m)
 {
-	if (m->ceiling_color == -1)
+	if (m->ceiling_color == INT32_MAX)
 		return(-1);
-	if (m->floor_color == -1)
+	if (m->floor_color == INT32_MAX)
 		return(-1);
 	if(m->no_path == NULL || m->so_path == NULL || m->we_path == NULL
 		|| m->ea_path == NULL)

@@ -10,6 +10,7 @@ unsigned int	ft_color_converter(char *cStr)
 	rgb = ft_split(cStr, ',');
 	color = 0;
 	temp_color = 0;
+	i = 0;
 	while (i < 3)
 	{
 		temp_color = ft_atoi(rgb[i]);

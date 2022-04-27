@@ -1,6 +1,6 @@
 #include "parser.h"
 
-void print_map(char **map, int height, t_map *map_info)
+void print_map(char **map, t_map *map_info)
 {
 	int y;
 	int x;
