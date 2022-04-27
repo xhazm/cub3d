@@ -7,8 +7,8 @@ static void	init_map_info(t_map *map_info)
 	map_info->so_path = NULL;
 	map_info->we_path = NULL;
 	map_info->ea_path = NULL;
-	map_info->floor_color = -1;
-	map_info->ceiling_color = -1;
+	map_info->floor_color = INT32_MAX;
+	map_info->ceiling_color = INT32_MAX;
 	map_info->width = 0;
 	map_info->height = 0;
 	map_info->pl_dir = 'x';
@@ -64,6 +64,5 @@ int	parser(int argc, char **argv, t_map *map_info)
 		return (FAIL);
 	char_to_nbr(map_info);
 	printf("Valid map\n");
-	print_info(map_info);
 	return (SUCCESS);
 }

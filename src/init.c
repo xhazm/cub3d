@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:44 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:54:00 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
 static void	get_dir_e_w(t_vars *vars, t_map *map_info)
@@ -6,14 +18,14 @@ static void	get_dir_e_w(t_vars *vars, t_map *map_info)
 	{
 		vars->pl.dirX = 1;
 		vars->pl.dirY = 0;
-		vars->pl.planeX = 0;	
+		vars->pl.planeX = 0;
 		vars->pl.planeY = 0.66;
 	}
 	else if (map_info->pl_dir == 'W')
 	{
 		vars->pl.dirX = -1;
 		vars->pl.dirY = 0;
-		vars->pl.planeX = 0;	
+		vars->pl.planeX = 0;
 		vars->pl.planeY = -0.66;
 	}
 }
@@ -24,14 +36,14 @@ static void	get_dir(t_vars *vars, t_map *map_info)
 	{
 		vars->pl.dirX = 0;
 		vars->pl.dirY = 1;
-		vars->pl.planeX = -0.66;	
+		vars->pl.planeX = -0.66;
 		vars->pl.planeY = 0;
 	}
 	else if (map_info->pl_dir == 'N')
 	{
 		vars->pl.dirX = 0;
 		vars->pl.dirY = -1;
-		vars->pl.planeX = 0.66;	
+		vars->pl.planeX = 0.66;
 		vars->pl.planeY = 0;
 	}
 	else
@@ -61,6 +73,7 @@ static void	ft_init_player(t_vars *vars, t_map *map_info)
 	vars->pl.rotSp = vars->pl.origrotSp;
 	vars->pl.mvSp = FRAMETIME * 5.0;
 }
+
 int	ft_init(t_vars *vars, t_map *map_info)
 {
 	ft_init_mlx_win_img(vars);

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:55 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:53:26 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
-static void	ft_minimap_player(t_vars *vars,t_map *map_info)
+static void	ft_minimap_player(t_vars *vars, t_map *map_info)
 {
 	int	x;
 	int	y;
@@ -34,9 +46,9 @@ void	ft_minimap(t_vars *vars, t_map *map_info)
 		{
 			if (map_info->map[y / MINIMAP_S][x / MINIMAP_S] == 1)
 				my_mlx_pixel_put(vars, x, y, 0x00fff7cc);
-			else if(map_info->map[y / MINIMAP_S][x / MINIMAP_S] == 'T')
+			else if (map_info->map[y / MINIMAP_S][x / MINIMAP_S] == 'T')
 				my_mlx_pixel_put(vars, x, y, 0x00ff9933);
-			else if(map_info->map[y / MINIMAP_S][x / MINIMAP_S] == -'R')
+			else if (map_info->map[y / MINIMAP_S][x / MINIMAP_S] == - 'R')
 				my_mlx_pixel_put(vars, x, y, 0x00ffffff);
 			x++;
 		}

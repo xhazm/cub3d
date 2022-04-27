@@ -1,5 +1,5 @@
-CFLAGS = -Wall -Werror -Wextra -c -g
-NAME = parser.a
+CFLAGS = -c -g #-Wall -Werror -Wextra 
+NAME = libparser.a
 SRC =	./parser.c \
 		./check_firstrow.c \
 		./check_lastrow.c \

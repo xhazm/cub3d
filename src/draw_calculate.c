@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_calculate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:51:26 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
 static void	ft_calc_grid_dist(t_vars *vars)
@@ -29,13 +41,12 @@ static void	ft_calc_raylen(t_vars *vars)
 	if (vars->ray.dirX == 0)
 		vars->ray.deltaDistX = 1e30;
 	else
-		vars->ray.deltaDistX =  fabs(1 / vars->ray.dirX);
+		vars->ray.deltaDistX = fabs(1 / vars->ray.dirX);
 	if (vars->ray.dirY == 0)
 		vars->ray.deltaDistY = 1e30;
 	else
 		vars->ray.deltaDistY = fabs(1 / vars->ray.dirY);
 }
-
 
 int	ft_init_draw_values(t_vars *vars, int x)
 {

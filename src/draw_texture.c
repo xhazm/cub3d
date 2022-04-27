@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_texture.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/27 14:44:39 by lpfleide          #+#    #+#             */
+/*   Updated: 2022/04/27 14:53:06 by lpfleide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../defines/cub3d.h"
 
 static void	ft_draw_floor_ceiling(t_vars *vars, int x, int y)
@@ -42,7 +54,7 @@ static void	ft_scale_drawing_line(t_vars *vars)
 	if (vars->draw.start < 0)
 		vars->draw.start = 0;
 	vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
-	if (vars->draw.end >= IMG_H )
+	if (vars->draw.end >= IMG_H)
 		vars->draw.end = IMG_H -1;
 }
 
@@ -55,7 +67,7 @@ void	ft_draw_textures(t_vars *vars, int x, t_texture *texture)
 	if (vars->ray.side == 0)
 		wallX = vars->pl.y + vars->perpWallDist * vars->ray.dirY;
 	else
-		wallX = vars->pl.x  + vars->perpWallDist * vars->ray.dirX;
+		wallX = vars->pl.x + vars->perpWallDist * vars->ray.dirX;
 	wallX -= floor(wallX);
 	texX = (int)(wallX * (double)TEX_W);
 	if (vars->ray.side == 0 && vars->ray.dirX > 0)
