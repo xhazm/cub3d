@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:35:06 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:35:46 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 static int	path_exist(t_map *m)
@@ -11,25 +23,25 @@ static int	path_exist(t_map *m)
 int	check_meta_info(t_map *m)
 {
 	if (m->ceiling_color == INT32_MAX)
-		return(-1);
+		return (-1);
 	if (m->floor_color == INT32_MAX)
-		return(-1);
-	if(path_exist(m) == -1 ||
-		m->no_path == NULL || m->so_path == NULL || m->we_path == NULL
+		return (-1);
+	if (path_exist(m) == -1
+		|| m->no_path == NULL || m->so_path == NULL || m->we_path == NULL
 		|| m->ea_path == NULL)
-		return(-1);
+		return (-1);
 	return (0);
 }
 
 int	check_map(t_map *map_info)
 {
 	if (check_first_row(map_info) < 0)
-		return(ft_error("Invalid map"));
+		return (ft_error("Invalid map"));
 	if (check_last_row(map_info) < 0)
-		return(ft_error("Invalid map"));
+		return (ft_error("Invalid map"));
 	if (check_middle_rows(map_info) < 0)
-		return(ft_error("Invalid map"));
+		return (ft_error("Invalid map"));
 	if (map_info->pl_dir == 'x')
-		return(ft_error("Invalid map"));
+		return (ft_error("Invalid map"));
 	return (0);
 }

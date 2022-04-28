@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_lastrow.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:34:27 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:34:37 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 static int	check_sign(t_map *map_info, char sign, int i)
@@ -7,7 +19,7 @@ static int	check_sign(t_map *map_info, char sign, int i)
 	if (sign == ' ')
 	{
 		j = map_info->height - 1;
-		while(j > 0)
+		while (j > 0)
 		{
 			if ((ft_strchr(" 1\0", map_info->map[j][i]) == 0)
 				&& (ft_strchr(" 1\0", map_info->map[j][i]) == 0
@@ -28,10 +40,10 @@ int	check_last_row(t_map *map_info)
 
 	i = 0;
 	last = map_info->map[map_info->height - 1];
-	while(last[i])
+	while (last[i])
 	{
 		if ((ft_strchr(" 1", last[i]) == 0)
-		&& (ft_strchr(" 1", last[i]) == 0 && last[i] != '\n'))
+			&& (ft_strchr(" 1", last[i]) == 0 && last[i] != '\n'))
 			return (-1);
 		if (check_sign(map_info, last[i], i) < 0)
 			return (-1);

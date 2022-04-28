@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_info.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:44:57 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:45:30 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
-static char **fill_raw_read(int fd, char **raw_read, int rows)
+static char	**fill_raw_read(int fd, char **raw_read, int rows)
 {
 	int		x;
-	char 	*line;
+	char	*line;
 
 	x = 0;
 	line = NULL;
@@ -45,10 +57,10 @@ int	read_info(char **argv, t_map *map_info)
 
 	rows = get_info_size(argv, map_info);
 	if (rows == 0)
-		return(ft_error("Empty Map"));
-	raw_read = malloc((rows + 1) * sizeof(char*));
+		return (ft_error("Empty Map"));
+	raw_read = malloc((rows + 1) * sizeof(char *));
 	if (raw_read == NULL)
-		return(ft_error("malloc Error"));
+		return (ft_error("malloc Error"));
 	raw_read = fill_raw_read(map_info->fd, raw_read, rows);
 	if (get_informations(map_info, raw_read) < 0)
 		return (-1);

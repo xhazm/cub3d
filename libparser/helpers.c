@@ -1,27 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:44:33 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:44:44 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
-
-void print_map(char **map, t_map *map_info)
-{
-	int y;
-	int x;
-
-	y = 0;
-	x = 0;
-	while(x < map_info->height)
-	{
-		y = 0;
-		while(y < map_info->width)
-		{
-			if (map[x][y] <= 9 && map[x][y] >= 0)
-				printf("%d",map[x][y]);
-			else
-				printf("%c",map[x][y]);
-			y++;
-		}
-		printf("\n");
-		x++;
-	}
-}
 
 static int	ft_free2dmap(char **arr, int height)
 {
@@ -45,14 +34,14 @@ int	ft_error(char *msg)
 	return (-1);
 }
 
-int check_spaces(char c)
+int	check_spaces(char c)
 {
 	if (c == ' ' || c == '	')
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
-static void free_paths(t_map *map_info)
+static void	free_paths(t_map *map_info)
 {
 	if (map_info->no_path != NULL)
 	{
@@ -76,7 +65,7 @@ static void free_paths(t_map *map_info)
 	}
 }
 
-void ft_free_map_info(t_map *map_info)
+void	ft_free_map_info(t_map *map_info)
 {
 	free_paths(map_info);
 	if (map_info->map)

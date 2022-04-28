@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:58:29 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 19:56:29 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 17:54:39 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	ft_doorkey(t_vars *vars, t_player pl, t_map *map)
 {
-	int	plX;
-	int	plY;
+	int	plx;
+	int	ply;
 
-	plX = (int)pl.x + (int)round(pl.dirX);
-	plY = (int)pl.y + (int)round(pl.dirY);
+	plx = (int)pl.x + (int)round(pl.dirX);
+	ply = (int)pl.y + (int)round(pl.dirY);
 	if (map->map[vars->mapY][vars->mapX] == 'T')
 		map->map[vars->mapY][vars->mapX] = - 'T';
-	else if (map->map[plY][plX] == - 'T')
-		map->map[plY][plX] = 'T';
+	else if (map->map[ply][plx] == - 'T')
+		map->map[ply][plx] = 'T';
 }
 
 int	key_press(int keycode, t_vars *vars)

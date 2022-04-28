@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:41 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:48:48 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:54:13 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
-static int	ft_get_texture_data(t_texture *texture, int texNumber)
+static int	ft_get_texture_data(t_texture *texture, int texnumber)
 {
 	int	i;
 
 	i = 0;
-	while (i < texNumber)
+	while (i < texnumber)
 	{
 		if (texture[i].img_ptr == NULL)
 			return (FAIL);
@@ -31,7 +31,8 @@ static int	ft_get_texture_data(t_texture *texture, int texNumber)
 
 static void	ft_xpm_to_img(t_vars *vars, t_texture *tex, char *str)
 {
-	tex->img_ptr = mlx_xpm_file_to_image(vars->mlx, str, &tex->width, &tex->height);
+	tex->img_ptr = mlx_xpm_file_to_image(vars->mlx, str,
+			&tex->width, &tex->height);
 }
 
 int	ft_init_textures(t_vars *vars, t_map *map_info)

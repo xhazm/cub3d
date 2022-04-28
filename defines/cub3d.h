@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:58:16 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -11,13 +23,13 @@
 # include <math.h>
 # include <stdbool.h>
 
-typedef enum	e_textures{
+typedef enum e_textures{
 	E_WALL_N,
 	E_WALL_S,
 	E_WALL_W,
 	E_WALL_E,
 	E_DOOR,
-} 				t_textures;
+}				t_textures;
 
 typedef struct s_texture {
 	int		width;
@@ -123,7 +135,6 @@ typedef struct s_vars{
 	t_img		b_img;
 	t_input		input;
 }				t_vars;
-
 
 int				ft_init(t_vars *vars, t_map *map_info);
 unsigned int	ft_pick_tex_color(t_texture tex, int x, int y);

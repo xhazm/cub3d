@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:33 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:52:05 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:52:08 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,46 @@ int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 
 static int	ft_pick_sprite_tex(t_vars *vars)
 {
-	int	texNum;
+	int	texnum;
 
-	texNum = 0;
+	texnum = 0;
 	if (vars->spriteDead == 1)
-		texNum = 3;
+		texnum = 3;
 	else if (vars->spriteC < 100)
-		texNum = 0;
+		texnum = 0;
 	else if (vars->spriteC < 200)
-		texNum = 1;
+		texnum = 1;
 	else if (vars->spriteC < 300)
-		texNum = 2;
+		texnum = 2;
 	else if (vars->spriteC > 300)
 	{
-		texNum = 0;
+		texnum = 0;
 		vars->spriteC = 0;
 	}
-	return (texNum);
+	return (texnum);
 }
 
 int	ft_pick_texture(t_vars *vars)
 {
-	int	texNum;
+	int	texnum;
 
-	texNum = 0;
+	texnum = 0;
 	if (vars->isSprite == 0)
 	{
 		if (vars->ray.side == 1 && vars->ray.dirY < 0)
-			texNum = E_WALL_N;
+			texnum = E_WALL_N;
 		else if (vars->ray.side == 1 && vars->ray.dirY > 0)
-			texNum = E_WALL_S;
+			texnum = E_WALL_S;
 		else if (vars->ray.side == 0 && vars->ray.dirX < 0)
-			texNum = E_WALL_W;
+			texnum = E_WALL_W;
 		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
-			texNum = E_WALL_E;
+			texnum = E_WALL_E;
 		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
-			texNum = E_DOOR;
+			texnum = E_DOOR;
 	}
 	else if (vars->isSprite == 1)
-		texNum = ft_pick_sprite_tex(vars);
-	return (texNum);
+		texnum = ft_pick_sprite_tex(vars);
+	return (texnum);
 }
 
 unsigned int	ft_pick_tex_color(t_texture tex, int x, int y)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 17:46:03 by elenz             #+#    #+#             */
+/*   Updated: 2022/04/28 17:48:36 by elenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 static void	init_map_info(t_map *map_info)
@@ -26,7 +38,7 @@ int	open_map(char **argv, t_map *map_info)
 	return (0);
 }
 
-void char_to_nbr(t_map *map_info)
+void	char_to_nbr(t_map *map_info)
 {
 	int	x;
 	int	y;
@@ -43,7 +55,7 @@ void char_to_nbr(t_map *map_info)
 				map_info->map[y][x] == 'S' || map_info->map[y][x] == 'W')
 				map_info->map[y][x] = 0;
 			else if (map_info->map[y][x] == 'R')
-				map_info->map[y][x] = -'R';
+				map_info->map[y][x] = - 'R';
 			x++;
 		}
 		y++;

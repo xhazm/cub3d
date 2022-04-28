@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:20:19 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/08 15:21:12 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 17:47:22 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
 
 char	*get_next_line(int fd, int buffersize);
 size_t	ft_gstrlen(char	*s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_calculate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:51:26 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:50:47 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	else
 	{
 		vars->ray.stepX = 1;
-		vars->ray.sideDistX = (vars->mapX + 1.0 - vars->pl.x) * vars->ray.deltaDistX;
+		vars->ray.sideDistX = (vars->mapX + 1.0 - vars->pl.x) \
+		* vars->ray.deltaDistX;
 	}
 	if (vars->ray.dirY < 0)
 	{
@@ -32,7 +33,8 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	else
 	{
 		vars->ray.stepY = 1;
-		vars->ray.sideDistY = (vars->mapY + 1.0 - vars->pl.y) * vars->ray.deltaDistY;
+		vars->ray.sideDistY = (vars->mapY + 1.0 - vars->pl.y) \
+		* vars->ray.deltaDistY;
 	}
 }
 
@@ -65,7 +67,7 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 
 	x = 0;
 	vars->isSprite = 0;
-	while(x < IMG_W)
+	while (x < IMG_W)
 	{
 		ft_init_draw_values(vars, x);
 		ft_calc_grid_dist(vars);
