@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:05:39 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:12:35 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,38 @@ static void	ft_calc_grid_dist(t_vars *vars)
 {
 	if (vars->ray.dir_x < 0)
 	{
-		vars->ray.stepX = -1;
-		vars->ray.sideDistX = (vars->pl.x - vars->mapX) * vars->ray.deltaDistX;
+		vars->ray.step_x = -1;
+		vars->ray.side_dist_x = (vars->pl.x - vars->mapX) * vars->ray.delta_dist_x;
 	}
 	else
 	{
-		vars->ray.stepX = 1;
-		vars->ray.sideDistX = (vars->mapX + 1.0 - vars->pl.x) \
-		* vars->ray.deltaDistX;
+		vars->ray.step_x = 1;
+		vars->ray.side_dist_x = (vars->mapX + 1.0 - vars->pl.x) \
+		* vars->ray.delta_dist_x;
 	}
 	if (vars->ray.dir_y < 0)
 	{
-		vars->ray.stepY = -1;
-		vars->ray.sideDistY = (vars->pl.y - vars->mapY) * vars->ray.deltaDistY;
+		vars->ray.step_y = -1;
+		vars->ray.side_dist_y = (vars->pl.y - vars->mapY) * vars->ray.delta_dist_y;
 	}
 	else
 	{
-		vars->ray.stepY = 1;
-		vars->ray.sideDistY = (vars->mapY + 1.0 - vars->pl.y) \
-		* vars->ray.deltaDistY;
+		vars->ray.step_y = 1;
+		vars->ray.side_dist_y = (vars->mapY + 1.0 - vars->pl.y) \
+		* vars->ray.delta_dist_y;
 	}
 }
 
 static void	ft_calc_raylen(t_vars *vars)
 {
 	if (vars->ray.dir_x == 0)
-		vars->ray.deltaDistX = 1e30;
+		vars->ray.delta_dist_x = 1e30;
 	else
-		vars->ray.deltaDistX = fabs(1 / vars->ray.dir_x);
+		vars->ray.delta_dist_x = fabs(1 / vars->ray.dir_x);
 	if (vars->ray.dir_y == 0)
-		vars->ray.deltaDistY = 1e30;
+		vars->ray.delta_dist_y = 1e30;
 	else
-		vars->ray.deltaDistY = fabs(1 / vars->ray.dir_y);
+		vars->ray.delta_dist_y = fabs(1 / vars->ray.dir_y);
 }
 
 int	ft_init_draw_values(t_vars *vars, int x)

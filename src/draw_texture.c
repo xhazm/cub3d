@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:39 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:05:08 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:08:56 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 	unsigned int	color;
 
 	y = 1;
-	step = 1.0 * TEX_H / vars->draw.lineH;
-	texpos = (vars->draw.start - IMG_H / 2 + vars->draw.lineH / 2) * step;
+	step = 1.0 * TEX_H / vars->draw.lineh;
+	texpos = (vars->draw.start - IMG_H / 2 + vars->draw.lineh / 2) * step;
 	while (y < IMG_H - 1)
 	{
 		if (y > vars->draw.start && y < vars->draw.end)
@@ -49,11 +49,11 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 
 static void	ft_scale_drawing_line(t_vars *vars)
 {
-	vars->draw.lineH = (int)(IMG_H / vars->perpWallDist);
-	vars->draw.start = -vars->draw.lineH / 2 + IMG_H / 2;
+	vars->draw.lineh = (int)(IMG_H / vars->perpWallDist);
+	vars->draw.start = -vars->draw.lineh / 2 + IMG_H / 2;
 	if (vars->draw.start < 0)
 		vars->draw.start = 0;
-	vars->draw.end = vars->draw.lineH / 2 + IMG_H / 2;
+	vars->draw.end = vars->draw.lineh / 2 + IMG_H / 2;
 	if (vars->draw.end >= IMG_H)
 		vars->draw.end = IMG_H -1;
 }

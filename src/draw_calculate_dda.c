@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_calculate_dda.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:15 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:50:04 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/28 20:12:35 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	ft_dda_algorithm(t_vars *vars, t_map map_info)
 {
 	while (vars->ray.hit == 0)
 	{
-		if (vars->ray.sideDistX < vars->ray.sideDistY)
+		if (vars->ray.side_dist_x < vars->ray.side_dist_y)
 		{
-			vars->ray.sideDistX += vars->ray.deltaDistX;
-			vars->mapX += vars->ray.stepX;
+			vars->ray.side_dist_x += vars->ray.delta_dist_x;
+			vars->mapX += vars->ray.step_x;
 			vars->ray.side = 0;
 		}
 		else
 		{
-			vars->ray.sideDistY += vars->ray.deltaDistY;
-			vars->mapY += vars->ray.stepY;
+			vars->ray.side_dist_y += vars->ray.delta_dist_y;
+			vars->mapY += vars->ray.step_y;
 			vars->ray.side = 1;
 		}
 		vars->ray.hit = ft_get_maphit(vars, map_info);
@@ -50,9 +50,9 @@ int	ft_dda_algorithm(t_vars *vars, t_map map_info)
 			return (FAIL);
 	}
 	if (vars->ray.side == 0)
-		vars->perpWallDist = (vars->ray.sideDistX - vars->ray.deltaDistX);
+		vars->perpWallDist = (vars->ray.side_dist_x - vars->ray.delta_dist_x);
 	else
-		vars->perpWallDist = (vars->ray.sideDistY - vars->ray.deltaDistY);
+		vars->perpWallDist = (vars->ray.side_dist_y - vars->ray.delta_dist_y);
 	if (vars->perpWallDist == 0)
 		vars->perpWallDist = 0;
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 20:08:04 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:12:35 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_player {
 }				t_player;
 
 typedef struct s_draw {
-	int		lineH;
+	int		lineh;
 	int		start;
 	int		end;
 }				t_draw;
@@ -103,14 +103,14 @@ typedef struct s_ray
 {
 	double	dir_x;
 	double	dir_y;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 	int		hit;
 	int		side;
-	int		stepX;
-	int		stepY;
+	int		step_x;
+	int		step_y;
 }				t_ray;
 
 typedef struct s_vars{
