@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 20:17:08 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:37:35 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_texture {
 
 typedef struct s_mouse {
 	int		drag;
-	int		xStart;
-	int		yStart;
+	int		x_start;
+	int		y_start;
 	int		div;
 }				t_mouse;
 

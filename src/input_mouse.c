@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:49 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:53:39 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/04/28 20:37:22 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mouse_press(int keycode, int x, int y, t_vars *vars)
 {
-	vars->mouse.xStart = x;
+	vars->mouse.x_start = x;
 	if (keycode == 1)
 		vars->mouse.drag = 1;
 	return (0);
@@ -24,9 +24,9 @@ int	mouse_release(int keycode, int x, int y, t_vars *vars)
 {
 	if (keycode == 1)
 		vars->mouse.drag = 0;
-	vars->pl.mvLeft = false;
-	vars->pl.mvRight = false;
-	vars->pl.rotSp = vars->pl.origrotSp;
+	vars->pl.mv_left = false;
+	vars->pl.mv_right = false;
+	vars->pl.rot_sp = vars->pl.origrotsp;
 	return (0);
 }
 
@@ -34,11 +34,11 @@ int	mousexy_hook(int x, int y, t_vars *vars)
 {
 	if (vars->mouse.drag == 1)
 	{
-		if (vars->mouse.xStart < x)
-			vars->pl.mvRight = true;
-		if (vars->mouse.xStart > x)
-			vars->pl.mvLeft = true;
-		vars->pl.rotSp = fabs(ldexp(vars->mouse.xStart - x, -12));
+		if (vars->mouse.x_start < x)
+			vars->pl.mv_right = true;
+		if (vars->mouse.x_start > x)
+			vars->pl.mv_left = true;
+		vars->pl.rot_sp = fabs(ldexp(vars->mouse.x_start - x, -12));
 	}
 	return (0);
 }

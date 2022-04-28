@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:15:31 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:33:34 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	if (vars->ray.dir_x < 0)
 	{
 		vars->ray.step_x = -1;
-		vars->ray.side_dist_x = (vars->pl.x - vars->map_x) * vars->ray.delta_dist_x;
+		vars->ray.side_dist_x = (vars->pl.x - vars->map_x) \
+		* vars->ray.delta_dist_x;
 	}
 	else
 	{
@@ -28,7 +29,8 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	if (vars->ray.dir_y < 0)
 	{
 		vars->ray.step_y = -1;
-		vars->ray.side_dist_y = (vars->pl.y - vars->map_y) * vars->ray.delta_dist_y;
+		vars->ray.side_dist_y = (vars->pl.y - vars->map_y) \
+		* vars->ray.delta_dist_y;
 	}
 	else
 	{
