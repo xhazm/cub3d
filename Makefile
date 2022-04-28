@@ -6,13 +6,13 @@
 #    By: elenz <elenz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/01 18:59:28 by lpfleide          #+#    #+#              #
-#    Updated: 2022/04/27 19:24:47 by elenz            ###   ########.fr        #
+#    Updated: 2022/04/28 20:41:06 by elenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 NAME = cub3d
-FLAGS = -O3 -g # -Wall -Wextra -Werror
+FLAGS = -O3 -g -Wall -Wextra -Werror
 SRC =main.c input_keys.c input_mouse.c move.c draw_calculate.c draw_calculate_dda.c draw_texture.c draw_texture_helper.c init.c init_textures.c minimap.c
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))

@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 17:10:05 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:36:27 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:41:57 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	check_rabbit(void)
 	if (rabbit == 1)
 		return (-1);
 	rabbit = 1;
+	return (0);
 }
 
 int	check_t(char **map, int x, int y, int sign)
