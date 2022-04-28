@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 20:12:35 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:17:08 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,18 +116,18 @@ typedef struct s_ray
 typedef struct s_vars{
 	void		*mlx;
 	void		*win;
-	double		cameraX;
+	double		camera_x;
 	double		frametime;
-	double		perpWallDist;
-	int			mapX;
-	int			mapY;
-	int			isSprite;
-	long		spriteC;
-	int			spriteDead;
+	double		perpwalldist;
+	int			map_x;
+	int			map_y;
+	int			is_sprite;
+	long		sprite_c;
+	int			sprite_dead;
 	t_draw		draw;
 	t_texture	texture[5];
 	t_texture	sprite[4];
-	t_map 		*map_info;
+	t_map		*map_info;
 	t_mouse		mouse;
 	t_player	pl;
 	t_ray		ray;
@@ -140,7 +140,6 @@ int				ft_init(t_vars *vars, t_map *map_info);
 unsigned int	ft_pick_tex_color(t_texture tex, int x, int y);
 int				ft_pick_texture(t_vars *vars);
 int				key_hook(int keycode, t_vars *vars);
-void 			bresenham(t_vars *vars, int x0, int y0, int x1, int y1, int color);
 int				my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int				key_press(int keycode, t_vars *vars);
 int				key_release(int keycode, t_vars *vars);
@@ -154,7 +153,4 @@ int				mouse_press(int keycode, int x, int y, t_vars *vars);
 int				mouse_release(int keycode, int x, int y, t_vars *vars);
 int				ft_init_textures(t_vars *vars, t_map *map_info);
 void			ft_minimap(t_vars *vars, t_map *map_info);
-
-
-
 #endif

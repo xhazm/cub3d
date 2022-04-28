@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:39 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:08:56 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:15:31 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 			if (color != 0xff000000)
 				my_mlx_pixel_put(vars, x, y, color);
 		}
-		else if (vars->isSprite == 0)
+		else if (vars->is_sprite == 0)
 			ft_draw_floor_ceiling(vars, x, y);
 		y++;
 	}
@@ -49,7 +49,7 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 
 static void	ft_scale_drawing_line(t_vars *vars)
 {
-	vars->draw.lineh = (int)(IMG_H / vars->perpWallDist);
+	vars->draw.lineh = (int)(IMG_H / vars->perpwalldist);
 	vars->draw.start = -vars->draw.lineh / 2 + IMG_H / 2;
 	if (vars->draw.start < 0)
 		vars->draw.start = 0;
@@ -65,9 +65,9 @@ void	ft_draw_textures(t_vars *vars, int x, t_texture *texture)
 
 	ft_scale_drawing_line(vars);
 	if (vars->ray.side == 0)
-		wallx = vars->pl.y + vars->perpWallDist * vars->ray.dir_y;
+		wallx = vars->pl.y + vars->perpwalldist * vars->ray.dir_y;
 	else
-		wallx = vars->pl.x + vars->perpWallDist * vars->ray.dir_x;
+		wallx = vars->pl.x + vars->perpwalldist * vars->ray.dir_x;
 	wallx -= floor(wallx);
 	tex_x = (int)(wallx * (double)TEX_W);
 	if (vars->ray.side == 0 && vars->ray.dir_x > 0)

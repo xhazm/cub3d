@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:33 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:05:08 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:16:20 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static int	ft_pick_sprite_tex(t_vars *vars)
 	int	texnum;
 
 	texnum = 0;
-	if (vars->spriteDead == 1)
+	if (vars->sprite_dead == 1)
 		texnum = 3;
-	else if (vars->spriteC < 100)
+	else if (vars->sprite_c < 100)
 		texnum = 0;
-	else if (vars->spriteC < 200)
+	else if (vars->sprite_c < 200)
 		texnum = 1;
-	else if (vars->spriteC < 300)
+	else if (vars->sprite_c < 300)
 		texnum = 2;
-	else if (vars->spriteC > 300)
+	else if (vars->sprite_c > 300)
 	{
 		texnum = 0;
-		vars->spriteC = 0;
+		vars->sprite_c = 0;
 	}
 	return (texnum);
 }
@@ -48,7 +48,7 @@ int	ft_pick_texture(t_vars *vars)
 	int	texnum;
 
 	texnum = 0;
-	if (vars->isSprite == 0)
+	if (vars->is_sprite == 0)
 	{
 		if (vars->ray.side == 1 && vars->ray.dir_y < 0)
 			texnum = E_WALL_N;
@@ -58,10 +58,10 @@ int	ft_pick_texture(t_vars *vars)
 			texnum = E_WALL_W;
 		else if (vars->ray.side == 0 && vars->ray.dir_x > 0)
 			texnum = E_WALL_E;
-		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
+		if (vars->map_info->map[vars->map_y][vars->map_x] == 'T')
 			texnum = E_DOOR;
 	}
-	else if (vars->isSprite == 1)
+	else if (vars->is_sprite == 1)
 		texnum = ft_pick_sprite_tex(vars);
 	return (texnum);
 }

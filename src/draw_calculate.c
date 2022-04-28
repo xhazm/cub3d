@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:12:35 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:15:31 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	if (vars->ray.dir_x < 0)
 	{
 		vars->ray.step_x = -1;
-		vars->ray.side_dist_x = (vars->pl.x - vars->mapX) * vars->ray.delta_dist_x;
+		vars->ray.side_dist_x = (vars->pl.x - vars->map_x) * vars->ray.delta_dist_x;
 	}
 	else
 	{
 		vars->ray.step_x = 1;
-		vars->ray.side_dist_x = (vars->mapX + 1.0 - vars->pl.x) \
+		vars->ray.side_dist_x = (vars->map_x + 1.0 - vars->pl.x) \
 		* vars->ray.delta_dist_x;
 	}
 	if (vars->ray.dir_y < 0)
 	{
 		vars->ray.step_y = -1;
-		vars->ray.side_dist_y = (vars->pl.y - vars->mapY) * vars->ray.delta_dist_y;
+		vars->ray.side_dist_y = (vars->pl.y - vars->map_y) * vars->ray.delta_dist_y;
 	}
 	else
 	{
 		vars->ray.step_y = 1;
-		vars->ray.side_dist_y = (vars->mapY + 1.0 - vars->pl.y) \
+		vars->ray.side_dist_y = (vars->map_y + 1.0 - vars->pl.y) \
 		* vars->ray.delta_dist_y;
 	}
 }
@@ -54,11 +54,11 @@ int	ft_init_draw_values(t_vars *vars, int x)
 {
 	vars->ray.hit = 0;
 	vars->ray.side = 0;
-	vars->cameraX = 2 * x / (double)IMG_W - 1;
-	vars->ray.dir_x = vars->pl.dir_x + vars->pl.plane_x * vars->cameraX;
-	vars->ray.dir_y = vars->pl.dir_y + vars->pl.plane_y * vars->cameraX;
-	vars->mapX = (int)vars->pl.x;
-	vars->mapY = (int)vars->pl.y;
+	vars->camera_x = 2 * x / (double)IMG_W - 1;
+	vars->ray.dir_x = vars->pl.dir_x + vars->pl.plane_x * vars->camera_x;
+	vars->ray.dir_y = vars->pl.dir_y + vars->pl.plane_y * vars->camera_x;
+	vars->map_x = (int)vars->pl.x;
+	vars->map_y = (int)vars->pl.y;
 }
 
 int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
@@ -66,7 +66,7 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 	int	x;
 
 	x = 0;
-	vars->isSprite = 0;
+	vars->is_sprite = 0;
 	while (x < IMG_W)
 	{
 		ft_init_draw_values(vars, x);
@@ -77,15 +77,15 @@ int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 			x++;
 			continue ;
 		}
-		if (vars->isSprite == 0)
+		if (vars->is_sprite == 0)
 			ft_draw_textures(vars, x, vars->texture);
-		else if (vars->isSprite == 1 && vars->ray.side == 0)
+		else if (vars->is_sprite == 1 && vars->ray.side == 0)
 			ft_draw_textures(vars, x, vars->sprite);
 		x++;
-		if (x == IMG_W && vars->isSprite == 0)
+		if (x == IMG_W && vars->is_sprite == 0)
 		{
 			x = 0;
-			vars->isSprite = 1;
+			vars->is_sprite = 1;
 		}
 	}
 }

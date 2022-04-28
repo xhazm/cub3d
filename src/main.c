@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:52 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 19:59:56 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:16:00 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	draw_player(t_vars *vars)
 	vars->img.data.addr = mlx_get_data_addr(vars->img.img,
 			&vars->img.data.bits_per_pixel, &vars->img.data.line_length,
 			&vars->img.data.endian);
-	vars->spriteC++;
+	vars->sprite_c++;
 	ft_draw_rays_3d(vars, vars->map_info);
 	ft_move(vars, vars->map_info, &vars->pl);
 	ft_minimap(vars, vars->map_info);
