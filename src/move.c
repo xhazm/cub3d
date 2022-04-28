@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:09:01 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 17:57:13 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:08:04 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,51 @@
 
 static void	ft_rotate(t_vars *vars, t_player *pl)
 {
-	double	odirx;
-	double	oplanex;
+	double	odir_x;
+	double	oplane_x;
 
-	odirx = pl->dirX;
-	oplanex = pl->planeX;
-	if (pl->mvLeft == true)
+	odir_x = pl->dir_x;
+	oplane_x = pl->plane_x;
+	if (pl->mv_left == true)
 	{
-		odirx = pl->dirX;
-		pl->dirX = pl->dirX * cos(-pl->rotSp) - pl->dirY * sin(-pl->rotSp);
-		pl->dirY = odirx * sin(-pl->rotSp) + pl->dirY * cos(-pl->rotSp);
-		oplanex = pl->planeX;
-		pl->planeX = pl->planeX * cos(-pl->rotSp) \
-		- pl->planeY * sin(-pl->rotSp);
-		pl->planeY = oplanex * sin(-pl->rotSp) + pl->planeY * cos(-pl->rotSp);
+		odir_x = pl->dir_x;
+		pl->dir_x = pl->dir_x * cos(-pl->rot_sp) - pl->dir_y * sin(-pl->rot_sp);
+		pl->dir_y = odir_x * sin(-pl->rot_sp) + pl->dir_y * cos(-pl->rot_sp);
+		oplane_x = pl->plane_x;
+		pl->plane_x = pl->plane_x * cos(-pl->rot_sp) \
+		- pl->plane_y * sin(-pl->rot_sp);
+		pl->plane_y = oplane_x * sin(-pl->rot_sp) + pl->plane_y * cos(-pl->rot_sp);
 	}
-	if (pl->mvRight == true)
+	if (pl->mv_right == true)
 	{
-		odirx = pl->dirX;
-		pl->dirX = pl->dirX * cos(pl->rotSp) - pl->dirY * sin(pl->rotSp);
-		pl->dirY = odirx * sin(pl->rotSp) + pl->dirY * cos(pl->rotSp);
-		oplanex = pl->planeX;
-		pl->planeX = pl->planeX * cos(pl->rotSp) - pl->planeY * sin(pl->rotSp);
-		pl->planeY = oplanex * sin(pl->rotSp) + pl->planeY * cos(pl->rotSp);
+		odir_x = pl->dir_x;
+		pl->dir_x = pl->dir_x * cos(pl->rot_sp) - pl->dir_y * sin(pl->rot_sp);
+		pl->dir_y = odir_x * sin(pl->rot_sp) + pl->dir_y * cos(pl->rot_sp);
+		oplane_x = pl->plane_x;
+		pl->plane_x = pl->plane_x * cos(pl->rot_sp) - pl->plane_y * sin(pl->rot_sp);
+		pl->plane_y = oplane_x * sin(pl->rot_sp) + pl->plane_y * cos(pl->rot_sp);
 	}
 }
 
 void	ft_move(t_vars *vars, t_map *map_info, t_player *pl)
 {
-	if (pl->mvForward == true)
+	if (pl->mv_forward == true)
 	{
-		if (map_info->map[(int)(pl->y + pl->dirY \
-		* pl->mvSp)][(int)(pl->x)] <= 0)
-			pl->y += pl->dirY * pl->mvSp;
-		if (map_info->map[(int)(pl->y)][(int)(pl->x + pl->dirX \
-		* pl->mvSp)] <= 0)
-			pl->x += pl->dirX * pl->mvSp;
+		if (map_info->map[(int)(pl->y + pl->dir_y \
+		* pl->mv_sp)][(int)(pl->x)] <= 0)
+			pl->y += pl->dir_y * pl->mv_sp;
+		if (map_info->map[(int)(pl->y)][(int)(pl->x + pl->dir_x \
+		* pl->mv_sp)] <= 0)
+			pl->x += pl->dir_x * pl->mv_sp;
 	}
-	if (pl->mvBackward == true)
+	if (pl->mv_backward == true)
 	{
-		if (map_info->map[(int)(pl->y - pl->dirY \
-		* pl->mvSp)][(int)(pl->x)] <= 0)
-			pl->y -= pl->dirY * pl->mvSp;
-		if (map_info->map[(int)(pl->y)][(int)(pl->x - pl->dirX \
-		* pl->mvSp)] <= 0)
-			pl->x -= pl->dirX * pl->mvSp;
+		if (map_info->map[(int)(pl->y - pl->dir_y \
+		* pl->mv_sp)][(int)(pl->x)] <= 0)
+			pl->y -= pl->dir_y * pl->mv_sp;
+		if (map_info->map[(int)(pl->y)][(int)(pl->x - pl->dir_x \
+		* pl->mv_sp)] <= 0)
+			pl->x -= pl->dir_x * pl->mv_sp;
 	}
 	ft_rotate(vars, pl);
 }

@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:58:16 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:08:04 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ typedef struct s_mouse {
 }				t_mouse;
 
 typedef struct s_player {
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	x;
 	double	y;
-	double	mvSp;
-	double	rotSp;
-	double	origrotSp;
-	bool	mvForward;
-	bool	mvBackward;
-	bool	mvLeft;
-	bool	mvRight;
+	double	mv_sp;
+	double	rot_sp;
+	double	origrotsp;
+	bool	mv_forward;
+	bool	mv_backward;
+	bool	mv_left;
+	bool	mv_right;
 }				t_player;
 
 typedef struct s_draw {
@@ -101,8 +101,8 @@ typedef struct s_img {
 
 typedef struct s_ray
 {
-	double	dirX;
-	double	dirY;
+	double	dir_x;
+	double	dir_y;
 	double	deltaDistX;
 	double	deltaDistY;
 	double	sideDistX;

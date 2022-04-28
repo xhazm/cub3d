@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:33 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 17:52:08 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:05:08 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int	ft_pick_texture(t_vars *vars)
 	texnum = 0;
 	if (vars->isSprite == 0)
 	{
-		if (vars->ray.side == 1 && vars->ray.dirY < 0)
+		if (vars->ray.side == 1 && vars->ray.dir_y < 0)
 			texnum = E_WALL_N;
-		else if (vars->ray.side == 1 && vars->ray.dirY > 0)
+		else if (vars->ray.side == 1 && vars->ray.dir_y > 0)
 			texnum = E_WALL_S;
-		else if (vars->ray.side == 0 && vars->ray.dirX < 0)
+		else if (vars->ray.side == 0 && vars->ray.dir_x < 0)
 			texnum = E_WALL_W;
-		else if (vars->ray.side == 0 && vars->ray.dirX > 0)
+		else if (vars->ray.side == 0 && vars->ray.dir_x > 0)
 			texnum = E_WALL_E;
 		if (vars->map_info->map[vars->mapY][vars->mapX] == 'T')
 			texnum = E_DOOR;

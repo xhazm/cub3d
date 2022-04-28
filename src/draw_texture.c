@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:39 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 17:53:04 by elenz            ###   ########.fr       */
+/*   Updated: 2022/04/28 20:05:08 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void	ft_draw_textures(t_vars *vars, int x, t_texture *texture)
 
 	ft_scale_drawing_line(vars);
 	if (vars->ray.side == 0)
-		wallx = vars->pl.y + vars->perpWallDist * vars->ray.dirY;
+		wallx = vars->pl.y + vars->perpWallDist * vars->ray.dir_y;
 	else
-		wallx = vars->pl.x + vars->perpWallDist * vars->ray.dirX;
+		wallx = vars->pl.x + vars->perpWallDist * vars->ray.dir_x;
 	wallx -= floor(wallx);
 	tex_x = (int)(wallx * (double)TEX_W);
-	if (vars->ray.side == 0 && vars->ray.dirX > 0)
+	if (vars->ray.side == 0 && vars->ray.dir_x > 0)
 		tex_x = TEX_W - tex_x - 1;
-	if (vars->ray.side == 1 && vars->ray.dirY < 0)
+	if (vars->ray.side == 1 && vars->ray.dir_y < 0)
 		tex_x = TEX_W - tex_x - 1;
 	ft_draw_y_line(vars, x, tex_x, texture);
 }
