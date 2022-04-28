@@ -7,8 +7,6 @@ void print_map(char **map, t_map *map_info)
 
 	y = 0;
 	x = 0;
-	height = 0;
-	x = height;
 	while(x < map_info->height)
 	{
 		y = 0;
