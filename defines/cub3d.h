@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 20:37:35 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:10:47 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ int				key_press(int keycode, t_vars *vars);
 int				key_release(int keycode, t_vars *vars);
 void			ft_draw_textures(t_vars *vars, int x, t_texture *texture);
 int				ft_dda_algorithm(t_vars *vars, t_map map_info);
-void			ft_move(t_vars *vars, t_map *map_info, t_player *pl);
-int				ft_draw_rays_3d(t_vars *vars, t_map *map_info);
+void			ft_move(t_map *map_info, t_player *pl);
+void			ft_draw_rays_3d(t_vars *vars, t_map *map_info);
 void			ft_minimap(t_vars *vars, t_map *map_info);
 int				mousexy_hook(int x, int y, t_vars *vars);
 int				mouse_press(int keycode, int x, int y, t_vars *vars);

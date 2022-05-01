@@ -6,13 +6,14 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:49 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:37:22 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:08:59 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
-int	mouse_press(int keycode, int x, int y, t_vars *vars)
+int	mouse_press(int keycode, int __attribute__((__unused__))x,
+	int __attribute__((__unused__))y, t_vars *vars)
 {
 	vars->mouse.x_start = x;
 	if (keycode == 1)
@@ -20,7 +21,9 @@ int	mouse_press(int keycode, int x, int y, t_vars *vars)
 	return (0);
 }
 
-int	mouse_release(int keycode, int x, int y, t_vars *vars)
+int	mouse_release(int keycode, int __attribute__((__unused__))x,
+	int __attribute__((__unused__))y,
+		t_vars *vars)
 {
 	if (keycode == 1)
 		vars->mouse.drag = 0;
@@ -30,7 +33,7 @@ int	mouse_release(int keycode, int x, int y, t_vars *vars)
 	return (0);
 }
 
-int	mousexy_hook(int x, int y, t_vars *vars)
+int	mousexy_hook(int x, int __attribute__((__unused__))y, t_vars *vars)
 {
 	if (vars->mouse.drag == 1)
 	{

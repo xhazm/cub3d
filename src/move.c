@@ -6,13 +6,13 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 13:09:01 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:35:51 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:09:34 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
-static void	ft_rotate(t_vars *vars, t_player *pl)
+static void	ft_rotate(t_player *pl)
 {
 	double	odir_x;
 	double	opl;
@@ -41,7 +41,7 @@ static void	ft_rotate(t_vars *vars, t_player *pl)
 	}
 }
 
-void	ft_move(t_vars *vars, t_map *map_info, t_player *pl)
+void	ft_move(t_map *map_info, t_player *pl)
 {
 	if (pl->mv_forward == true)
 	{
@@ -61,5 +61,5 @@ void	ft_move(t_vars *vars, t_map *map_info, t_player *pl)
 		* pl->mv_sp)] <= 0)
 			pl->x -= pl->dir_x * pl->mv_sp;
 	}
-	ft_rotate(vars, pl);
+	ft_rotate(pl);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:55 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/27 14:53:26 by lpfleide         ###   ########.fr       */
+/*   Updated: 2022/05/01 19:12:10 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
-static void	ft_minimap_player(t_vars *vars, t_map *map_info)
+static void	ft_minimap_player(t_vars *vars)
 {
 	int	x;
 	int	y;
@@ -54,5 +54,5 @@ void	ft_minimap(t_vars *vars, t_map *map_info)
 		}
 		y++;
 	}
-	ft_minimap_player(vars, map_info);
+	ft_minimap_player(vars);
 }

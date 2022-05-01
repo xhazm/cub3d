@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:33:34 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/01 19:10:42 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_calc_raylen(t_vars *vars)
 		vars->ray.delta_dist_y = fabs(1 / vars->ray.dir_y);
 }
 
-int	ft_init_draw_values(t_vars *vars, int x)
+static void	ft_init_draw_values(t_vars *vars, int x)
 {
 	vars->ray.hit = 0;
 	vars->ray.side = 0;
@@ -63,7 +63,7 @@ int	ft_init_draw_values(t_vars *vars, int x)
 	vars->map_y = (int)vars->pl.y;
 }
 
-int	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
+void	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 {
 	int	x;
 
