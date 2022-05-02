@@ -6,7 +6,7 @@
 /*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:37:09 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:42:13 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 19:44:48 by elenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,15 @@ int	get_informations(t_map *map_info, char **raw_read)
 	if (check_meta_info(map_info) < 0)
 	{
 		ft_free2darr((void **) raw_read);
-		ft_free_map_info(map_info);
 		return (ft_error("Invalid map_checkmeta"));
 	}
 	if (get_map(map_info, &raw_read[map_info->first_row_map]) < 0)
 	{
 		ft_free2darr((void **) raw_read);
-		ft_free_map_info(map_info);
 		return (-1);
 	}
 	ft_free2darr((void **) raw_read);
 	if (check_map(map_info) < 0)
-	{
-		ft_free_map_info(map_info);
 		return (-1);
-	}
 	return (0);
 }
