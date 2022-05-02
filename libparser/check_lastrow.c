@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lastrow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:34:27 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:34:37 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:33:17 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static int	check_sign(t_map *map_info, char sign, int i)
 	return (0);
 }
 
+/* 
+** See documentation of check_first_row. Same procedure just upwards.
+ */
 int	check_last_row(t_map *map_info)
 {
 	char	*last;

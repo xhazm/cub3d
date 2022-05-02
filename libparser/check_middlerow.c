@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_middlerow.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:33:11 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:36:51 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:29:46 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static int	check_sign(t_map *map_info, char *row, int y)
 	return (0);
 }
 
+/* 
+** Checking for double signs (like double R's or player-signs), and test
+** the "sourrunding" of zeros and special signs for invalid signs.
+ */
 int	check_middle_rows(t_map *map_info)
 {
 	int		y;

@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:55 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/05/01 19:12:10 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:13:00 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
+/* 
+** draws a teeny weeny player on the teeny weeny minimap
+ */
 static void	ft_minimap_player(t_vars *vars)
 {
 	int	x;
@@ -32,6 +35,9 @@ static void	ft_minimap_player(t_vars *vars)
 	}
 }
 
+/* 
+** draws a teeny weeny minimap
+ */
 void	ft_minimap(t_vars *vars, t_map *map_info)
 {
 	int	x;

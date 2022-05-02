@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   read_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:44:57 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:45:30 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:23:08 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+** Fills the information from the input file to the allocated space 
+ */
 static char	**fill_raw_read(int fd, char **raw_read, int rows)
 {
 	int		x;
@@ -30,6 +33,9 @@ static char	**fill_raw_read(int fd, char **raw_read, int rows)
 	return (raw_read);
 }
 
+/* 
+** Checks for the total numbers of rows for later allocation
+ */
 static int	get_info_size(char **argv, t_map *map_info)
 {
 	int		rows;
@@ -50,6 +56,9 @@ static int	get_info_size(char **argv, t_map *map_info)
 	return (rows);
 }
 
+/* 
+** Get all the information out of the map
+ */
 int	read_info(char **argv, t_map *map_info)
 {
 	int		rows;

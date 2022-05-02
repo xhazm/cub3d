@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:57:39 by elenz             #+#    #+#             */
-/*   Updated: 2022/05/01 19:10:47 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:06:01 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_vars{
 	double		camera_x;
 	double		frametime;
 	double		perpwalldist;
+	double		perpwalldist_v2;
 	int			map_x;
 	int			map_y;
 	int			is_sprite;

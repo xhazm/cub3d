@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:46:03 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:48:36 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:30:41 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	char_to_nbr(t_map *map_info)
 	}
 }
 
+/* 
+** Parser for taking in the information of the input file and
+** stores them in a struct
+ */
 int	parser(int argc, char **argv, t_map *map_info)
 {
 	if (argc != 2)

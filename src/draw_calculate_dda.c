@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_calculate_dda.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:15 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:15:31 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:00:22 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
+/* 
+** checks if map-grid intersection is with a wall/sprite or nothing
+ */
 static int	ft_get_maphit(t_vars *vars, t_map map_info)
 {
 	if (vars->is_sprite == 0)
@@ -29,6 +32,10 @@ static int	ft_get_maphit(t_vars *vars, t_map map_info)
 	return (0);
 }
 
+/* 
+** iterates through the map-grid until the ray hits a wall/sprite at an
+** intersection. First iteration checks for walls second for sprites.
+ */
 int	ft_dda_algorithm(t_vars *vars, t_map map_info)
 {
 	while (vars->ray.hit == 0)

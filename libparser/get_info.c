@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:37:09 by elenz             #+#    #+#             */
-/*   Updated: 2022/05/02 19:44:48 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:30:30 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ static int	get_meta_type(char *str, int i, t_map *map_info)
 	return (type);
 }
 
+/* 
+** Checks for the type of information and gets the hight and width of
+** the map at the same time for later allocation
+ */
 static int	get_meta_info(t_map *map_info, char **raw_read)
 {
 	int		x;
@@ -51,6 +55,10 @@ static int	get_meta_info(t_map *map_info, char **raw_read)
 	return (0);
 }
 
+/*
+** Here is where the meta information (like path to the imgs) and the 
+** map itself got extracted and the informations got checked
+*/
 int	get_informations(t_map *map_info, char **raw_read)
 {	
 	if (get_meta_info(map_info, raw_read) < 0)

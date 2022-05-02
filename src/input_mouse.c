@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:49 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/05/01 19:08:59 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:41:05 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	mouse_release(int keycode, int __attribute__((__unused__))x,
 	return (0);
 }
 
+/* 
+** activates rotation relative to how far the mouse was moved. 
+** Bigger movement -> faster rotation
+ */
 int	mousexy_hook(int x, int __attribute__((__unused__))y, t_vars *vars)
 {
 	if (vars->mouse.drag == 1)

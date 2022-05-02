@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:35:06 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:35:46 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:29:24 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	check_meta_info(t_map *m)
 	return (0);
 }
 
+/*
+** Looking for invalid maps
+*/
 int	check_map(t_map *map_info)
 {
 	if (check_first_row(map_info) < 0)

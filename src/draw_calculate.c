@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_calculate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:31 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/05/01 19:10:42 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:29:08 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
+/* 
+** distance from player to next full map-grid intersection and sets ray step dir
+ */
 static void	ft_calc_grid_dist(t_vars *vars)
 {
 	if (vars->ray.dir_x < 0)
@@ -40,6 +43,9 @@ static void	ft_calc_grid_dist(t_vars *vars)
 	}
 }
 
+/* 
+** distance from last map-grid intersection to next map-grid intersection
+ */
 static void	ft_calc_raylen(t_vars *vars)
 {
 	if (vars->ray.dir_x == 0)
@@ -52,6 +58,9 @@ static void	ft_calc_raylen(t_vars *vars)
 		vars->ray.delta_dist_y = fabs(1 / vars->ray.dir_y);
 }
 
+/* 
+** sets everything needed for player camera plane
+ */
 static void	ft_init_draw_values(t_vars *vars, int x)
 {
 	vars->ray.hit = 0;
@@ -63,6 +72,9 @@ static void	ft_init_draw_values(t_vars *vars, int x)
 	vars->map_y = (int)vars->pl.y;
 }
 
+/* 
+** Calculates and draws POV vision
+ */
 void	ft_draw_rays_3d(t_vars *vars, t_map *map_info)
 {
 	int	x;

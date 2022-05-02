@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture_helper.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:33 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:16:20 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:07:21 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../defines/cub3d.h"
 
+/* 
+** puts pixel to img
+ */
 int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
@@ -22,6 +25,9 @@ int	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	return (1);
 }
 
+/* 
+** animates sprite -> vars->sprite_c == FPS
+ */
 static int	ft_pick_sprite_tex(t_vars *vars)
 {
 	int	texnum;
@@ -43,6 +49,9 @@ static int	ft_pick_sprite_tex(t_vars *vars)
 	return (texnum);
 }
 
+/* 
+** picks texture depending on which side the wall is relative to the player
+ */
 int	ft_pick_texture(t_vars *vars)
 {
 	int	texnum;
@@ -66,6 +75,9 @@ int	ft_pick_texture(t_vars *vars)
 	return (texnum);
 }
 
+/* 
+** gets color as unsigned int out of an char array
+ */
 unsigned int	ft_pick_tex_color(t_texture tex, int x, int y)
 {
 	unsigned int	*color;

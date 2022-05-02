@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_firstrow.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:33:23 by elenz             #+#    #+#             */
-/*   Updated: 2022/04/28 17:34:10 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 20:32:18 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/*
+** If the found sign is a space it checks downwoard if there is a 
+**forbidden character (not space, 0, or 1)
+*/
 static int	check_sign(t_map *map_info, char sign, int i)
 {
 	int	j;
@@ -33,6 +37,9 @@ static int	check_sign(t_map *map_info, char sign, int i)
 	return (0);
 }
 
+/* 
+** Checks the top-map-row if there is another number then 1 or space
+ */
 int	check_first_row(t_map *map_info)
 {
 	char	*first;

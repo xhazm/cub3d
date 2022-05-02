@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elenz <elenz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpfleide <lpfleide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:44:39 by lpfleide          #+#    #+#             */
-/*   Updated: 2022/04/28 20:15:31 by elenz            ###   ########.fr       */
+/*   Updated: 2022/05/02 21:03:16 by lpfleide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void	ft_draw_floor_ceiling(t_vars *vars, int x, int y)
 		my_mlx_pixel_put(vars, x, y, vars->map_info->ceiling_color);
 }
 
+/* 
+** draws line on y axis and gets suitable color -> if needed from textures
+ */
 static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 {
 	int				y;
@@ -47,6 +50,9 @@ static void	ft_draw_y_line(t_vars *vars, int x, int texX, t_texture *tex)
 	}
 }
 
+/* 
+** scales height of the object to be drawn
+ */
 static void	ft_scale_drawing_line(t_vars *vars)
 {
 	vars->draw.lineh = (int)(IMG_H / vars->perpwalldist);
@@ -58,6 +64,9 @@ static void	ft_scale_drawing_line(t_vars *vars)
 		vars->draw.end = IMG_H -1;
 }
 
+/* 
+** scales and draws textures
+ */
 void	ft_draw_textures(t_vars *vars, int x, t_texture *texture)
 {
 	int		tex_x;
