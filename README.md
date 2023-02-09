@@ -5,7 +5,7 @@ It will enable you to explore ray-casting.<br>
 Your goal will be to make a dynamic view inside a maze, in which you’ll have to find your way.<br>
 
 This project was done as a group project with [Esra Lenz](https://github.com/42elenz) <br>
-![result](https://github.com/xhazm/cub3d/blob/master/resources/screen.png)
+![result](https://github.com/xhazm/cub3d/blob/main/resources/screen.png)
 ## Contents
 - [Short description](https://github.com/xhazm/cub3d#short-description-of-the-project)
 - [Our cub3D](https://github.com/xhazm/cub3d#our-cub3d)
@@ -22,7 +22,7 @@ To conclude cub3D is a remarkable playground to explore the playful practical ap
 With the help of the numerous documents available on the internet, you will use mathematics as a tool to create elegant and efficient algorithms.<br><br>
 
 ## Here you can see the result:
-![Animated GIF](https://github.com/xhazm/cub3d/blob/master/resources/example.gif)
+![Animated GIF](https://github.com/xhazm/cub3d/blob/main/resources/example.gif)
 
 ## Our cub3D
 ### Requirements to run the game
@@ -77,7 +77,7 @@ The wall textures as well as the door texture is interchangeable, as long as:<br
 - the texture is 64 by 64 pixels
 - the texture is a .xpm file
 
-If you want to change the windowsize, this can be done in the [cub3d_define.h](https://github.com/xhazm/cub3d/blob/master/include/cub3d.h) file.<br>
+If you want to change the windowsize, this can be done in the [cub3d_define.h](https://github.com/xhazm/cub3d/blob/main/include/cub3d.h) file.<br>
 
 
 [back to **Our cub3D**](https://github.com/xhazm/cub3d#our-cub3d)<br>
